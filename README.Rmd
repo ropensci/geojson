@@ -71,6 +71,7 @@ dat <- jsonlite::fromJSON(file, FALSE)
 ```
 
 ```{r eval=FALSE}
+library("leaflet")
 leaflet() %>%
   addTiles() %>%
   addGeoJSON(dat) %>%
@@ -99,7 +100,7 @@ Plot it
 ```{r eval=FALSE}
 leaflet() %>%
   addTiles() %>%
-  addGeoJSON(dat) %>%
+  addGeoJSON(res) %>%
   setView(-122.6, 45.5, zoom = 10)
 ```
 

@@ -21,10 +21,14 @@ this is just a characstring string with S3 class `geojson` attached to make it e
 ```r
 x <- "{\"type\":\"FeatureCollection\",\"features\":[{\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-99.74,32.45]},\"properties\":{}}]}"
 as.geojson(x)
-#> {"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[-99.74,32.45]},"properties":{}}]}
+#> <geojson> 
+#>   type:  FeatureCollection 
+#>   features (n):  1 
+#>   bounding box:  -99.74 32.45 -99.74 32.45 
+#>   features:  Feature
 ```
 
-## search geojson
+## filter geojson
 
 
 ```r
@@ -47,6 +51,7 @@ dat <- jsonlite::fromJSON(file, FALSE)
 
 
 ```r
+library("leaflet")
 leaflet() %>%
   addTiles() %>%
   addGeoJSON(dat) %>%
@@ -89,7 +94,7 @@ Plot it
 ```r
 leaflet() %>%
   addTiles() %>%
-  addGeoJSON(dat) %>%
+  addGeoJSON(res) %>%
   setView(-122.6, 45.5, zoom = 10)
 ```
 

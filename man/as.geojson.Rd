@@ -15,5 +15,8 @@ Geojson class
 \examples{
 x <- "{\\"type\\":\\"FeatureCollection\\",\\"features\\":[{\\"type\\":\\"Feature\\",\\"geometry\\":{\\"type\\":\\"Point\\",\\"coordinates\\":[-99.74,32.45]},\\"properties\\":{}}]}"
 as.geojson(x)
+
+x <- lawn_data$polygons_average
+as.geojson(x)
 }
 
