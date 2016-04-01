@@ -10,5 +10,6 @@ URL: https://github.com/ropenscilabs/geojson
 BugReports: https://github.com/ropenscilabs/geojson/issues
 Imports:
     jsonlite (>= 0.9.19),
-    jqr (>= 0.2.0)
+    jqr (>= 0.2.0),
+    lawn (>= 0.1.6)
 RoxygenNote: 5.0.1
