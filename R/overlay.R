@@ -1,5 +1,7 @@
 #' Overlay
 #' @export
+#' @param points geojson points
+#' @param polygons geojson polygons
 #' @examples
 #' library("lawn")
 #' lawn_data$points_within %>% view

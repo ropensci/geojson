@@ -6,6 +6,9 @@
 \usage{
 as.geojson(x)
 }
+\arguments{
+\item{x}{input}
+}
 \description{
 Geojson class
 }

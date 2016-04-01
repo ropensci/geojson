@@ -1,8 +1,9 @@
 #' Sift geojson - high level DSL
 #'
 #' @export
-#' @param x input, one of character string, json, list, or ...
-#' @param query query
+#' @param .data input, one of character string, json, list, or ...
+#' @param ... dots
+#' @param .dots dots
 #' @return an object of class \code{character}
 #' @examples
 #' library("leaflet")
@@ -16,9 +17,9 @@
 #'
 #' # filter to features in Multnomah County only
 #' json <- paste0(readLines(file), collapse = "")
-#' json2 <- sifter(json, '.features[] | select(.properties.COUNTY == "Multnomah")')
-#' dat <- jsonlite::fromJSON(json2, FALSE)
-#' leaflet() %>% addTiles() %>% addGeoJSON(dat) %>% setView(-122.6, 45.5, zoom = 10)
+#' #json2 <- sifter(json, '.features[] | select(.properties.COUNTY == "Multnomah")')
+#' #dat <- jsonlite::fromJSON(json2, FALSE)
+#' #leaflet() %>% addTiles() %>% addGeoJSON(dat) %>% setView(-122.6, 45.5, zoom = 10)
 #'
 #' # sift to Multnomah County only
 #' res <- sifter(json, COUNTY == Multnomah)

@@ -6,6 +6,11 @@
 \usage{
 overlay(points, polygons)
 }
+\arguments{
+\item{points}{geojson points}
+
+\item{polygons}{geojson polygons}
+}
 \description{
 Overlay
 }

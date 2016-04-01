@@ -1,5 +1,6 @@
 #' Geojson class
 #' @export
+#' @param x input
 #' @examples
 #' x <- "{\"type\":\"FeatureCollection\",\"features\":[{\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-99.74,32.45]},\"properties\":{}}]}"
 #' as.geojson(x)
@@ -8,6 +9,6 @@ as.geojson <- function(x) {
 }
 
 #' @export
-print.geojson <- function(x) {
+print.geojson <- function(x, ...) {
   cat(x)
 }
