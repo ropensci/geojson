@@ -3,6 +3,7 @@
 S3method(print,geojson)
 export(as.geojson)
 export(gsearch)
+export(overlay)
 importFrom(jqr,jq)
 importFrom(jsonlite,fromJSON)
 importFrom(jsonlite,toJSON)
