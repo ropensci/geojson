@@ -16,7 +16,16 @@ Geojson class
 x <- "{\\"type\\":\\"FeatureCollection\\",\\"features\\":[{\\"type\\":\\"Feature\\",\\"geometry\\":{\\"type\\":\\"Point\\",\\"coordinates\\":[-99.74,32.45]},\\"properties\\":{}}]}"
 as.geojson(x)
 
-x <- lawn_data$polygons_average
+x <- lawn::lawn_data$polygons_average
+as.geojson(x)
+
+x <- lawn::lawn_data$polygons_aggregate
+as.geojson(x)
+
+x <- lawn::lawn_data$points_count
+as.geojson(x)
+
+x <- ""
 as.geojson(x)
 }
 

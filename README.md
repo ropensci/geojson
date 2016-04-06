@@ -3,6 +3,14 @@ geojson
 
 
 
+`geojson` aims to deal only with geojson data, without requiring any of the `sp`/`rgdal`/`rgeos` stack. That means this package can be relatively light weight.
+
+We'll define classes (`S3` or `R6`) following the [GeoJSON spec][geojsonspec]. These classes sort of overlap with `sp`'s classes, but not really. There's also some overlap in GeoJSON classes with Well-Known Text (WKT) classes, but GeoJSON has a subset of WKT's classes.
+
+[geoops](https://github.com/ropenscilabs/geoops) supports manipulations on these classes.
+
+## installation
+
 
 ```r
 devtools::install_github("ropenscilabs/geojson")
@@ -23,84 +31,88 @@ x <- "{\"type\":\"FeatureCollection\",\"features\":[{\"type\":\"Feature\",\"geom
 as.geojson(x)
 #> <geojson> 
 #>   type:  FeatureCollection 
-#>   features (n):  1 
-#>   bounding box:  -99.74 32.45 -99.74 32.45 
-#>   features:  Feature
+#>   features (n): 1 
+#>   features (geometry / length):
+#>     Point / 2
 ```
 
-## filter geojson
+## Playing with using R6
 
 
 ```r
-x <- "{\"type\":\"FeatureCollection\",\"features\":[{\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-99.74,32.45]},\"properties\":{}}]}"
-x <- as.geojson(x)
-sift_client(x, ".features[].geometry[]")
-#> [1] "[\"Point\", [-99.74,32.45]]"
+x <- '{
+ "type": "GeometryCollection",
+ "geometries": [
+   {
+     "type": "Point",
+     "coordinates": [100.0, 0.0]
+   },
+   {
+     "type": "LineString",
+     "coordinates": [ [101.0, 0.0], [102.0, 1.0] ]
+   }
+  ]
+}'
+(y <- geometrycollection(x))
+#> <GeometryCollection> 
+#>   type:  GeometryCollection 
+#>   geometries (n): 2 
+#>   geometries (geometry / length):
+#>     Point / 2
+#>     LineString / 2
 ```
 
-## sifting with jq
-
-Using Zillow data, plot all data
+creates an object which we can use to inspect the geojson
 
 
 ```r
-library("leaflet")
-file <- system.file("examples", "zillow_or.geojson", package = "siftgeojson")
-dat <- jsonlite::fromJSON(file, FALSE)
+# get the string
+y$string
+#> [1] "{\n \"type\": \"GeometryCollection\",\n \"geometries\": [\n   {\n     \"type\": \"Point\",\n     \"coordinates\": [100.0, 0.0]\n   },\n   {\n     \"type\": \"LineString\",\n     \"coordinates\": [ [101.0, 0.0], [102.0, 1.0] ]\n   }\n  ]\n}"
+# get the type
+y$type()
+#> [1] "GeometryCollection"
+# pretty print the geojson
+y$pretty()
+#> {
+#>     "type": "GeometryCollection",
+#>     "geometries": [
+#>         {
+#>             "type": "Point",
+#>             "coordinates": [
+#>                 100.0,
+#>                 0.0
+#>             ]
+#>         },
+#>         {
+#>             "type": "LineString",
+#>             "coordinates": [
+#>                 [
+#>                     101.0,
+#>                     0.0
+#>                 ],
+#>                 [
+#>                     102.0,
+#>                     1.0
+#>                 ]
+#>             ]
+#>         }
+#>     ]
+#> }
+#> 
+# get the types within the geometrycollection
+y$types()
+#> [1] "Point"      "LineString"
+# write to disk
+y$write(file = (f <- tempfile(fileext = ".geojson")))
+unlink(f)
 ```
-
-
-```r
-library("leaflet")
-leaflet() %>%
-  addTiles() %>%
-  addGeoJSON(dat) %>%
-  setView(-122.8, 44.8, zoom = 8)
-```
-
-![alldata](inst/img/one.png)
-
-Filter to features in Multnomah County only
-
-
-```r
-json <- paste0(readLines(file), collapse = "")
-res <- sifter(json, COUNTY == Multnomah)
-```
-
-Check that only Multnomah County came back
-
-
-```r
-res %>%
-  jqr::index() %>%
-  jqr::dotstr(properties.COUNTY)
-#> [
-#>     "Multnomah",
-#>     "Multnomah",
-#>     "Multnomah",
-#>     "Multnomah",
-#>     "Multnomah",
-#>     "Multnomah",
-#>     "Multnomah",
-#>     "Multnomah",
-#>     "Multnomah",
-...
-```
-
-Plot it
-
-
-```r
-leaflet() %>%
-  addTiles() %>%
-  addGeoJSON(res) %>%
-  setView(-122.6, 45.5, zoom = 10)
-```
-
-![alldata](inst/img/two.png)
 
 ## Meta
 
 * Please [report any issues or bugs](https://github.com/ropenscilabs/sifter/issues).
 * License: MIT
+
+[geojsonspec]: http://geojson.org/geojson-spec.html
+[jqr]: https://github.com/ropensci/jqr
+[jq]: https://github.com/stedolan/jq

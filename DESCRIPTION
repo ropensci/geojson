@@ -1,7 +1,7 @@
 Package: geojson
 Type: Package
-Title: GeoJSON Classes and Manipulation
-Description: GeoJSON Classes and Manipulation.
+Title: GeoJSON Classes
+Description: GeoJSON Classes.
 Version: 0.0.1.9000
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
@@ -11,8 +11,5 @@ BugReports: https://github.com/ropenscilabs/geojson/issues
 Imports:
     jsonlite (>= 0.9.19),
     jqr (>= 0.2.0),
-    lawn (>= 0.1.6),
-    lazyeval
-Suggests:
-    leaflet
+    geojsonlint (>= 0.0.1.9000)
 RoxygenNote: 5.0.1

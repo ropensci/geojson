@@ -1,0 +1,46 @@
+```{r echo=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+geojson classes
+===============
+
+The following `geojson` classes are suppported:
+
+class name - (`geojson` package class name)
+
+* `GeometryCollection` - (`geometrycollection`)
+* `FeatureCollection` - (`featurecollection`)
+* `Feature` - (`feature`)
+* `Point` - (`point`)
+* `MultiPoint` - (`multipoint`)
+* `Polygon` - (`polygon`)
+* `MultiPolygon` - (`multipolygon`)
+* `LineString` - (`linestring`)
+* `MultiLineString` - (`multilinestring`)
+
+You can create these classes with functions in `geojson`, e.g., create a point class like 
+
+```{r eval=FALSE}
+x <- "{\"type\":\"FeatureCollection\",\"features\":[{\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-99.74,32.45]},\"properties\":{}}]}"
+gj_point(x)
+```
+
+```{r}
+x <- '{ "type": "GeometryCollection",
+    "geometries": [
+      { "type": "Point",
+        "coordinates": [100.0, 0.0]
+        },
+      { "type": "LineString",
+        "coordinates": [ [101.0, 0.0], [102.0, 1.0] ]
+      }
+  ]
+}'
+as.geojson(x)
+```
