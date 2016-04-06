@@ -22,6 +22,7 @@
 #' y$pretty()
 #' y$types()
 #' y$write(file = (f <- tempfile(fileext = ".geojson")))
+#' jsonlite::fromJSON(f, FALSE)
 #' unlink(f)
 #'
 #' # bigger geometrycollection

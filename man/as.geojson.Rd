@@ -13,19 +13,15 @@ as.geojson(x)
 Geojson class
 }
 \examples{
-x <- "{\\"type\\":\\"FeatureCollection\\",\\"features\\":[{\\"type\\":\\"Feature\\",\\"geometry\\":{\\"type\\":\\"Point\\",\\"coordinates\\":[-99.74,32.45]},\\"properties\\":{}}]}"
+as.geojson(geojson_data$featurecollection_point)
+
+x <- geojson_data$polygons_average
 as.geojson(x)
 
-x <- lawn::lawn_data$polygons_average
+x <- geojson_data$polygons_aggregate
 as.geojson(x)
 
-x <- lawn::lawn_data$polygons_aggregate
-as.geojson(x)
-
-x <- lawn::lawn_data$points_count
-as.geojson(x)
-
-x <- ""
+x <- geojson_data$points_count
 as.geojson(x)
 }
 

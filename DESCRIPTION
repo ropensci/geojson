@@ -2,12 +2,13 @@ Package: geojson
 Type: Package
 Title: GeoJSON Classes
 Description: GeoJSON Classes.
-Version: 0.0.1.9000
+Version: 0.0.1.9400
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
 License: MIT + file LICENSE
 URL: https://github.com/ropenscilabs/geojson
 BugReports: https://github.com/ropenscilabs/geojson/issues
+LazyData: true
 Imports:
     jsonlite (>= 0.9.19),
     jqr (>= 0.2.0),
