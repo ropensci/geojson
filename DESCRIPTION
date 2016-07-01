@@ -1,8 +1,8 @@
 Package: geojson
 Type: Package
-Title: GeoJSON Classes
-Description: GeoJSON Classes.
-Version: 0.0.1.9400
+Title: Classes for GeoJSON
+Description: Classes for GeoJSON to make working with GeoJSON easier.
+Version: 0.0.2.9000
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
 License: MIT + file LICENSE
@@ -12,5 +12,5 @@ LazyData: true
 Imports:
     jsonlite (>= 0.9.19),
     jqr (>= 0.2.0),
-    geojsonlint (>= 0.0.1.9000)
+    geojsonlint (>= 0.1.0)
 RoxygenNote: 5.0.1
