@@ -25,7 +25,6 @@ linestring.character <- function(x) {
   verify_names(x, c('type', 'coordinates'))
   verify_class(x, "LineString")
   hint_geojson(x)
-  #structure(x, class = c("geojson", "linestring"))
   LineString$new(x = x)
 }
 

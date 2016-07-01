@@ -22,10 +22,10 @@ point.default <- function(x) {
 
 #' @export
 point.character <- function(x) {
+  x <- as_pt(x)
   verify_names(x, c('type', 'coordinates'))
   verify_class(x, "Point")
   hint_geojson(x)
-  #structure(x, class = c("geojson", "point"))
   Point$new(x = x)
 }
 
@@ -53,3 +53,11 @@ Point <- R6::R6Class(
     }
   )
 )
+
+as_pt <- function(x) {
+  if (asc(jqr::jq(unclass(x), ".type")) == "Feature") {
+    jqr::jq(unclass(x), ".geometry")
+  } else if (asc(jqr::jq(unclass(x), ".type")) == "Point") {
+    x
+  }
+}
