@@ -12,9 +12,21 @@
 #'
 #' x <- geojson_data$points_count
 #' as.geojson(x)
-as.geojson <- function(x) {
-  structure(x, class = "geojson")
-}
+setGeneric("as.geojson", function(x) {
+  standardGeneric("as.geojson")
+})
+
+#' @rdname as.geojson
+setMethod("as.geojson", "json", function(x){
+  stopifnot(jsonlite::validate(x))
+  structure(x, class = c("geojson", "json"))
+})
+
+#' @rdname as.geojson
+setMethod("as.geojson", "character", function(x){
+  stopifnot(jsonlite::validate(x))
+  structure(x, class = c("geojson", "json"))
+})
 
 #' @export
 print.geojson <- function(x, ...) {
