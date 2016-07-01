@@ -1,0 +1,11 @@
+{
+"type": "FeatureCollection",
+
+"features": [
+{ "type": "Feature", "id": 0, "properties": { "NOME": "Sec de segunrança", "URL": "http:\/\/www.theatermania.com\/new-york\/theaters\/45th-street-theatre_2278\/", "ADDRESS1": "354 West 45th Street", "CIDADE": "Goiânia", "CEP": 74250010 }, "geometry": { "type": "Point", "coordinates": [-49.256240, -16.689612] } }
+,
+{ "type": "Feature", "id": 1, "properties": { "NOME": "Teste", "URL": "http:\/\/www.bestofoffbroadway.com\/theaters\/47streettheatre.html", "ADDRESS1": "304 West 47th Street", "CIDADE": "New York", "ZIP": 74250010 }, "geometry": { "type": "Point", "coordinates": [-49.276240, -16.655612] } }
+,
+{ "type": "Feature", "id": 3, "properties": { "NOME": "Delacorte Theater", "URL": "http:\/\/www.centralpark.com\/pages\/attractions\/delacorte-theatre.html", "ADDRESS1": "Central Park - Mid-Park at 80th Street", "CIDADE": "New York", "ZIP": 74250010 }, "geometry": { "type": "Point", "coordinates": [-49.277263, -16.679057] } }
+]
+}
