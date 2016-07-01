@@ -31,7 +31,11 @@ summary.geojson <- function(object, ...) {
 }
 
 get_type <- function(x) {
-  cchar(jqr::jq(unclass(x), ".type"))
+  if (asc(jqr::jq(unclass(x), ".type")) == "Feature") {
+    asc(unclass(jqr::jq(unclass(x), ".geometry.type")))
+  } else {
+    cchar(jqr::jq(unclass(x), ".type"))
+  }
 }
 
 feat_geom_n <- function(x) {

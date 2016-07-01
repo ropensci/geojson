@@ -6,17 +6,44 @@ pluck <- function(x, name, type) {
   }
 }
 
+switch_verify_names <- function(x) {
+  switch(
+    get_type(x),
+    FeatureCollection = verify_names(x, c('type', 'features')),
+    Feature = verify_names(x, c('type', 'properties', 'geometry')),
+    Point = verify_names(x, c('type', 'coordinates')),
+    MultiPoint = verify_names(x, c('type', 'coordinates')),
+    MultiPoint = verify_names(x, c('type', 'coordinates')),
+    LineString = verify_names(x, c('type', 'coordinates')),
+    MultiLineString = verify_names(x, c('type', 'coordinates')),
+    Polygon = verify_names(x, c('type', 'coordinates')),
+    MultiPolygon = verify_names(x, c('type', 'coordinates'))
+  )
+}
+
 verify_names <- function(x, nms) {
-  keys <- strsplit(gsub("\\\"|\\[|\\]", "", unclass(jqr::jq(unclass(x), "keys"))), ",")[[1]]
+  if (asc(jqr::jq(unclass(x), ".type")) == "Feature") {
+    keys <- strsplit(asc(unclass(jqr::jq(unclass(x), ".geometry | keys"))), ",")[[1]]
+  } else {
+    keys <- strsplit(asc(unclass(jqr::jq(unclass(x), "keys"))), ",")[[1]]
+  }
   if (!all(nms %in% keys)) stop("keys not correct", call. = FALSE)
 }
 
+verify_class_ <- function(x, clss) {
+  if (asc(jqr::jq(unclass(x), ".type")) != clss) stop("object is not of type ", clss, call. = FALSE)
+}
+
 verify_class <- function(x, clss) {
-  cl <- cchar(jqr::jq(unclass(x), ".type"))
+  if (asc(jqr::jq(unclass(x), ".type")) == "Feature") {
+    cl <- cchar(jqr::jq(unclass(x), ".geometry.type"))
+  } else {
+    cl <- cchar(jqr::jq(unclass(x), ".type"))
+  }
   if (cl != clss) stop("object is not of type ", clss, call. = FALSE)
 }
 
-hint <- function(x) geojsonlint::geojson_hint(x) == "valid"
+hint <- function(x) geojsonlint::geojson_hint(x)
 
 hint_geojson <- function(x) {
   if (!hint(x)) stop("object not proper GeoJSON", call. = FALSE)
@@ -24,4 +51,28 @@ hint_geojson <- function(x) {
 
 cchar <- function(x) {
   gsub("\"", "", as.character(x))
+}
+
+asc <- function(x) gsub("\\\"|\\[|\\]", "", as.character(x))
+
+is_feature <- function(x) {
+  cchar(jqr::jq(unclass(x), ".type")) == "Feature"
+}
+
+get_coordinates <- function(x) {
+  if (asc(jqr::jq(unclass(x), ".type")) == "Feature") {
+    x <- cchar(jqr::jq(unclass(x), ".geometry.coordinates"))
+  } else if (asc(jqr::jq(unclass(x), ".type")) == "FeatureCollection") {
+    #x <- cchar(jqr::jq(unclass(x), ".features"))
+    stop("fixme", call. = FALSE)
+  } else {
+    x <- cchar(jqr::jq(unclass(x), ".coordinates"))
+  }
+  paste0(substring(x, 1, 70), if (nchar(x) > 70) " ..." else "" )
+}
+
+get_each_nodes <- function(x) {
+  z <- asc(jqr::jq(x, ".coordinates[] | length "))
+  z <- z[1:min(c(10, length(z)))]
+  paste0(z, collapse = ", ")
 }
