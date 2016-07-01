@@ -110,7 +110,7 @@ unlink(f)
 
 ## Meta
 
-* Please [report any issues or bugs](https://github.com/ropenscilabs/sifter/issues).
+* Please [report any issues or bugs](https://github.com/ropenscilabs/geojson/issues).
 * License: MIT
 
 [geojsonspec]: http://geojson.org/geojson-spec.html
