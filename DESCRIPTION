@@ -10,7 +10,9 @@ URL: https://github.com/ropenscilabs/geojson
 BugReports: https://github.com/ropenscilabs/geojson/issues
 LazyData: true
 Imports:
+    methods,
+    sp,
     jsonlite (>= 0.9.19),
     jqr (>= 0.2.0),
-    geojsonlint (>= 0.1.0)
+    geojsonlint (>= 0.1.0),
 RoxygenNote: 5.0.1
