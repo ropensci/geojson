@@ -21,5 +21,12 @@ y$pretty()
 y$write(file = (f <- tempfile(fileext = ".geojson")))
 jsonlite::fromJSON(f, FALSE)
 unlink(f)
+
+file <- system.file("examples", 'multilinestring_one.geojson', package = "geojson")
+str <- paste0(readLines(file), collapse = " ")
+(y <- multilinestring(str))
+y$string
+y$type()
+y$pretty()
 }
 

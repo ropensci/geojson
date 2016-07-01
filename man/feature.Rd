@@ -14,7 +14,6 @@ feature class
 }
 \examples{
 x <- '{ "type": "Point", "coordinates": [100.0, 0.0] }'
-x <- '{ "type": "Feature", "properties": {}, "geometry": { "type": "Point", "coordinates": [100.0, 0.0]} }'
 (y <- feature(x))
 y$string
 y$type()

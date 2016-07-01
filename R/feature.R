@@ -4,7 +4,6 @@
 #' @param x input
 #' @examples
 #' x <- '{ "type": "Point", "coordinates": [100.0, 0.0] }'
-#' x <- '{ "type": "Feature", "properties": {}, "geometry": { "type": "Point", "coordinates": [100.0, 0.0]} }'
 #' (y <- feature(x))
 #' y$string
 #' y$type()
@@ -27,8 +26,8 @@ feature.default <- function(x) {
 }
 
 #' @export
-feature.mls <- function(x) {
-  feature(x[[1]]$string)
+feature.MultiLineString <- function(x) {
+  feature(x$string)
 }
 
 #' @export
