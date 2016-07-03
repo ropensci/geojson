@@ -38,6 +38,5 @@ file <- system.file("examples", "geometrycollection1.geojson", package = "geojso
 (y <- geometrycollection(paste0(readLines(file), collapse="")))
 geo_type(y)
 geo_pretty(y)
-y$types()
 }
 

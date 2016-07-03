@@ -28,7 +28,6 @@
 #' (y <- geometrycollection(paste0(readLines(file), collapse="")))
 #' geo_type(y)
 #' geo_pretty(y)
-#' y$types()
 geometrycollection <- function(x) {
   UseMethod("geometrycollection")
 }
@@ -56,32 +55,3 @@ print.geometrycollection <- function(x, ...) {
   cat(attr(x, 'geoms'), "\n")
   cat(attr(x, 'featgeoms'), "\n")
 }
-
-# GeometryCollection <- R6::R6Class(
-#   "GeometryCollection",
-#   public = list(
-#     x = NULL,
-#     string = NULL,
-#     initialize = function(x = NULL) {
-#       self$string <- x
-#     },
-#     print = function(...) {
-#       cat("<GeometryCollection>", "\n")
-#       cat("  type: ", get_type(self$string), "\n")
-#       cat(feat_geom_n(self$string), "\n")
-#       cat(feat_geom(self$string), "\n")
-#     },
-#     type = function() {
-#       cchar(jqr::jq(unclass(self$string), ".type"))
-#     },
-#     pretty = function() {
-#       jsonlite::prettify(self$string)
-#     },
-#     types = function() {
-#       cchar(unclass(jqr::jq(self$string, ".geometries[].type")))
-#     },
-#     write = function(file) {
-#       cat(jsonlite::toJSON(jsonlite::fromJSON(self$string), pretty = TRUE, auto_unbox = TRUE), file = file)
-#     }
-#   )
-# )
