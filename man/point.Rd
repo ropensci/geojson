@@ -15,11 +15,14 @@ point class
 \examples{
 x <- '{ "type": "Point", "coordinates": [100.0, 0.0] }'
 (y <- point(x))
-y$string
-y$type()
-y$pretty()
-y$write(file = (f <- tempfile(fileext = ".geojson")))
+geo_type(y)
+geo_pretty(y)
+geo_write(y, f <- tempfile(fileext = ".geojson"))
 jsonlite::fromJSON(f, FALSE)
 unlink(f)
+
+# add to a data.frame
+library('tibble')
+data_frame(a = 1:5, b = list(y))
 }
 

@@ -12,19 +12,36 @@ feature(x)
 \description{
 feature class
 }
+\details{
+Feature objects:
+\itemize{
+ \item A feature object must have a member with the name "geometry". The value of
+ the geometry member is a geometry object as defined above or a JSON null value.
+ \item A feature object must have a member with the name "properties". The value
+ of the properties member is an object (any JSON object or a JSON null value).
+ \item If a feature has a commonly used identifier, that identifier should be
+ included as a member of the feature object with the name "id".
+}
+}
 \examples{
+# point -> feature
 x <- '{ "type": "Point", "coordinates": [100.0, 0.0] }'
-(y <- feature(x))
-y$string
-y$type()
-y$pretty()
-y$write(file = (f <- tempfile(fileext = ".geojson")))
-jsonlite::fromJSON(f, FALSE)
-unlink(f)
+point(x) \%>\% feature()
 
-# make multilinestring into a feature
+# multipoint -> feature
+x <- '{"type": "MultiPoint", "coordinates": [ [100.0, 0.0], [101.0, 1.0] ] }'
+multipoint(x) \%>\% feature()
+
+# linestring -> feature
+x <- '{ "type": "LineString", "coordinates": [ [100.0, 0.0], [101.0, 1.0] ] }'
+linestring(x) \%>\% feature()
+
+# multilinestring -> feature
 x <- '{ "type": "MultiLineString", "coordinates": [ [ [100.0, 0.0], [101.0, 1.0] ], [ [102.0, 2.0], [103.0, 3.0] ] ] }'
-(y <- multilinestring(x))
-feature(y)
+multilinestring(x) \%>\% feature()
+
+# add to a data.frame
+library('tibble')
+data_frame(a = 1:5, b = list(y))
 }
 

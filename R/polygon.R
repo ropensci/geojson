@@ -1,10 +1,14 @@
-#' multilinestring class
+#' polygon class
 #'
 #' @export
 #' @param x input
 #' @examples
-#' x <- '{ "type": "MultiLineString", "coordinates": [ [ [100.0, 0.0], [101.0, 1.0] ], [ [102.0, 2.0], [103.0, 3.0] ] ] }'
-#' (y <- multilinestring(x))
+#' x <- '{ "type": "Polygon",
+#' "coordinates": [
+#'   [ [100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0] ]
+#'   ]
+#' }'
+#' (y <- polygon(x))
 #' y[1]
 #' geo_type(y)
 #' geo_pretty(y)
@@ -12,9 +16,13 @@
 #' jsonlite::fromJSON(f, FALSE)
 #' unlink(f)
 #'
-#' file <- system.file("examples", 'multilinestring_one.geojson', package = "geojson")
-#' str <- paste0(readLines(file), collapse = " ")
-#' (y <- multilinestring(str))
+#' x <- '{ "type": "Polygon",
+#' "coordinates": [
+#'   [ [100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0] ],
+#'   [ [100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2] ]
+#'   ]
+#' }'
+#' (y <- polygon(x))
 #' y[1]
 #' geo_type(y)
 #' geo_pretty(y)
@@ -23,42 +31,44 @@
 #' library('tibble')
 #' data_frame(a = 1:5, b = list(y))
 
-multilinestring <- function(x) {
-  UseMethod("multilinestring")
+polygon <- function(x) {
+  UseMethod("polygon")
 }
 
 #' @export
-multilinestring.default <- function(x) {
+polygon.default <- function(x) {
   stop("no method for ", class(x), call. = FALSE)
 }
 
 #' @export
-multilinestring.character <- function(x) {
-  x <- as_mls(x)
+polygon.character <- function(x) {
+  x <- as_poly(x)
   switch_verify_names(x)
-  verify_class(x, "MultiLineString")
+  verify_class(x, "Polygon")
   hint_geojson(x)
   no_lines <- length(asc(jqr::jq(x, ".coordinates[] | length ")))
   no_nodes_each_line <- get_each_nodes(x)
   coords <- get_coordinates(x)
-  structure(x, class = "multilinestring",
+  structure(x, class = "polygon",
             no_lines = no_lines,
+            no_holes = no_lines - 1,
             no_nodes_each_line = no_nodes_each_line,
             coords = coords)
 }
 
 #' @export
-print.multilinestring <- function(x, ...) {
-  cat("<MultiLineString>", "\n")
+print.polygon <- function(x, ...) {
+  cat("<Polygon>", "\n")
   cat("  no. lines: ", attr(x, 'no_lines'), "\n")
+  cat("  no. holes: ", attr(x, 'no_holes'), "\n")
   cat("  no. nodes / line: ", attr(x, 'no_nodes_each_line'), "\n")
   cat("  coordinates: ", attr(x, 'coords'), "\n")
 }
 
-as_mls <- function(x) {
+as_poly <- function(x) {
   if (asc(jqr::jq(unclass(x), ".type")) == "Feature") {
     jqr::jq(unclass(x), ".geometry")
-  } else if (asc(jqr::jq(unclass(x), ".type")) == "MultiLineString") {
+  } else if (asc(jqr::jq(unclass(x), ".type")) == "Polygon") {
     x
   }
 }

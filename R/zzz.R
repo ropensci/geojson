@@ -76,3 +76,5 @@ get_each_nodes <- function(x) {
   z <- z[1:min(c(10, length(z)))]
   paste0(z, collapse = ", ")
 }
+
+stex <- function(str, pattern) regmatches(str, gregexpr(pattern, str))[[1]]
