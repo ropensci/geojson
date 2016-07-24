@@ -2,20 +2,36 @@
 #'
 #' @export
 #' @param x input
+#' @details Feature objects:
+#' \itemize{
+#'  \item A feature object must have a member with the name "geometry". The value of
+#'  the geometry member is a geometry object as defined above or a JSON null value.
+#'  \item A feature object must have a member with the name "properties". The value
+#'  of the properties member is an object (any JSON object or a JSON null value).
+#'  \item If a feature has a commonly used identifier, that identifier should be
+#'  included as a member of the feature object with the name "id".
+#' }
 #' @examples
+#' # point -> feature
 #' x <- '{ "type": "Point", "coordinates": [100.0, 0.0] }'
-#' (y <- feature(x))
-#' y$string
-#' y$type()
-#' y$pretty()
-#' y$write(file = (f <- tempfile(fileext = ".geojson")))
-#' jsonlite::fromJSON(f, FALSE)
-#' unlink(f)
+#' point(x) %>% feature()
 #'
-#' # make multilinestring into a feature
-#' x <- '{ "type": "MultiLineString", "coordinates": [ [ [100.0, 0.0], [101.0, 1.0] ], [ [102.0, 2.0], [103.0, 3.0] ] ] }'
-#' (y <- multilinestring(x))
-#' feature(y)
+#' # multipoint -> feature
+#' x <- '{"type": "MultiPoint", "coordinates": [ [100.0, 0.0], [101.0, 1.0] ] }'
+#' multipoint(x) %>% feature()
+#'
+#' # linestring -> feature
+#' x <- '{ "type": "LineString", "coordinates": [ [100.0, 0.0], [101.0, 1.0] ] }'
+#' linestring(x) %>% feature()
+#'
+#' # multilinestring -> feature
+#' x <- '{ "type": "MultiLineString",
+#'  "coordinates": [ [ [100.0, 0.0], [101.0, 1.0] ], [ [102.0, 2.0], [103.0, 3.0] ] ] }'
+#' multilinestring(x) %>% feature()
+#'
+#' # add to a data.frame
+#' library('tibble')
+#' data_frame(a = 1:5, b = list(multilinestring(x)))
 feature <- function(x) {
   UseMethod("feature")
 }
@@ -26,8 +42,36 @@ feature.default <- function(x) {
 }
 
 #' @export
-feature.MultiLineString <- function(x) {
-  feature(x$string)
+feature.feature <- function(x) x
+
+#' @export
+feature.point <- function(x) {
+  feature(unclass(x))
+}
+
+#' @export
+feature.multipoint <- function(x) {
+  feature(unclass(x))
+}
+
+#' @export
+feature.linestring <- function(x) {
+  feature(unclass(x))
+}
+
+#' @export
+feature.multilinestring <- function(x) {
+  feature(unclass(x))
+}
+
+#' @export
+feature.polygon <- function(x) {
+  feature(unclass(x))
+}
+
+#' @export
+feature.multipolygon <- function(x) {
+  feature(unclass(x))
 }
 
 #' @export
@@ -36,33 +80,18 @@ feature.character <- function(x) {
   verify_class_(x, "Feature")
   switch_verify_names(x)
   hint_geojson(x)
-  Feature$new(x = x)
+  coords <- get_coordinates(x)
+  structure(x, class = "feature",
+            type = get_type(x),
+            coords = get_coordinates(x))
 }
 
-Feature <- R6::R6Class(
-  "Feature",
-  public = list(
-    x = NULL,
-    string = NULL,
-    initialize = function(x = NULL) {
-      self$string <- x
-    },
-    print = function(...) {
-      cat("<Feature>", "\n")
-      cat("  type: ", get_type(self$string), "\n")
-      cat("  coordinates: ", get_coordinates(self$string), "\n")
-    },
-    type = function() {
-      cchar(jqr::jq(unclass(self$string), ".type"))
-    },
-    pretty = function() {
-      jsonlite::prettify(self$string)
-    },
-    write = function(file) {
-      cat(jsonlite::toJSON(jsonlite::fromJSON(self$string), pretty = TRUE, auto_unbox = TRUE), file = file)
-    }
-  )
-)
+#' @export
+print.feature <- function(x, ...) {
+  cat("<Feature>", "\n")
+  cat("  type: ", attr(x, "type"), "\n")
+  cat("  coordinates: ", attr(x, "coords"), "\n")
+}
 
 as_feature <- function(x) {
   if (asc(jqr::jq(unclass(x), ".type")) == "Feature") {

@@ -36,7 +36,7 @@ as.geojson(x)
 #>     Point / 2
 ```
 
-## Playing with using R6
+## geometrycollection
 
 
 ```r
@@ -55,25 +55,35 @@ x <- '{
 }'
 (y <- geometrycollection(x))
 #> <GeometryCollection> 
-#>   type:  GeometryCollection 
 #>   geometries (n): 2 
 #>   geometries (geometry / length):
 #>     Point / 2
 #>     LineString / 2
 ```
 
-creates an object which we can use to inspect the geojson
+### inspect the object
+
+get the string
 
 
 ```r
-# get the string
-y$string
+y[[1]]
 #> [1] "{\n \"type\": \"GeometryCollection\",\n \"geometries\": [\n   {\n     \"type\": \"Point\",\n     \"coordinates\": [100.0, 0.0]\n   },\n   {\n     \"type\": \"LineString\",\n     \"coordinates\": [ [101.0, 0.0], [102.0, 1.0] ]\n   }\n  ]\n}"
-# get the type
-y$type()
-#> [1] "GeometryCollection"
-# pretty print the geojson
-y$pretty()
+```
+
+get the type
+
+
+```r
+geo_type(y)
+#> [1] "Point"      "LineString"
+```
+
+pretty print the geojson
+
+
+```r
+geo_pretty(y)
 #> {
 #>     "type": "GeometryCollection",
 #>     "geometries": [
@@ -100,13 +110,62 @@ y$pretty()
 #>     ]
 #> }
 #> 
-# get the types within the geometrycollection
-y$types()
-#> [1] "Point"      "LineString"
-# write to disk
-y$write(file = (f <- tempfile(fileext = ".geojson")))
-unlink(f)
 ```
+
+get the types within the geometrycollection
+
+
+
+```r
+geo_type(y)
+#> [1] "Point"      "LineString"
+```
+
+write to disk
+
+
+```r
+geo_write(y, f <- tempfile(fileext = ".geojson"))
+jsonlite::fromJSON(f, FALSE)
+#> $type
+#> [1] "GeometryCollection"
+#> 
+#> $geometries
+#> $geometries[[1]]
+#> $geometries[[1]]$type
+#> [1] "Point"
+#> 
+#> $geometries[[1]]$coordinates
+#> $geometries[[1]]$coordinates[[1]]
+#> [1] 100
+#> 
+#> $geometries[[1]]$coordinates[[2]]
+#> [1] 0
+#> 
+#> 
+#> 
+#> $geometries[[2]]
+#> $geometries[[2]]$type
+#> [1] "LineString"
+#> 
+#> $geometries[[2]]$coordinates
+#> $geometries[[2]]$coordinates[[1]]
+#> $geometries[[2]]$coordinates[[1]][[1]]
+#> [1] 101
+#> 
+#> $geometries[[2]]$coordinates[[1]][[2]]
+#> [1] 0
+#> 
+#> 
+#> $geometries[[2]]$coordinates[[2]]
+#> $geometries[[2]]$coordinates[[2]][[1]]
+#> [1] 102
+#> 
+#> $geometries[[2]]$coordinates[[2]][[2]]
+#> [1] 1
+```
+
+
 
 ## Meta
 

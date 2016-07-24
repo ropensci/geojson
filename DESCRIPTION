@@ -2,9 +2,11 @@ Package: geojson
 Type: Package
 Title: Classes for GeoJSON
 Description: Classes for GeoJSON to make working with GeoJSON easier.
-Version: 0.0.2.9000
-Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
-    email = "myrmecocystus@gmail.com"))
+Version: 0.0.3.9000
+Authors@R: c(
+    person("Scott", "Chamberlain", role = c("aut", "cre"), email = "myrmecocystus@gmail.com"),
+    person("Jeroen", "Ooms", role = "aut")
+    )
 License: MIT + file LICENSE
 URL: https://github.com/ropenscilabs/geojson
 BugReports: https://github.com/ropenscilabs/geojson/issues
@@ -15,4 +17,8 @@ Imports:
     jsonlite (>= 0.9.19),
     jqr (>= 0.2.0),
     geojsonlint (>= 0.1.0),
+    magrittr,
+    lazyeval
+Suggests:
+    tibble
 RoxygenNote: 5.0.1

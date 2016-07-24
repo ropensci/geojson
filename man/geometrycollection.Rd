@@ -27,20 +27,16 @@ x <- '{
   ]
 }'
 (y <- geometrycollection(x))
-y$string
-y$type()
-y$pretty()
-y$types()
-y$write(file = (f <- tempfile(fileext = ".geojson")))
+geo_type(y)
+geo_pretty(y)
+geo_write(y, f <- tempfile(fileext = ".geojson"))
 jsonlite::fromJSON(f, FALSE)
 unlink(f)
 
 # bigger geometrycollection
 file <- system.file("examples", "geometrycollection1.geojson", package = "geojson")
 (y <- geometrycollection(paste0(readLines(file), collapse="")))
-y$string
-y$type()
-y$pretty()
-y$types()
+geo_type(y)
+geo_pretty(y)
 }
 

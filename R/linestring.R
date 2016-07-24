@@ -5,12 +5,15 @@
 #' @examples
 #' x <- '{ "type": "LineString", "coordinates": [ [100.0, 0.0], [101.0, 1.0] ] }'
 #' (y <- linestring(x))
-#' y$string
-#' y$type()
-#' y$pretty()
-#' y$write(file = (f <- tempfile(fileext = ".geojson")))
+#' geo_type(y)
+#' geo_pretty(y)
+#' geo_write(y, f <- tempfile(fileext = ".geojson"))
 #' jsonlite::fromJSON(f, FALSE)
 #' unlink(f)
+#'
+#' # add to a data.frame
+#' library('tibble')
+#' data_frame(a = 1:5, b = list(y))
 linestring <- function(x) {
   UseMethod("linestring")
 }
@@ -22,33 +25,23 @@ linestring.default <- function(x) {
 
 #' @export
 linestring.character <- function(x) {
+  x <- as_ls(x)
   verify_names(x, c('type', 'coordinates'))
   verify_class(x, "LineString")
   hint_geojson(x)
-  LineString$new(x = x)
+  structure(x, class = "linestring", coords = get_coordinates(x))
 }
 
-LineString <- R6::R6Class(
-  "LineString",
-  public = list(
-    x = NULL,
-    string = NULL,
-    initialize = function(x = NULL) {
-      self$string <- x
-    },
-    print = function(...) {
-      cat("<LineString>", "\n")
-      cat("  type: ", get_type(self$string), "\n")
-      cat("  coordinates: ", cchar(jqr::jq(unclass(self$string), ".coordinates")), "\n")
-    },
-    type = function() {
-      cchar(jqr::jq(unclass(self$string), ".type"))
-    },
-    pretty = function() {
-      jsonlite::prettify(self$string)
-    },
-    write = function(file) {
-      cat(jsonlite::toJSON(jsonlite::fromJSON(self$string), pretty = TRUE, auto_unbox = TRUE), file = file)
-    }
-  )
-)
+#' @export
+print.linestring <- function(x, ...) {
+  cat("<LineString>", "\n")
+  cat("  coordinates: ", attr(x, 'coords'), "\n")
+}
+
+as_ls <- function(x) {
+  if (asc(jqr::jq(unclass(x), ".type")) == "Feature") {
+    jqr::jq(unclass(x), ".geometry")
+  } else if (asc(jqr::jq(unclass(x), ".type")) == "LineString") {
+    x
+  }
+}

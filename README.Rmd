@@ -60,7 +60,7 @@ x <- "{\"type\":\"FeatureCollection\",\"features\":[{\"type\":\"Feature\",\"geom
 as.geojson(x)
 ```
 
-## Playing with using R6
+## geometrycollection
 
 ```{r}
 x <- '{
@@ -79,19 +79,41 @@ x <- '{
 (y <- geometrycollection(x))
 ```
 
-creates an object which we can use to inspect the geojson
+### inspect the object
+
+get the string
 
 ```{r}
-# get the string
-y$string
-# get the type
-y$type()
-# pretty print the geojson
-y$pretty()
-# get the types within the geometrycollection
-y$types()
-# write to disk
-y$write(file = (f <- tempfile(fileext = ".geojson")))
+y[[1]]
+```
+
+get the type
+
+```{r}
+geo_type(y)
+```
+
+pretty print the geojson
+
+```{r}
+geo_pretty(y)
+```
+
+get the types within the geometrycollection
+
+
+```{r}
+geo_type(y)
+```
+
+write to disk
+
+```{r}
+geo_write(y, f <- tempfile(fileext = ".geojson"))
+jsonlite::fromJSON(f, FALSE)
+```
+
+```{r echo=FALSE}
 unlink(f)
 ```
 
