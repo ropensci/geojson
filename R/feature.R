@@ -25,7 +25,8 @@
 #' linestring(x) %>% feature()
 #'
 #' # multilinestring -> feature
-#' x <- '{ "type": "MultiLineString", "coordinates": [ [ [100.0, 0.0], [101.0, 1.0] ], [ [102.0, 2.0], [103.0, 3.0] ] ] }'
+#' x <- '{ "type": "MultiLineString",
+#'  "coordinates": [ [ [100.0, 0.0], [101.0, 1.0] ], [ [102.0, 2.0], [103.0, 3.0] ] ] }'
 #' multilinestring(x) %>% feature()
 #'
 #' # add to a data.frame

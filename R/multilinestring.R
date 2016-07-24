@@ -3,7 +3,8 @@
 #' @export
 #' @param x input
 #' @examples
-#' x <- '{ "type": "MultiLineString", "coordinates": [ [ [100.0, 0.0], [101.0, 1.0] ], [ [102.0, 2.0], [103.0, 3.0] ] ] }'
+#' x <- '{ "type": "MultiLineString",
+#'  "coordinates": [ [ [100.0, 0.0], [101.0, 1.0] ], [ [102.0, 2.0], [103.0, 3.0] ] ] }'
 #' (y <- multilinestring(x))
 #' y[1]
 #' geo_type(y)
