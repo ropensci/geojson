@@ -2,7 +2,7 @@ Package: geojson
 Type: Package
 Title: Classes for GeoJSON
 Description: Classes for GeoJSON to make working with GeoJSON easier.
-Version: 0.0.3.9000
+Version: 0.0.3.9100
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut", "cre"), email = "myrmecocystus@gmail.com"),
     person("Jeroen", "Ooms", role = "aut")
@@ -20,5 +20,6 @@ Imports:
     magrittr,
     lazyeval
 Suggests:
-    tibble
+    tibble,
+    testthat
 RoxygenNote: 5.0.1
