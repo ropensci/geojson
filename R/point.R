@@ -39,9 +39,12 @@ print.point <- function(x, ...) {
 }
 
 as_pt <- function(x) {
-  if (asc(jqr::jq(unclass(x), ".type")) == "Feature") {
+  ext <- asc(jqr::jq(unclass(x), ".type"))
+  if (ext == "Feature") {
     jqr::jq(unclass(x), ".geometry")
-  } else if (asc(jqr::jq(unclass(x), ".type")) == "Point") {
+  } else if (ext == "Point") {
     x
+  } else {
+    stop("type can not be '", ext, "'; must be one of 'Point' or 'Feature'", call. = FALSE)
   }
 }

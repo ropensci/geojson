@@ -66,9 +66,12 @@ print.polygon <- function(x, ...) {
 }
 
 as_poly <- function(x) {
-  if (asc(jqr::jq(unclass(x), ".type")) == "Feature") {
+  ext <- asc(jqr::jq(unclass(x), ".type"))
+  if (ext == "Feature") {
     jqr::jq(unclass(x), ".geometry")
-  } else if (asc(jqr::jq(unclass(x), ".type")) == "Polygon") {
+  } else if (ext == "Polygon") {
     x
+  } else {
+    stop("type can not be '", ext, "'; must be one of 'Polygon' or 'Feature'", call. = FALSE)
   }
 }
