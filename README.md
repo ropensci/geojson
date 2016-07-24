@@ -1,7 +1,9 @@
 geojson
 =======
 
-
+[![Build Status](https://travis-ci.org/ropenscilabs/geojson.svg?branch=master)](https://travis-ci.org/ropenscilabs/geojson)
+[![codecov](https://codecov.io/gh/ropenscilabs/geojson/branch/master/graph/badge.svg)](https://codecov.io/gh/ropenscilabs/geojson)
+[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/geojson)](https://github.com/metacran/cranlogs.app)
 
 `geojson` aims to deal only with geojson data, without requiring any of the `sp`/`rgdal`/`rgeos` stack. That means this package can be relatively light weight.
 
@@ -29,9 +31,9 @@ this is just a characstring string with S3 class `geojson` attached to make it e
 ```r
 x <- "{\"type\":\"FeatureCollection\",\"features\":[{\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-99.74,32.45]},\"properties\":{}}]}"
 as.geojson(x)
-#> <geojson> 
-#>   type:  FeatureCollection 
-#>   features (n): 1 
+#> <geojson>
+#>   type:  FeatureCollection
+#>   features (n): 1
 #>   features (geometry / length):
 #>     Point / 2
 ```
@@ -54,8 +56,8 @@ x <- '{
   ]
 }'
 (y <- geometrycollection(x))
-#> <GeometryCollection> 
-#>   geometries (n): 2 
+#> <GeometryCollection>
+#>   geometries (n): 2
 #>   geometries (geometry / length):
 #>     Point / 2
 #>     LineString / 2
@@ -109,7 +111,7 @@ geo_pretty(y)
 #>         }
 #>     ]
 #> }
-#> 
+#>
 ```
 
 get the types within the geometrycollection
@@ -129,38 +131,38 @@ geo_write(y, f <- tempfile(fileext = ".geojson"))
 jsonlite::fromJSON(f, FALSE)
 #> $type
 #> [1] "GeometryCollection"
-#> 
+#>
 #> $geometries
 #> $geometries[[1]]
 #> $geometries[[1]]$type
 #> [1] "Point"
-#> 
+#>
 #> $geometries[[1]]$coordinates
 #> $geometries[[1]]$coordinates[[1]]
 #> [1] 100
-#> 
+#>
 #> $geometries[[1]]$coordinates[[2]]
 #> [1] 0
-#> 
-#> 
-#> 
+#>
+#>
+#>
 #> $geometries[[2]]
 #> $geometries[[2]]$type
 #> [1] "LineString"
-#> 
+#>
 #> $geometries[[2]]$coordinates
 #> $geometries[[2]]$coordinates[[1]]
 #> $geometries[[2]]$coordinates[[1]][[1]]
 #> [1] 101
-#> 
+#>
 #> $geometries[[2]]$coordinates[[1]][[2]]
 #> [1] 0
-#> 
-#> 
+#>
+#>
 #> $geometries[[2]]$coordinates[[2]]
 #> $geometries[[2]]$coordinates[[2]][[1]]
 #> [1] 102
-#> 
+#>
 #> $geometries[[2]]$coordinates[[2]][[2]]
 #> [1] 1
 ```

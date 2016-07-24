@@ -21,5 +21,6 @@ Imports:
     lazyeval
 Suggests:
     tibble,
-    testthat
+    testthat,
+    covr
 RoxygenNote: 5.0.1
