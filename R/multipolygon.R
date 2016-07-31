@@ -51,9 +51,12 @@ print.multipolygon <- function(x, ...) {
 }
 
 as_multipoly <- function(x) {
-  if (asc(jqr::jq(unclass(x), ".type")) == "Feature") {
+  ext <- asc(jqr::jq(unclass(x), ".type"))
+  if (ext == "Feature") {
     jqr::jq(unclass(x), ".geometry")
-  } else if (asc(jqr::jq(unclass(x), ".type")) == "MultiPolygon") {
+  } else if (ext == "MultiPolygon") {
     x
+  } else {
+    stop("type can not be '", ext, "'; must be one of 'MultiPolygon' or 'Feature'", call. = FALSE)
   }
 }

@@ -57,9 +57,12 @@ print.multilinestring <- function(x, ...) {
 }
 
 as_mls <- function(x) {
-  if (asc(jqr::jq(unclass(x), ".type")) == "Feature") {
+  ext <- asc(jqr::jq(unclass(x), ".type"))
+  if (ext == "Feature") {
     jqr::jq(unclass(x), ".geometry")
-  } else if (asc(jqr::jq(unclass(x), ".type")) == "MultiLineString") {
+  } else if (ext == "MultiLineString") {
     x
+  } else {
+    stop("type can not be '", ext, "'; must be one of 'MultiLineString' or 'Feature'", call. = FALSE)
   }
 }

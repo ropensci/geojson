@@ -39,9 +39,12 @@ print.linestring <- function(x, ...) {
 }
 
 as_ls <- function(x) {
-  if (asc(jqr::jq(unclass(x), ".type")) == "Feature") {
+  ext <- asc(jqr::jq(unclass(x), ".type"))
+  if (ext == "Feature") {
     jqr::jq(unclass(x), ".geometry")
-  } else if (asc(jqr::jq(unclass(x), ".type")) == "LineString") {
+  } else if (ext == "LineString") {
     x
+  } else {
+    stop("type can not be '", ext, "'; must be one of 'LineString' or 'Feature'", call. = FALSE)
   }
 }
