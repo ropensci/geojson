@@ -25,7 +25,7 @@ linestring.default <- function(x) {
 
 #' @export
 linestring.character <- function(x) {
-  x <- as_ls(x)
+  x <- as_x("LineString", x)
   verify_names(x, c('type', 'coordinates'))
   verify_class(x, "LineString")
   hint_geojson(x)
@@ -36,15 +36,4 @@ linestring.character <- function(x) {
 print.linestring <- function(x, ...) {
   cat("<LineString>", "\n")
   cat("  coordinates: ", attr(x, 'coords'), "\n")
-}
-
-as_ls <- function(x) {
-  ext <- asc(jqr::jq(unclass(x), ".type"))
-  if (ext == "Feature") {
-    jqr::jq(unclass(x), ".geometry")
-  } else if (ext == "LineString") {
-    x
-  } else {
-    stop("type can not be '", ext, "'; must be one of 'LineString' or 'Feature'", call. = FALSE)
-  }
 }

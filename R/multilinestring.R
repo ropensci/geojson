@@ -35,7 +35,7 @@ multilinestring.default <- function(x) {
 
 #' @export
 multilinestring.character <- function(x) {
-  x <- as_mls(x)
+  x <- as_x("MultiLineString", x)
   switch_verify_names(x)
   verify_class(x, "MultiLineString")
   hint_geojson(x)
@@ -54,15 +54,4 @@ print.multilinestring <- function(x, ...) {
   cat("  no. lines: ", attr(x, 'no_lines'), "\n")
   cat("  no. nodes / line: ", attr(x, 'no_nodes_each_line'), "\n")
   cat("  coordinates: ", attr(x, 'coords'), "\n")
-}
-
-as_mls <- function(x) {
-  ext <- asc(jqr::jq(unclass(x), ".type"))
-  if (ext == "Feature") {
-    jqr::jq(unclass(x), ".geometry")
-  } else if (ext == "MultiLineString") {
-    x
-  } else {
-    stop("type can not be '", ext, "'; must be one of 'MultiLineString' or 'Feature'", call. = FALSE)
-  }
 }

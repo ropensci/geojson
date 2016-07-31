@@ -32,7 +32,7 @@ multipolygon.default <- function(x) {
 
 #' @export
 multipolygon.character <- function(x) {
-  x <- as_multipoly(x)
+  x <- as_x("MultiPolygon", x)
   switch_verify_names(x)
   verify_class(x, "MultiPolygon")
   hint_geojson(x)
@@ -48,15 +48,4 @@ print.multipolygon <- function(x, ...) {
   cat("<MultiPolygon>", "\n")
   cat("  no. polygons: ", attr(x, 'no_polygons'), "\n")
   cat("  coordinates: ", attr(x, 'coords'), "\n")
-}
-
-as_multipoly <- function(x) {
-  ext <- asc(jqr::jq(unclass(x), ".type"))
-  if (ext == "Feature") {
-    jqr::jq(unclass(x), ".geometry")
-  } else if (ext == "MultiPolygon") {
-    x
-  } else {
-    stop("type can not be '", ext, "'; must be one of 'MultiPolygon' or 'Feature'", call. = FALSE)
-  }
 }

@@ -42,7 +42,7 @@ polygon.default <- function(x) {
 
 #' @export
 polygon.character <- function(x) {
-  x <- as_poly(x)
+  x <- as_x("Polygon", x)
   switch_verify_names(x)
   verify_class(x, "Polygon")
   hint_geojson(x)
@@ -63,15 +63,4 @@ print.polygon <- function(x, ...) {
   cat("  no. holes: ", attr(x, 'no_holes'), "\n")
   cat("  no. nodes / line: ", attr(x, 'no_nodes_each_line'), "\n")
   cat("  coordinates: ", attr(x, 'coords'), "\n")
-}
-
-as_poly <- function(x) {
-  ext <- asc(jqr::jq(unclass(x), ".type"))
-  if (ext == "Feature") {
-    jqr::jq(unclass(x), ".geometry")
-  } else if (ext == "Polygon") {
-    x
-  } else {
-    stop("type can not be '", ext, "'; must be one of 'Polygon' or 'Feature'", call. = FALSE)
-  }
 }

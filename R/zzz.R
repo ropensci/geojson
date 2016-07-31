@@ -78,3 +78,15 @@ get_each_nodes <- function(x) {
 }
 
 stex <- function(str, pattern) regmatches(str, gregexpr(pattern, str))[[1]]
+
+as_x <- function(clz, x) {
+  ext <- asc(jqr::jq(unclass(x), ".type"))
+  if (ext == "Feature") {
+    jqr::jq(unclass(x), ".geometry")
+  } else if (ext == clz) {
+    x
+  } else {
+    stop("type can not be '", ext, sprintf("'; must be one of '%s' or 'Feature'", clz), call. = FALSE)
+  }
+}
+

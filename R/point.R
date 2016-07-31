@@ -25,7 +25,7 @@ point.default <- function(x) {
 
 #' @export
 point.character <- function(x) {
-  x <- as_pt(x)
+  x <- as_x("Point", x)
   verify_names(x, c('type', 'coordinates'))
   verify_class(x, "Point")
   hint_geojson(x)
@@ -36,15 +36,4 @@ point.character <- function(x) {
 print.point <- function(x, ...) {
   cat("<Point>", "\n")
   cat("  coordinates: ", attr(x, "coords"), "\n")
-}
-
-as_pt <- function(x) {
-  ext <- asc(jqr::jq(unclass(x), ".type"))
-  if (ext == "Feature") {
-    jqr::jq(unclass(x), ".geometry")
-  } else if (ext == "Point") {
-    x
-  } else {
-    stop("type can not be '", ext, "'; must be one of 'Point' or 'Feature'", call. = FALSE)
-  }
 }

@@ -25,7 +25,7 @@ multipoint.default <- function(x) {
 
 #' @export
 multipoint.character <- function(x) {
-  x <- as_mpt(x)
+  x <- as_x("MultiPoint", x)
   verify_names(x, c('type', 'coordinates'))
   verify_class(x, "MultiPoint")
   hint_geojson(x)
@@ -36,15 +36,4 @@ multipoint.character <- function(x) {
 print.multipoint <- function(x, ...) {
   cat("<MultiPoint>", "\n")
   cat("  coordinates: ", attr(x, "coords"), "\n")
-}
-
-as_mpt <- function(x) {
-  ext <- asc(jqr::jq(unclass(x), ".type"))
-  if (ext == "Feature") {
-    jqr::jq(unclass(x), ".geometry")
-  } else if (ext == "MultiPoint") {
-    x
-  } else {
-    stop("type can not be '", ext, "'; must be one of 'MultiPoint' or 'Feature'", call. = FALSE)
-  }
 }
