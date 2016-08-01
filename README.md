@@ -174,6 +174,8 @@ jsonlite::fromJSON(f, FALSE)
 * Please [report any issues or bugs](https://github.com/ropenscilabs/geojson/issues).
 * License: MIT
 
+[![ropensci_footer](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
+
 [geojsonspec]: http://geojson.org/geojson-spec.html
 [jqr]: https://github.com/ropensci/jqr
 [jq]: https://github.com/stedolan/jq
