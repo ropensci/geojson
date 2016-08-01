@@ -26,5 +26,18 @@ unlink(f)
 # add to a data.frame
 library('tibble')
 data_frame(a = 1:5, b = list(y))
+
+# features to featurecollection
+x <- '{ "type": "Point", "coordinates": [100.0, 0.0] }'
+point(x) \%>\% feature() \%>\% featurecollection()
+
+## all points
+x <- '{ "type": "Point", "coordinates": [100.0, 0.0] }'
+y <- '{ "type": "Point", "coordinates": [100.0, 50.0] }'
+featls <- lapply(list(x, y), function(z) feature(point(z)))
+featurecollection(featls)
+
+## mixed geometry types
+
 }
 

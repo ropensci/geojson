@@ -16,6 +16,19 @@
 #' # add to a data.frame
 #' library('tibble')
 #' data_frame(a = 1:5, b = list(y))
+#'
+#' # features to featurecollection
+#' x <- '{ "type": "Point", "coordinates": [100.0, 0.0] }'
+#' point(x) %>% feature() %>% featurecollection()
+#'
+#' ## all points
+#' x <- '{ "type": "Point", "coordinates": [100.0, 0.0] }'
+#' y <- '{ "type": "Point", "coordinates": [100.0, 50.0] }'
+#' featls <- lapply(list(x, y), function(z) feature(point(z)))
+#' featurecollection(featls)
+#'
+#' ## mixed geometry types
+#'
 featurecollection <- function(x) {
   UseMethod("featurecollection")
 }
@@ -41,18 +54,40 @@ featurecollection.character <- function(x) {
 }
 
 #' @export
+featurecollection.feature <- function(x) {
+  featurecollection(as_featurecollection(unclass(x)[1]))
+}
+
+#' @export
+featurecollection.list <- function(x) {
+  invisible(lapply(x, is.feature))
+  featurecollection(as_featurecollection(lapply(x, function(z) unclass(z)[1])))
+}
+
+#' @export
 print.featurecollection <- function(x, ...) {
   cat("<FeatureCollection>", "\n")
-  cat("  type: ", attr(x, 'gtype'), "\n")
+  cat("  type: ", attr(x, 'type'), "\n")
   cat("  no. features: ", attr(x, 'no_feats'), "\n")
   cat("  features (1st 5): ", attr(x, 'five_feats'), "\n")
 }
 
-# helpers ---------
 as_featurecollection <- function(x) {
-  if (asc(jqr::jq(unclass(x), ".type")) == "FeatureCollection") {
-    x
+  xchar <- as.character(unclass(x))
+  if (
+    all(vapply(xchar, function(z) {
+      asc(jqr::jq(z, ".type")) == "FeatureCollection"
+    }, logical(1)))
+  ) {
+    return(x)
   } else {
-    sprintf('{ "type": "FeatureCollection", "features": %s }', x)
+    sprintf(
+      '{ "type": "FeatureCollection", "features": [%s] }',
+      if (length(x) > 1) {
+        paste0(x, collapse = ", ")
+      } else {
+        x
+      }
+    )
   }
 }
