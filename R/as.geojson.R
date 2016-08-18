@@ -28,6 +28,10 @@ setMethod("as.geojson", "character", function(x){
   structure(x, class = c("geojson", "json"))
 })
 
+# setMethod("as.geojson", "default", function(x){
+#   stop("no 'as.geojson' method for ", class(x), call. = FALSE)
+# })
+
 #' @export
 print.geojson <- function(x, ...) {
   cat("<geojson>", "\n")

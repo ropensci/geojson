@@ -59,6 +59,11 @@ geo_bbox <- function(x) {
 }
 
 #' @export
+geo_bbox.default <- function(x) {
+  stop("no 'geo_bbox' method for ", class(x), call. = FALSE)
+}
+
+#' @export
 geo_bbox.feature <- function(x) {
   type <- tolower(cchar(jqr::jq(unclass(x), '.geometry.type')))
   x <- structure(jqr::jq(unclass(x), '.geometry'), class = type)
