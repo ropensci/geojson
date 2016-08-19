@@ -2,6 +2,13 @@
 #'
 #' @export
 #' @param x an object of class geojson
+#' @return a vector of four doubles: min lon, min lat, max lon, max lat
+#' @details Supports inputs of type: character, point, multipoint,
+#' linestring, multilinestring, polygon, multipoygon, feature, and
+#' featurecollection
+#'
+#' On character inputs, we lint the input to make sure it's proper
+#' JSON and GeoJSON, then caculate the bounding box
 #' @examples
 #' # point
 #' x <- '{ "type": "Point", "coordinates": [100.0, 0.0] }'
@@ -54,13 +61,47 @@
 #' (y <- multipolygon(x))
 #' geo_bbox(y)
 #' y %>% feature() %>% geo_bbox()
+#'
+#' # featurecollection
+#' file <- system.file("examples", 'featurecollection2.geojson', package = "geojson")
+#' str <- paste0(readLines(file), collapse = " ")
+#' x <- featurecollection(str)
+#' geo_bbox(x)
+#'
+#' # character
+#' file <- system.file("examples", 'featurecollection2.geojson', package = "geojson")
+#' str <- paste0(readLines(file), collapse = " ")
+#' geo_bbox(str)
+
 geo_bbox <- function(x) {
   UseMethod("geo_bbox")
 }
 
 #' @export
 geo_bbox.default <- function(x) {
-  stop("no 'geo_bbox' method for ", class(x), call. = FALSE)
+  stop("no 'geo_bbox' method for ", paste0(class(x), collapse = "/"), call. = FALSE)
+}
+
+#' @export
+geo_bbox.character <- function(x) {
+  geojsonlint::geojson_hint(x, verbose = TRUE, error = TRUE)
+  geo_bbox(structure(x, class = tolower(get_type(x))))
+}
+
+#' @export
+geo_bbox.featurecollection <- function(x) {
+  feats <- jqr::jq(unclass(x), '.features[]')
+  featsbboxs <- lapply(feats, function(z) {
+    class(z) <- tolower(get_type(z))
+    x <- structure(jqr::jq(unclass(z), '.geometry'), class = class(z))
+    geo_bbox(x)
+  })
+  c(
+    min(vapply(featsbboxs, "[[", numeric(1), 1)),
+    min(vapply(featsbboxs, "[[", numeric(1), 2)),
+    max(vapply(featsbboxs, "[[", numeric(1), 3)),
+    max(vapply(featsbboxs, "[[", numeric(1), 4))
+  )
 }
 
 #' @export
@@ -116,7 +157,7 @@ geo_bbox.multipolygon <- function(x) {
 grab_coords <- function(x, str) {
   as.numeric(stex(cchar(unclass(
     jqr::jq(unclass(x), str)
-  )), "[[:digit:]]+"))
+  )), "[0-9.]+"))
 }
 
 make_box <- function(x, y) {

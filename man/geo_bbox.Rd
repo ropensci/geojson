@@ -9,8 +9,19 @@ geo_bbox(x)
 \arguments{
 \item{x}{an object of class geojson}
 }
+\value{
+a vector of four doubles: min lon, min lat, max lon, max lat
+}
 \description{
 Calculate a bounding box
+}
+\details{
+Supports inputs of type: character, point, multipoint,
+linestring, multilinestring, polygon, multipoygon, feature, and
+featurecollection
+
+On character inputs, we lint the input to make sure it's proper
+JSON and GeoJSON, then caculate the bounding box
 }
 \examples{
 # point
@@ -64,5 +75,16 @@ x <- '{ "type": "MultiPolygon",
 (y <- multipolygon(x))
 geo_bbox(y)
 y \%>\% feature() \%>\% geo_bbox()
+
+# featurecollection
+file <- system.file("examples", 'featurecollection2.geojson', package = "geojson")
+str <- paste0(readLines(file), collapse = " ")
+x <- featurecollection(str)
+geo_bbox(x)
+
+# character
+file <- system.file("examples", 'featurecollection2.geojson', package = "geojson")
+str <- paste0(readLines(file), collapse = " ")
+geo_bbox(str)
 }
 

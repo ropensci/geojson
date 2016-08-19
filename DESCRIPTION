@@ -2,7 +2,7 @@ Package: geojson
 Type: Package
 Title: Classes for GeoJSON
 Description: Classes for GeoJSON to make working with GeoJSON easier.
-Version: 0.0.3.9140
+Version: 0.0.3.9144
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut", "cre"), email = "myrmecocystus@gmail.com"),
     person("Jeroen", "Ooms", role = "aut")
