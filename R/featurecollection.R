@@ -47,14 +47,14 @@ featurecollection.character <- function(x) {
   gtype <- get_type(x)
   no_feats <- asc(jqr::jq(unclass(x), ".features | length"))
   five_feats <- paste0(asc(jqr::jq(unclass(x), ".features[].geometry.type")), collapse = ", ")
-  structure(x, class = "featurecollection",
+  structure(x, class = "geofeaturecollection",
             type = gtype,
             no_features = no_feats,
             five_feats = five_feats)
 }
 
 #' @export
-featurecollection.feature <- function(x) {
+featurecollection.geofeature <- function(x) {
   featurecollection(as_featurecollection(unclass(x)[1]))
 }
 
@@ -65,7 +65,7 @@ featurecollection.list <- function(x) {
 }
 
 #' @export
-print.featurecollection <- function(x, ...) {
+print.geofeaturecollection <- function(x, ...) {
   cat("<FeatureCollection>", "\n")
   cat("  type: ", attr(x, 'type'), "\n")
   cat("  no. features: ", attr(x, 'no_feats'), "\n")

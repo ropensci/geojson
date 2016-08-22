@@ -29,11 +29,11 @@ point.character <- function(x) {
   verify_names(x, c('type', 'coordinates'))
   verify_class(x, "Point")
   hint_geojson(x)
-  structure(x, class = "point", coords = cchar(jqr::jq(unclass(x), ".coordinates")))
+  structure(x, class = "geopoint", coords = cchar(jqr::jq(unclass(x), ".coordinates")))
 }
 
 #' @export
-print.point <- function(x, ...) {
+print.geopoint <- function(x, ...) {
   cat("<Point>", "\n")
   cat("  coordinates: ", attr(x, "coords"), "\n")
 }

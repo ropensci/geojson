@@ -29,11 +29,11 @@ multipoint.character <- function(x) {
   verify_names(x, c('type', 'coordinates'))
   verify_class(x, "MultiPoint")
   hint_geojson(x)
-  structure(x, class = "multipoint", coords = cchar(jqr::jq(unclass(x), ".coordinates")))
+  structure(x, class = "geomultipoint", coords = cchar(jqr::jq(unclass(x), ".coordinates")))
 }
 
 #' @export
-print.multipoint <- function(x, ...) {
+print.geomultipoint <- function(x, ...) {
   cat("<MultiPoint>", "\n")
   cat("  coordinates: ", attr(x, "coords"), "\n")
 }

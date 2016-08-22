@@ -85,15 +85,15 @@ geo_bbox.default <- function(x) {
 #' @export
 geo_bbox.character <- function(x) {
   geojsonlint::geojson_hint(x, verbose = TRUE, error = TRUE)
-  geo_bbox(structure(x, class = tolower(get_type(x))))
+  geo_bbox(structure(x, class = paste0("geo", tolower(get_type(x)))))
 }
 
 #' @export
-geo_bbox.featurecollection <- function(x) {
+geo_bbox.geofeaturecollection <- function(x) {
   feats <- jqr::jq(unclass(x), '.features[]')
   featsbboxs <- lapply(feats, function(z) {
     class(z) <- tolower(get_type(z))
-    x <- structure(jqr::jq(unclass(z), '.geometry'), class = class(z))
+    x <- structure(jqr::jq(unclass(z), '.geometry'), class = paste0("geo", class(z)))
     geo_bbox(x)
   })
   c(
@@ -105,49 +105,49 @@ geo_bbox.featurecollection <- function(x) {
 }
 
 #' @export
-geo_bbox.feature <- function(x) {
-  type <- tolower(cchar(jqr::jq(unclass(x), '.geometry.type')))
+geo_bbox.geofeature <- function(x) {
+  type <- paste0("geo", tolower(cchar(jqr::jq(unclass(x), '.geometry.type'))))
   x <- structure(jqr::jq(unclass(x), '.geometry'), class = type)
   geo_bbox(x)
 }
 
 #' @export
-geo_bbox.point <- function(x) {
+geo_bbox.geopoint <- function(x) {
   longs <- grab_coords(x, ".coordinates[0]")
   lats <- grab_coords(x, ".coordinates[1]")
   make_box(longs, lats)
 }
 
 #' @export
-geo_bbox.multipoint <- function(x) {
+geo_bbox.geomultipoint <- function(x) {
   longs <- grab_coords(x, ".coordinates | map(.[0])")
   lats <- grab_coords(x, ".coordinates | map(.[1])")
   make_box(longs, lats)
 }
 
 #' @export
-geo_bbox.linestring <- function(x) {
+geo_bbox.geolinestring <- function(x) {
   longs <- grab_coords(x, ".coordinates | map(.[0])")
   lats <- grab_coords(x, ".coordinates | map(.[1])")
   make_box(longs, lats)
 }
 
 #' @export
-geo_bbox.multilinestring <- function(x) {
+geo_bbox.geomultilinestring <- function(x) {
   longs <- grab_coords(x, ".coordinates[] | map(.[0])")
   lats <- grab_coords(x, ".coordinates[] | map(.[1])")
   make_box(longs, lats)
 }
 
 #' @export
-geo_bbox.polygon <- function(x) {
+geo_bbox.geopolygon <- function(x) {
   longs <- grab_coords(x, ".coordinates[] | map(.[0])")
   lats <- grab_coords(x, ".coordinates[] | map(.[1])")
   make_box(longs, lats)
 }
 
 #' @export
-geo_bbox.multipolygon <- function(x) {
+geo_bbox.geomultipolygon <- function(x) {
   longs <- grab_coords(x, ".coordinates[] | map(.[0])")
   lats <- grab_coords(x, ".coordinates[] | map(.[1])")
   make_box(longs, lats)

@@ -49,7 +49,7 @@ polygon.character <- function(x) {
   no_lines <- length(asc(jqr::jq(x, ".coordinates[] | length ")))
   no_nodes_each_line <- get_each_nodes(x)
   coords <- get_coordinates(x)
-  structure(x, class = "polygon",
+  structure(x, class = "geopolygon",
             no_lines = no_lines,
             no_holes = no_lines - 1,
             no_nodes_each_line = no_nodes_each_line,
@@ -57,7 +57,7 @@ polygon.character <- function(x) {
 }
 
 #' @export
-print.polygon <- function(x, ...) {
+print.geopolygon <- function(x, ...) {
   cat("<Polygon>", "\n")
   cat("  no. lines: ", attr(x, 'no_lines'), "\n")
   cat("  no. holes: ", attr(x, 'no_holes'), "\n")

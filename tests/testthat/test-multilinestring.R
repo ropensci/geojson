@@ -9,9 +9,9 @@ aa <- multilinestring(stt)
 #' (y <- multilinestring(str))
 
 test_that("multilinestring object structure is correct", {
-  expect_is(aa, "multilinestring")
-  expect_is(aa[1], "multilinestring")
-  expect_is(aa[[1]], "multilinestring")
+  expect_is(aa, "geomultilinestring")
+  # expect_is(aa[1], "geomultilinestring")
+  # expect_is(aa[[1]], "geomultilinestring")
   expect_is(unclass(aa)[1], "character")
   expect_match(unclass(aa)[1], "type")
   expect_match(unclass(aa)[1], "MultiLineString")
@@ -32,13 +32,13 @@ test_that("methods on multilinestrings work", {
 
 test_that("empty multilinestring object works", {
   expect_is(multilinestring('{"type": "MultiLineString", "coordinates": [ [ [],[] ] ] }'),
-            "multilinestring")
+            "geomultilinestring")
 
   expect_is(multilinestring('{"type": "MultiLineString", "coordinates": []}'),
-               "multilinestring")
+               "geomultilinestring")
 
   expect_is(multilinestring('{"type": "MultiLineString", "coordinates": [1]}'),
-            "multilinestring")
+            "geomultilinestring")
 })
 
 test_that("linestring fails well", {

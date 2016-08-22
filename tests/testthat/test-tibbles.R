@@ -15,7 +15,7 @@ test_that("tibbles work with multipolygon inputs", {
   expect_is(aa, "tbl_df")
   expect_type(aa$a, "integer")
   expect_type(aa$b, "list")
-  expect_is(aa$b[[1]], "multipolygon")
+  expect_is(aa$b[[1]], "geomultipolygon")
   expect_equal(attr(aa$b[[1]], "no_polygon"), 2)
   expect_is(attr(aa$b[[1]], "coords"), "character")
   expect_equal(length(aa$b), 5)

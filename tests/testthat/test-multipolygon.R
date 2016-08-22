@@ -15,13 +15,13 @@ stt <- '{"type":"MultiPolygon","coordinates":[[[[102.0,2.0],[103.0,2.0],[103.0,3
 bb <- multipolygon(stt)
 
 test_that("multipolygon object structure is correct", {
-  expect_is(aa, "multipolygon")
+  expect_is(aa, "geomultipolygon")
   expect_is(aa[[1]], "character")
   expect_match(aa[[1]], "type")
   expect_match(aa[[1]], "MultiPolygon")
   expect_match(aa[[1]], "coordinates")
 
-  expect_is(bb, "multipolygon")
+  expect_is(bb, "geomultipolygon")
   expect_is(bb[[1]], "character")
   expect_match(bb[[1]], "type")
   expect_match(bb[[1]], "MultiPolygon")
@@ -42,7 +42,7 @@ test_that("methods on multipolygons work", {
 
 test_that("empty linestring object works", {
   expect_is(multipolygon('{"type": "MultiPolygon", "coordinates": []}'),
-            "multipolygon")
+            "geomultipolygon")
 })
 
 test_that("multipolygon fails well", {

@@ -13,13 +13,13 @@ stt <- '{"type":"Polygon","coordinates":[[[100.0,0.0],[101.0,0.0],[101.0,1.0],[1
 bb <- polygon(stt)
 
 test_that("polygon object structure is correct", {
-  expect_is(aa, "polygon")
+  expect_is(aa, "geopolygon")
   expect_is(aa[[1]], "character")
   expect_match(aa[[1]], "type")
   expect_match(aa[[1]], "Polygon")
   expect_match(aa[[1]], "coordinates")
 
-  expect_is(bb, "polygon")
+  expect_is(bb, "geopolygon")
   expect_is(bb[[1]], "character")
   expect_match(bb[[1]], "type")
   expect_match(bb[[1]], "Polygon")
@@ -46,7 +46,7 @@ test_that("polygon fails well", {
   expect_error(polygon('{"type": "Polygon", "coordinates"}'),
                "Objects must consist of key:value pairs")
 
-  expect_is(polygon('{"type": "Polygon", "coordinates": []}'), "polygon")
+  expect_is(polygon('{"type": "Polygon", "coordinates": []}'), "geopolygon")
 
   expect_error(polygon('{"type": "Polygon", "coordinates": [1,]}'),
                "Expected another array element")

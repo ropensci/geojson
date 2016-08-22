@@ -42,35 +42,35 @@ feature.default <- function(x) {
 }
 
 #' @export
-feature.feature <- function(x) x
+feature.geofeature <- function(x) x
 
 #' @export
-feature.point <- function(x) {
+feature.geopoint <- function(x) {
   feature(unclass(x))
 }
 
 #' @export
-feature.multipoint <- function(x) {
+feature.geomultipoint <- function(x) {
   feature(unclass(x))
 }
 
 #' @export
-feature.linestring <- function(x) {
+feature.geolinestring <- function(x) {
   feature(unclass(x))
 }
 
 #' @export
-feature.multilinestring <- function(x) {
+feature.geomultilinestring <- function(x) {
   feature(unclass(x))
 }
 
 #' @export
-feature.polygon <- function(x) {
+feature.geopolygon <- function(x) {
   feature(unclass(x))
 }
 
 #' @export
-feature.multipolygon <- function(x) {
+feature.geomultipolygon <- function(x) {
   feature(unclass(x))
 }
 
@@ -81,13 +81,13 @@ feature.character <- function(x) {
   switch_verify_names(x)
   hint_geojson(x)
   coords <- get_coordinates(x)
-  structure(x, class = "feature",
+  structure(x, class = "geofeature",
             type = get_type(x),
             coords = get_coordinates(x))
 }
 
 #' @export
-print.feature <- function(x, ...) {
+print.geofeature <- function(x, ...) {
   cat("<Feature>", "\n")
   cat("  type: ", attr(x, "type"), "\n")
   cat("  coordinates: ", attr(x, "coords"), "\n")

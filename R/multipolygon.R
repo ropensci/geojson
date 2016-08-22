@@ -38,13 +38,13 @@ multipolygon.character <- function(x) {
   hint_geojson(x)
   no_polygons <- length(asc(jqr::jq(x, ".coordinates[] | length ")))
   coords <- get_coordinates(x)
-  structure(x, class = "multipolygon",
+  structure(x, class = "geomultipolygon",
             no_polygons = no_polygons,
             coords = coords)
 }
 
 #' @export
-print.multipolygon <- function(x, ...) {
+print.geomultipolygon <- function(x, ...) {
   cat("<MultiPolygon>", "\n")
   cat("  no. polygons: ", attr(x, 'no_polygons'), "\n")
   cat("  coordinates: ", attr(x, 'coords'), "\n")

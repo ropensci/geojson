@@ -43,14 +43,14 @@ geometrycollection.character <- function(x) {
   verify_class(x, "GeometryCollection")
   hint_geojson(x)
   coords <- get_coordinates(x)
-  structure(x, class = "geometrycollection",
+  structure(x, class = "geogeometrycollection",
             geoms = feat_geom_n(x),
             featgeoms = feat_geom(x),
             coords = coords)
 }
 
 #' @export
-print.geometrycollection <- function(x, ...) {
+print.geogeometrycollection <- function(x, ...) {
   cat("<GeometryCollection>", "\n")
   cat(attr(x, 'geoms'), "\n")
   cat(attr(x, 'featgeoms'), "\n")

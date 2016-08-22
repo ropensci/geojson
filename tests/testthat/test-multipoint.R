@@ -8,13 +8,13 @@ stt <- '{"type":"MultiPoint","coordinates":[[100.0,0.0],[101.0,1.0],[56.45,4.56]
 bb <- multipoint(stt)
 
 test_that("multipoint object structure is correct", {
-  expect_is(aa, "multipoint")
+  expect_is(aa, "geomultipoint")
   expect_is(aa[[1]], "character")
   expect_match(aa[[1]], "type")
   expect_match(aa[[1]], "MultiPoint")
   expect_match(aa[[1]], "coordinates")
 
-  expect_is(bb, "multipoint")
+  expect_is(bb, "geomultipoint")
   expect_is(bb[[1]], "character")
   expect_match(bb[[1]], "type")
   expect_match(bb[[1]], "MultiPoint")
@@ -41,7 +41,7 @@ test_that("multipoint fails well", {
   expect_error(multipoint('{"type": "MultiPoint", "coordinates"}'),
                "Objects must consist of key:value pairs")
 
-  expect_is(multipoint('{"type": "MultiPoint", "coordinates": []}'), "multipoint")
+  expect_is(multipoint('{"type": "MultiPoint", "coordinates": []}'), "geomultipoint")
 
   expect_error(multipoint('{"type": "MultiPoint", "coordinates": [1]}'),
                "object not proper GeoJSON")

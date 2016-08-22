@@ -29,11 +29,11 @@ linestring.character <- function(x) {
   verify_names(x, c('type', 'coordinates'))
   verify_class(x, "LineString")
   hint_geojson(x)
-  structure(x, class = "linestring", coords = get_coordinates(x))
+  structure(x, class = "geolinestring", coords = get_coordinates(x))
 }
 
 #' @export
-print.linestring <- function(x, ...) {
+print.geolinestring <- function(x, ...) {
   cat("<LineString>", "\n")
   cat("  coordinates: ", attr(x, 'coords'), "\n")
 }

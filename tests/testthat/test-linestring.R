@@ -4,7 +4,7 @@ stt <- '{ "type": "LineString", "coordinates": [ [100.0, 0.0], [101.0, 1.0] ] }'
 aa <- linestring(stt)
 
 test_that("linestring object structure is correct", {
-  expect_is(aa, "linestring")
+  expect_is(aa, "geolinestring")
   expect_is(aa[[1]], "character")
   expect_match(aa[[1]], "type")
   expect_match(aa[[1]], "LineString")
@@ -25,7 +25,7 @@ test_that("methods on linestrings work", {
 
 test_that("empty linestring object works", {
   expect_is(linestring('{"type": "LineString", "coordinates": [[],[]] }'),
-            "linestring")
+            "geolinestring")
 })
 
 test_that("linestring fails well", {

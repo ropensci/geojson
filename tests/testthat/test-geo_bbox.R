@@ -24,9 +24,6 @@ test_that("geo_bbox works - Point input", {
 
 test_that("geo_bbox fails well", {
   expect_error(
-    geo_bbox('{ "type": "Point", "coordinates": [100.0, 0.0] }'),
-    "no 'geo_bbox' method for character")
-  expect_error(
     geo_bbox(5),
     "no 'geo_bbox' method for numeric")
 })

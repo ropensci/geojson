@@ -9,13 +9,13 @@ stt <- '{"type":"Point","coordinates":[1,2]}'
 bb <- point(stt)
 
 test_that("point object structure is correct", {
-  expect_is(aa, "point")
+  expect_is(aa, "geopoint")
   expect_is(aa[[1]], "character")
   expect_match(aa[[1]], "type")
   expect_match(aa[[1]], "Point")
   expect_match(aa[[1]], "coordinates")
 
-  expect_is(bb, "point")
+  expect_is(bb, "geopoint")
   expect_is(bb[[1]], "character")
   expect_match(bb[[1]], "type")
   expect_match(bb[[1]], "Point")

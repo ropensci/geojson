@@ -42,14 +42,14 @@ multilinestring.character <- function(x) {
   no_lines <- length(asc(jqr::jq(x, ".coordinates[] | length ")))
   no_nodes_each_line <- get_each_nodes(x)
   coords <- get_coordinates(x)
-  structure(x, class = "multilinestring",
+  structure(x, class = "geomultilinestring",
             no_lines = no_lines,
             no_nodes_each_line = no_nodes_each_line,
             coords = coords)
 }
 
 #' @export
-print.multilinestring <- function(x, ...) {
+print.geomultilinestring <- function(x, ...) {
   cat("<MultiLineString>", "\n")
   cat("  no. lines: ", attr(x, 'no_lines'), "\n")
   cat("  no. nodes / line: ", attr(x, 'no_nodes_each_line'), "\n")
