@@ -1,21 +1,21 @@
 geojson
 =======
 
-[![Build Status](https://travis-ci.org/ropenscilabs/geojson.svg?branch=master)](https://travis-ci.org/ropenscilabs/geojson)
-[![codecov](https://codecov.io/gh/ropenscilabs/geojson/branch/master/graph/badge.svg)](https://codecov.io/gh/ropenscilabs/geojson)
+[![Build Status](https://travis-ci.org/ropensci/geojson.svg?branch=master)](https://travis-ci.org/ropensci/geojson)
+[![codecov](https://codecov.io/gh/ropensci/geojson/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/geojson)
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/geojson)](https://github.com/metacran/cranlogs.app)
 
 `geojson` aims to deal only with geojson data, without requiring any of the `sp`/`rgdal`/`rgeos` stack. That means this package can be relatively light weight.
 
 We'll define classes (`S3` or `R6`) following the [GeoJSON spec][geojsonspec]. These classes sort of overlap with `sp`'s classes, but not really. There's also some overlap in GeoJSON classes with Well-Known Text (WKT) classes, but GeoJSON has a subset of WKT's classes.
 
-[geoops](https://github.com/ropenscilabs/geoops) supports manipulations on these classes.
+[geoops](https://github.com/ropensci/geoops) supports manipulations on these classes.
 
 ## installation
 
 
 ```r
-devtools::install_github("ropenscilabs/geojson")
+devtools::install_github("ropensci/geojson")
 ```
 
 
@@ -171,7 +171,7 @@ jsonlite::fromJSON(f, FALSE)
 
 ## Meta
 
-* Please [report any issues or bugs](https://github.com/ropenscilabs/geojson/issues).
+* Please [report any issues or bugs](https://github.com/ropensci/geojson/issues).
 * License: MIT
 * Get citation information for `geojson` in R doing `citation(package = 'geojson')`
 * Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
