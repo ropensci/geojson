@@ -6,7 +6,10 @@
 \alias{geojson-package}
 \title{geojson}
 \description{
-geojson
+Classes for GeoJSON to make working with GeoJSON easier
+}
+\author{
+Scott Chamberlain, Jeroen Ooms
 }
 \keyword{package}
 

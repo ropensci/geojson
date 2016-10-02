@@ -14,8 +14,9 @@ LazyData: true
 Imports:
     methods,
     sp,
-    jsonlite (>= 0.9.19),
-    jqr (>= 0.2.0),
+    jsonlite (>= 1.1),
+    protolite (>= 1.5),
+    jqr (>= 0.2.4),
     geojsonlint (>= 0.1.0),
     magrittr,
     lazyeval

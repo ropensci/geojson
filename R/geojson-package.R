@@ -1,10 +1,13 @@
-#' geojson
+#' @title geojson
+#'
+#' @description Classes for GeoJSON to make working with GeoJSON easier
 #'
 #' @importFrom jsonlite fromJSON toJSON
 #' @importFrom jqr jq
 #' @importFrom geojsonlint geojson_hint geojson_lint
 #' @import methods
 #' @name geojson-package
+#' @author Scott Chamberlain, Jeroen Ooms
 #' @aliases geojson
 #' @docType package
 #' @keywords package
