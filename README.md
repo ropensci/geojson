@@ -9,7 +9,7 @@ geojson
 
 We'll define classes (`S3` or `R6`) following the [GeoJSON spec][geojsonspec]. These classes sort of overlap with `sp`'s classes, but not really. There's also some overlap in GeoJSON classes with Well-Known Text (WKT) classes, but GeoJSON has a subset of WKT's classes.
 
-[geoops](https://github.com/ropensci/geoops) supports manipulations on these classes.
+[geoops](https://github.com/ropenscilabs/geoops) supports manipulations on these classes.
 
 ## installation
 

@@ -8,6 +8,7 @@
 #' raw binary returned
 #' @param decimals (integer) how many decimals (digits behind the dot) to
 #' store for numbers
+#' @param pretty (logical) pretty print JSON. Default: \code{FALSE}
 #' @return for \code{from_geobuf} JSON as a character string, and for
 #' \code{to_geobuf} raw or file written to disk
 #' @details \code{from_geobuf} uses \code{\link[protolite]{geobuf2json}},

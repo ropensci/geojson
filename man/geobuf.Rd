@@ -14,6 +14,8 @@ to_geobuf(x, file = NULL, decimals = 6)
 \item{x}{(character) a file or raw object for \code{from_geobuf}, and
 json string for \code{to_geobuf}}
 
+\item{pretty}{(logical) pretty print JSON. Default: \code{FALSE}}
+
 \item{file}{(character) file to write protobuf to. if NULL, geobuf
 raw binary returned}
 
