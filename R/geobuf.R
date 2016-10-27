@@ -1,4 +1,4 @@
-#' Geobuf
+#' Geobuf serialization
 #'
 #' @name geobuf
 #' @export
@@ -56,7 +56,7 @@ from_geobuf <- function(x, pretty = FALSE) {
 
 #' @export
 from_geobuf.default <- function(x, pretty = FALSE) {
-  stop("no 'from_geobuf' for ", class(x), call. = FALSE)
+  stop("no 'from_geobuf' method for ", class(x), call. = FALSE)
 }
 
 #' @export
@@ -128,5 +128,10 @@ to_geobuf.geopolygon <- function(x, file = NULL, decimals = 6) {
 
 togb <- function(x, file = NULL, decimals = 6) {
   tmp <- protolite::json2geobuf(x, decimals = decimals)
-  if (is.null(file)) tmp else writeBin(tmp, con = file)
+  if (is.null(file)) {
+    tmp
+  } else {
+    on.exit(close(file(file)))
+    writeBin(tmp, con = file)
+  }
 }

@@ -5,7 +5,7 @@
 #' @examples
 #' x <- '{ "type": "Polygon",
 #' "coordinates": [
-#'   [ [100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0] ]
+#'   [ [100.0, 0.0], [100.0, 1.0], [101.0, 1.0], [101.0, 0.0], [100.0, 0.0] ]
 #'   ]
 #' }'
 #' (y <- polygon(x))
@@ -45,7 +45,7 @@ polygon.character <- function(x) {
   x <- as_x("Polygon", x)
   switch_verify_names(x)
   verify_class(x, "Polygon")
-  hint_geojson(x)
+  #hint_geojson(x)
   no_lines <- length(asc(jqr::jq(x, ".coordinates[] | length ")))
   no_nodes_each_line <- get_each_nodes(x)
   coords <- get_coordinates(x)
