@@ -76,10 +76,11 @@ feature.geomultipolygon <- function(x) {
 
 #' @export
 feature.character <- function(x) {
+  json_val(x)
+  hint_geojson(x)
   x <- as_feature(x)
   verify_class_(x, "Feature")
   switch_verify_names(x)
-  hint_geojson(x)
   coords <- get_coordinates(x)
   structure(x, class = "geofeature",
             type = get_type(x),

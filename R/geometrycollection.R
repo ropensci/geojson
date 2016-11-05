@@ -39,9 +39,10 @@ geometrycollection.default <- function(x) {
 
 #' @export
 geometrycollection.character <- function(x) {
+  json_val(x)
+  hint_geojson(x)
   verify_names(x, c('type', 'geometries'))
   verify_class(x, "GeometryCollection")
-  hint_geojson(x)
   coords <- get_coordinates(x)
   structure(x, class = "geogeometrycollection",
             geoms = feat_geom_n(x),

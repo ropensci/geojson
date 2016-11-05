@@ -32,10 +32,11 @@ multipolygon.default <- function(x) {
 
 #' @export
 multipolygon.character <- function(x) {
+  json_val(x)
+  hint_geojson(x)
   x <- as_x("MultiPolygon", x)
   switch_verify_names(x)
   verify_class(x, "MultiPolygon")
-  hint_geojson(x)
   no_polygons <- length(asc(jqr::jq(x, ".coordinates[] | length ")))
   coords <- get_coordinates(x)
   structure(x, class = "geomultipolygon",

@@ -40,10 +40,11 @@ featurecollection.default <- function(x) {
 
 #' @export
 featurecollection.character <- function(x) {
+  json_val(x)
+  hint_geojson(x)
   x <- as_featurecollection(x)
   verify_class_(x, "FeatureCollection")
   switch_verify_names(x)
-  hint_geojson(x)
   gtype <- get_type(x)
   no_feats <- asc(jqr::jq(unclass(x), ".features | length"))
   five_feats <- paste0(asc(jqr::jq(unclass(x), ".features[].geometry.type")), collapse = ", ")

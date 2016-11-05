@@ -34,14 +34,20 @@ test_that("linestring fails well", {
   expect_error(linestring('{"type": "LineString"}'), "keys not correct")
 
   expect_error(linestring('{"type": "LineString", "coordinates"}'),
-               "Objects must consist of key:value pairs")
-
-  expect_error(linestring('{"type": "LineString", "coordinates": []}'),
-            "object not proper GeoJSON")
-
-  expect_error(linestring('{"type": "LineString", "coordinates": [1]}'),
-               "object not proper GeoJSON")
+               "object key and value must be separated by a colon")
 
   expect_error(linestring('{"type": "LineString", "coordinates": [1,s]}'),
-               "Invalid numeric literal")
+               "invalid char in json text")
 })
+
+test_that("linestring fails well with geojson linting on", {
+  invisible(linting_opts(TRUE, method = "hint", error = TRUE))
+
+  expect_error(linestring('{"type": "LineString", "coordinates": []}'),
+            "a line needs to have two or more coordinates to be valid")
+
+  expect_error(linestring('{"type": "LineString", "coordinates": [1]}'),
+               "a line needs to have two or more coordinates to be valid")
+})
+
+invisible(linting_opts())

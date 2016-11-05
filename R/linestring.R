@@ -25,10 +25,11 @@ linestring.default <- function(x) {
 
 #' @export
 linestring.character <- function(x) {
+  json_val(x)
+  hint_geojson(x)
   x <- as_x("LineString", x)
   verify_names(x, c('type', 'coordinates'))
   verify_class(x, "LineString")
-  hint_geojson(x)
   structure(x, class = "geolinestring", coords = get_coordinates(x))
 }
 

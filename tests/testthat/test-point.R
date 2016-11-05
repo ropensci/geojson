@@ -40,14 +40,30 @@ test_that("point fails well", {
   expect_error(point('{"type": "Point"}'), "keys not correct")
 
   expect_error(point('{"type": "Point", "coordinates"}'),
-               "Objects must consist of key:value pairs")
+               "object key and value must be separated by a colon")
 
-  expect_error(point('{"type": "Point", "coordinates": []}'),
-               "object not proper GeoJSON")
+  expect_error(point('{"type": "Point", "coordinates": [}'),
+               "unallowed token at this point in JSON text")
 
   expect_error(point('{"type": "Point", "coordinates": [1,]}'),
-               "Expected another array element")
+               "unallowed token at this point in JSON text")
 
   expect_error(point('{"type": "Point", "coordinates": [1,s]}'),
-               "Invalid numeric literal")
+               "invalid char in json text")
 })
+
+test_that("point fails well with geojson linting on", {
+  invisible(linting_opts(TRUE, method = "hint", error = TRUE))
+
+  expect_error(point('{"type": "Point", "coordinates": []}'),
+               "position must have 2 or more elements")
+
+  expect_error(point('{"type": "Point", "coordinates": [1]}'),
+               "position must have 2 or more elements")
+
+  expect_error(point('{"type": "point", "coordinates": []}'),
+               "Expected Point")
+})
+
+invisible(linting_opts())
+

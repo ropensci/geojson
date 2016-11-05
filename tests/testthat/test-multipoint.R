@@ -39,13 +39,22 @@ test_that("multipoint fails well", {
   expect_error(multipoint('{"type": "MultiPoint"}'), "keys not correct")
 
   expect_error(multipoint('{"type": "MultiPoint", "coordinates"}'),
-               "Objects must consist of key:value pairs")
+               "object key and value must be separated by a colon")
 
   expect_is(multipoint('{"type": "MultiPoint", "coordinates": []}'), "geomultipoint")
 
-  expect_error(multipoint('{"type": "MultiPoint", "coordinates": [1]}'),
-               "object not proper GeoJSON")
-
   expect_error(multipoint('{"type": "MultiPoint", "coordinates": [1,s]}'),
-               "Invalid numeric literal")
+               "invalid char in json text")
 })
+
+test_that("multipoint fails well with geojson linting on", {
+  invisible(linting_opts(TRUE, method = "hint", error = TRUE))
+
+  expect_error(multipoint('{"type": "MultiPoint", "coordinates": [1]}'),
+               "position should be an array, is a number instead")
+
+  expect_error(multipoint('{"type": "MultiFart", "coordinates": []}'),
+               "The type MultiFart is unknown")
+})
+
+invisible(linting_opts())

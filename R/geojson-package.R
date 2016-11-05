@@ -4,7 +4,6 @@
 #'
 #' @importFrom jsonlite fromJSON toJSON
 #' @importFrom jqr jq
-#' @importFrom geojsonlint geojson_hint geojson_lint
 #' @import methods
 #' @name geojson-package
 #' @author Scott Chamberlain, Jeroen Ooms
@@ -17,8 +16,8 @@ NULL
 #'
 #' @docType data
 #' @keywords datasets
-#' @format A list of character strings of points or polygons in FeatureCollection or Feature
-#' Geojson formats.
+#' @format A list of character strings of points or polygons in
+#' FeatureCollection or Feature Geojson formats.
 #' @name geojson_data
 #' @details The data objects included in the list, accessible by name
 #' \itemize{
@@ -32,7 +31,8 @@ NULL
 #'  \item polygons_within - FeatureCollection of polygons
 #'  \item poly - Feaure of a single 1 degree by 1 degree polygon
 #'  \item multipoly - FeatureCollection of two 1 degree by 1 degree polygons
-#'  \item polygons_aggregate - FeatureCollection of Polygons from turf.js examples
+#'  \item polygons_aggregate - FeatureCollection of Polygons from
+#'  turf.js examples
 #'  \item points_aggregate - FeatureCollection of Points from turf.js examples
 #' }
 NULL

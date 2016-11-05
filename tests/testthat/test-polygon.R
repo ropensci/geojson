@@ -44,16 +44,31 @@ test_that("polygon fails well", {
   expect_error(polygon('{"type": "Polygon"}'), "keys not correct")
 
   expect_error(polygon('{"type": "Polygon", "coordinates"}'),
-               "Objects must consist of key:value pairs")
+               "object key and value must be separated by a colon")
 
   expect_is(polygon('{"type": "Polygon", "coordinates": []}'), "geopolygon")
 
   expect_error(polygon('{"type": "Polygon", "coordinates": [1,]}'),
-               "Expected another array element")
-
-  expect_error(polygon('{"type": "Polygon", "coordinates": [[100.0,0.0],[101.0,0.0]]}'),
-               "object not proper GeoJSON")
+               "unallowed token at this point in JSON text")
 
   expect_error(polygon('{"type": "Polygon", "coordinates": [[[100.0,0.0],[101.0,0.0],[101.0,1.0],[100.0,1.0],[100.0,aa]]]}'),
-               "Invalid numeric literal")
+               "invalid char in json text")
 })
+
+test_that("polygon fails well with geojson linting on", {
+  invisible(linting_opts(TRUE, method = "hint", error = TRUE))
+
+  expect_error(polygon('{"type": "Polygon", "coordinates": [[100.0,0.0],[101.0,0.0]]}'),
+               "a number was found where a coordinate array should have been found")
+
+  expect_error(polygon('{"type": "Polygon", "coordinates": [[]]}'),
+               "a number was found where a coordinate array should")
+
+  expect_error(polygon('{"type": "Polygon", "coordinates": [[1]]}'),
+               "a number was found where a coordinate array should")
+
+  expect_error(polygon('{"type": "polygon", "coordinates": [[]]}'),
+               "Expected Polygon")
+})
+
+invisible(linting_opts())

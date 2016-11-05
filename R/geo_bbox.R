@@ -84,7 +84,8 @@ geo_bbox.default <- function(x) {
 
 #' @export
 geo_bbox.character <- function(x) {
-  geojsonlint::geojson_hint(x, verbose = TRUE, error = TRUE)
+  json_val(x)
+  hint_geojson(x)
   geo_bbox(structure(x, class = paste0("geo", tolower(get_type(x)))))
 }
 

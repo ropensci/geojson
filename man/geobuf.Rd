@@ -4,7 +4,7 @@
 \alias{from_geobuf}
 \alias{geobuf}
 \alias{to_geobuf}
-\title{Geobuf}
+\title{Geobuf serialization}
 \usage{
 from_geobuf(x, pretty = FALSE)
 
@@ -27,7 +27,7 @@ for \code{from_geobuf} JSON as a character string, and for
 \code{to_geobuf} raw or file written to disk
 }
 \description{
-Geobuf
+Geobuf serialization
 }
 \details{
 \code{from_geobuf} uses \code{\link[protolite]{geobuf2json}},

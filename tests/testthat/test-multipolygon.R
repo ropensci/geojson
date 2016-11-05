@@ -51,22 +51,34 @@ test_that("multipolygon fails well", {
   expect_error(multipolygon('{"type": "MultiPolygon"}'), "keys not correct")
 
   expect_error(multipolygon('{"type": "MultiPolygon", "coordinates"}'),
-               "Objects must consist of key:value pairs")
+               "object key and value must be separated by a colon")
 
   expect_error(multipolygon('{"type": "MultiPolygon", "coordinates": [1,]}'),
-               "Expected another array element")
+               "unallowed token at this point in JSON text")
 
   expect_error(
     multipolygon('{"type": "MultiPolygon", "coordinates": [
 	[[[100.0, 0.0], [101.0, 0.0], [100.0, 0.0]],
                  [[100.2, 0.2], [100.8, 0.2], [100.2, 0.2]]]
                  ]'),
-               "Unfinished JSON term at EOF at line 4")
+               "premature EOF")
 
   expect_error(
     multipolygon('{"type": "MultiPolygon", "coordinates": [
                  [[[100.0, 0.0], [101.0, 0.0], [100.0, aa]],
                  [[100.2, 0.2], [100.8, 0.2], [100.2, 0.2]]]
                  ]'),
-    "Invalid numeric literal")
+    "invalid char in json text")
 })
+
+test_that("multipolygon fails well with geojson linting on", {
+  invisible(linting_opts(TRUE, method = "hint", error = TRUE))
+
+  expect_error(multipolygon('{"type": "MultiPolygon", "coordinates": [1]}'),
+               "a number was found where a coordinate array should")
+
+  expect_error(multipolygon('{"type": "Multipolygon", "coordinates": []}'),
+               "Expected MultiPolygon")
+})
+
+invisible(linting_opts())
