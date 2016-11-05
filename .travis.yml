@@ -1,6 +1,9 @@
 language: r
 cache: packages
 
+r_packages:
+  - geojsonlint
+
 addons:
   apt:
     packages:
