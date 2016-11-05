@@ -8,7 +8,7 @@
 #'  \item lint - uses \code{\link[geojsonlint]{geojson_lint}}
 #'  \item validate - uses \code{\link[geojsonlint]{geojson_validate}}
 #' }
-#' @param (logical) Throw an error on parse failure? If \code{TRUE}, then
+#' @param error (logical) Throw an error on parse failure? If \code{TRUE}, then
 #' function returns \code{TRUE} on success, and stop with the error
 #' message on error. Default: \code{FALSE}
 #' @details if you have \pkg{geojsonlint} installed, we can lint

@@ -16,7 +16,7 @@ linting_opts(lint = FALSE, method = "hint", error = FALSE, ...)
  \item validate - uses \code{\link[geojsonlint]{geojson_validate}}
 }}
 
-\item{(logical)}{Throw an error on parse failure? If \code{TRUE}, then
+\item{error}{(logical) Throw an error on parse failure? If \code{TRUE}, then
 function returns \code{TRUE} on success, and stop with the error
 message on error. Default: \code{FALSE}}
 }
