@@ -103,13 +103,6 @@ pretty print the geojson
 geo_pretty(y)
 ```
 
-get the types within the geometrycollection
-
-
-```{r}
-geo_type(y)
-```
-
 write to disk
 
 ```{r}
@@ -120,6 +113,33 @@ jsonlite::fromJSON(f, FALSE)
 ```{r echo=FALSE}
 unlink(f)
 ```
+
+## geojson in data.frame's
+
+```{r}
+x <- '{ "type": "Point", "coordinates": [100.0, 0.0] }'
+(pt <- point(x))
+```
+
+```{r}
+library("tibble")
+data_frame(a = 1:5, b = list(pt))
+```
+
+```{r}
+x <- '{ "type": "MultiLineString",
+  "coordinates": [ [ [100.0, 0.0], [101.0, 1.0] ], [ [102.0, 2.0], [103.0, 3.0] ] ] }'
+(mls <- multilinestring(x))
+```
+
+```{r}
+data_frame(a = 1:5, b = list(mls))
+```
+
+```{r}
+data_frame(a = 1:5, b = list(pt), c = list(mls))
+```
+
 
 ## Meta
 

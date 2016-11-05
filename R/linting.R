@@ -33,9 +33,9 @@ linting_opts <- function(lint = FALSE, method = "hint", error = FALSE, ...) {
   options(geojson.lint = lint)
   method_fun <- switch(
     method,
-    hint = geojsonlint::geojson_hint,
-    lint = geojsonlint::geojson_lint,
-    validate = geojsonlint::geojson_validate
+    hint = 'geojsonlint::geojson_hint',
+    lint = 'geojsonlint::geojson_lint',
+    validate = 'geojsonlint::geojson_validate'
   )
   options(geojson.method = method_fun)
   options(geojson.error = error)
@@ -44,7 +44,7 @@ linting_opts <- function(lint = FALSE, method = "hint", error = FALSE, ...) {
 }
 
 hint <- function(x) {
-  getOption("geojson.method")(
+  eval(parse(text = getOption("geojson.method")))(
     x,
     error = getOption("geojson.error")
   )
