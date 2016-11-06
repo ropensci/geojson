@@ -30,10 +30,10 @@ crs <- '{"type": "name",
  "properties": {
      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
 }}'
-x \%>\% feature() \%>\% add_crs(crs)
+x \%>\% feature() \%>\% crs_add(crs)
 
 # get crs
-z <- x \%>\% feature() \%>\% add_crs(crs)
+z <- x \%>\% feature() \%>\% crs_add(crs)
 crs_get(z)
 }
 \references{

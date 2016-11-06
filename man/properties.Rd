@@ -15,10 +15,7 @@ properties_get(x, property)
 
 \item{...}{Properties to be added, supports NSE as well as SE}
 
-\item{crs}{(character) a CRS string. required.}
-
-\item{bbox}{(numeric) a vector or list of length 4. If \code{NULL},
-the bounding box is calculated for you}
+\item{property}{(character) property name}
 }
 \description{
 Add properties, crs, and bounding box
@@ -27,10 +24,10 @@ Add properties, crs, and bounding box
 # add properties
 x <- '{ "type": "LineString", "coordinates": [ [100.0, 0.0], [101.0, 1.0] ]}'
 (y <- linestring(x))
-y \%>\% feature() \%>\% add_properties(population = 1000)
+y \%>\% feature() \%>\% properties_add(population = 1000)
 
 # get property
-x <- y \%>\% feature() \%>\% add_properties(population = 1000)
+x <- y \%>\% feature() \%>\% properties_add(population = 1000)
 properties_get(x, property = 'population')
 }
 \references{

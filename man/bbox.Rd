@@ -33,11 +33,11 @@ x <- '{ "type": "Polygon",
 
 # add bbox
 (y <- polygon(x))
-y \%>\% feature() \%>\% add_bbox()
-y \%>\% feature() \%>\% add_bbox(c(-10.0, -10.0, 10.0, 10.0))
+y \%>\% feature() \%>\% bbox_add()
+y \%>\% feature() \%>\% bbox_add(c(-10.0, -10.0, 10.0, 10.0))
 
 # get bounding box
-z <- y \%>\% feature() \%>\% add_bbox()
+z <- y \%>\% feature() \%>\% bbox_add()
 bbox_get(z)
 
 ## returns NULL if no bounding box
