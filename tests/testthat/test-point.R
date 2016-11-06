@@ -28,7 +28,7 @@ test_that("methods on points work", {
   expect_equal(geo_type(aa), "Point")
 
   geo_write(aa, f <- tempfile())
-  expect_match(f, "/var/folders")
+  expect_is(f, "character")
 
   # cleanup
   unlink(f)

@@ -4,7 +4,7 @@
 \alias{linting_opts}
 \title{GeoJSON Linting}
 \usage{
-linting_opts(lint = FALSE, method = "hint", error = FALSE, ...)
+linting_opts(lint = FALSE, method = "hint", error = FALSE)
 }
 \arguments{
 \item{lint}{(logical) lint geojson or not. Default: \code{FALSE}}

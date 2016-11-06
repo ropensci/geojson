@@ -24,7 +24,7 @@ test_that("methods on multilinestrings work", {
   expect_equal(geo_type(aa), "MultiLineString")
 
   geo_write(aa, f <- tempfile())
-  expect_match(f, "/var/folders")
+  expect_is(f, "character")
 
   # cleanup
   unlink(f)

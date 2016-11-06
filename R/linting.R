@@ -25,7 +25,7 @@
 #' linting_opts(lint = TRUE, method = "lint", error = TRUE)
 #' linting_opts(lint = TRUE, method = "validate")
 #' linting_opts(lint = TRUE, method = "validate", error = TRUE)
-linting_opts <- function(lint = FALSE, method = "hint", error = FALSE, ...) {
+linting_opts <- function(lint = FALSE, method = "hint", error = FALSE) {
 
   if (!method %in% c('hint', 'lint', 'validate')) {
     stop("method must be one of 'hint', 'lint', or 'validate'", call. = FALSE)
