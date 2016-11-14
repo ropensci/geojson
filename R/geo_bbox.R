@@ -83,6 +83,12 @@ geo_bbox.default <- function(x) {
 }
 
 #' @export
+geo_bbox.json <- function(x) geo_bbox(unclass(x))
+
+#' @export
+geo_bbox.geojson <- function(x) geo_bbox(unclass(x))
+
+#' @export
 geo_bbox.character <- function(x) {
   json_val(x)
   hint_geojson(x)
