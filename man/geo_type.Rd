@@ -13,9 +13,9 @@ geo_pretty(x)
 geo_write(x, file)
 }
 \arguments{
-\item{x}{input}
+\item{x}{input, an object of class \code{geojson}}
 
-\item{file}{a file name}
+\item{file}{(character) a file path}
 }
 \description{
 convenience methods to get various geojson attribute information
