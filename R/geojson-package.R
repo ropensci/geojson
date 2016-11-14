@@ -15,6 +15,10 @@
 #'  \item \code{\link{point}} - Point
 #'  \item \code{\link{polygon}} - Polygon
 #' }
+#' The above are assigned two classes. All of them are class \strong{geojson},
+#' but also have a class name that is \strong{geo} plus the name of
+#' the geometry, e.g., \strong{geopolygon} for polygon.
+#'
 #'
 #' GeoJSON properties:
 #' \itemize{

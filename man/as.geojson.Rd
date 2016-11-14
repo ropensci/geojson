@@ -10,12 +10,15 @@
 \alias{as.geojson,SpatialPolygons-method}
 \alias{as.geojson,SpatialPolygonsDataFrame-method}
 \alias{as.geojson,character-method}
+\alias{as.geojson,geojson-method}
 \alias{as.geojson,json-method}
 \title{Geojson class}
 \usage{
 as.geojson(x)
 
 \S4method{as.geojson}{json}(x)
+
+\S4method{as.geojson}{geojson}(x)
 
 \S4method{as.geojson}{character}(x)
 
@@ -32,10 +35,20 @@ as.geojson(x)
 \S4method{as.geojson}{SpatialPolygons}(x)
 }
 \arguments{
-\item{x}{input}
+\item{x}{input, an object of class character, json, SpatialPoints,
+SpatialPointsDataFrame, SpatialLines, SpatialLinesDataFrame,
+SpatialPolygons, or SpatialPolygonsDataFrame}
+}
+\value{
+an object of class geojson/json
 }
 \description{
 Geojson class
+}
+\details{
+The \code{print.geojson} method prints the geojson geometry
+type, the bounding box, number of features (if applicable), and the
+geometries and their lengths
 }
 \examples{
 # character
@@ -73,5 +86,17 @@ dat <- data.frame(X = c("Blue", "Green"),
                   Z = c("Road", "River"), row.names = c("a", "b"))
 sldf <- SpatialLinesDataFrame(sl12, dat)
 as.geojson(sldf)
+
+## SpatialPolygons
+poly1 <- Polygons(list(Polygon(cbind(c(-100,-90,-85,-100),
+   c(40,50,45,40)))), "1")
+poly2 <- Polygons(list(Polygon(cbind(c(-90,-80,-75,-90),
+   c(30,40,35,30)))), "2")
+sp_poly <- SpatialPolygons(list(poly1, poly2), 1:2)
+as.geojson(sp_poly)
+
+## SpatialPolygonsDataFrame
+sp_polydf <- as(sp_poly, "SpatialPolygonsDataFrame")
+as.geojson(sp_polydf)
 }
 

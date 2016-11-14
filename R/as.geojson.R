@@ -1,7 +1,13 @@
 #' Geojson class
 #'
 #' @export
-#' @param x input
+#' @param x input, an object of class character, json, SpatialPoints,
+#' SpatialPointsDataFrame, SpatialLines, SpatialLinesDataFrame,
+#' SpatialPolygons, or SpatialPolygonsDataFrame
+#' @return an object of class geojson/json
+#' @details The \code{print.geojson} method prints the geojson geometry
+#' type, the bounding box, number of features (if applicable), and the
+#' geometries and their lengths
 #' @examples
 #' # character
 #' as.geojson(geojson_data$featurecollection_point)
@@ -38,10 +44,24 @@
 #'                   Z = c("Road", "River"), row.names = c("a", "b"))
 #' sldf <- SpatialLinesDataFrame(sl12, dat)
 #' as.geojson(sldf)
+#'
+#' ## SpatialPolygons
+#' poly1 <- Polygons(list(Polygon(cbind(c(-100,-90,-85,-100),
+#'    c(40,50,45,40)))), "1")
+#' poly2 <- Polygons(list(Polygon(cbind(c(-90,-80,-75,-90),
+#'    c(30,40,35,30)))), "2")
+#' sp_poly <- SpatialPolygons(list(poly1, poly2), 1:2)
+#' as.geojson(sp_poly)
+#'
+#' ## SpatialPolygonsDataFrame
+#' sp_polydf <- as(sp_poly, "SpatialPolygonsDataFrame")
+#' as.geojson(sp_polydf)
 
 setGeneric("as.geojson", function(x) {
   standardGeneric("as.geojson")
 })
+
+setOldClass("geojson")
 
 #' @rdname as.geojson
 setMethod("as.geojson", "json", function(x){
@@ -50,9 +70,13 @@ setMethod("as.geojson", "json", function(x){
 })
 
 #' @rdname as.geojson
+setMethod("as.geojson", "geojson", function(x){
+  x
+})
+
+#' @rdname as.geojson
 setMethod("as.geojson", "character", function(x){
   stopifnot(jsonlite::validate(x))
-  #hint_geojson(x)
   structure(x, class = c("geojson", "json"))
 })
 

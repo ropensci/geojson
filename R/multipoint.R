@@ -30,7 +30,9 @@ multipoint.character <- function(x) {
   x <- as_x("MultiPoint", x)
   verify_names(x, c('type', 'coordinates'))
   verify_class(x, "MultiPoint")
-  structure(x, class = "geomultipoint", coords = cchar(jqr::jq(unclass(x), ".coordinates")))
+  structure(x,
+            class = c("geomultipoint", "geojson"),
+            coords = cchar(jqr::jq(unclass(x), ".coordinates")))
 }
 
 #' @export

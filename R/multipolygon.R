@@ -39,7 +39,7 @@ multipolygon.character <- function(x) {
   verify_class(x, "MultiPolygon")
   no_polygons <- length(asc(jqr::jq(x, ".coordinates[] | length ")))
   coords <- get_coordinates(x)
-  structure(x, class = "geomultipolygon",
+  structure(x, class = c("geomultipolygon", "geojson"),
             no_polygons = no_polygons,
             coords = coords)
 }

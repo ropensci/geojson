@@ -30,7 +30,9 @@ linestring.character <- function(x) {
   x <- as_x("LineString", x)
   verify_names(x, c('type', 'coordinates'))
   verify_class(x, "LineString")
-  structure(x, class = "geolinestring", coords = get_coordinates(x))
+  structure(x,
+            class = c("geolinestring", "geojson"),
+            coords = get_coordinates(x))
 }
 
 #' @export

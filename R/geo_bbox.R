@@ -63,15 +63,21 @@
 #' y %>% feature() %>% geo_bbox()
 #'
 #' # featurecollection
-#' file <- system.file("examples", 'featurecollection2.geojson', package = "geojson")
+#' file <- system.file("examples", 'featurecollection2.geojson',
+#'   package = "geojson")
 #' str <- paste0(readLines(file), collapse = " ")
 #' x <- featurecollection(str)
 #' geo_bbox(x)
 #'
 #' # character
-#' file <- system.file("examples", 'featurecollection2.geojson', package = "geojson")
+#' file <- system.file("examples", 'featurecollection2.geojson',
+#'   package = "geojson")
 #' str <- paste0(readLines(file), collapse = " ")
 #' geo_bbox(str)
+#'
+#' # json
+#' library('jsonlite')
+#' geo_bbox(toJSON(fromJSON(str), auto_unbox = TRUE))
 
 geo_bbox <- function(x) {
   UseMethod("geo_bbox")

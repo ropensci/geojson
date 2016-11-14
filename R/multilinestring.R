@@ -43,7 +43,7 @@ multilinestring.character <- function(x) {
   no_lines <- length(asc(jqr::jq(x, ".coordinates[] | length ")))
   no_nodes_each_line <- get_each_nodes(x)
   coords <- get_coordinates(x)
-  structure(x, class = "geomultilinestring",
+  structure(x, class = c("geomultilinestring", "geojson"),
             no_lines = no_lines,
             no_nodes_each_line = no_nodes_each_line,
             coords = coords)

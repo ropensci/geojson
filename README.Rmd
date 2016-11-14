@@ -45,7 +45,7 @@ We'll define classes (`S3` or `R6`) following the [GeoJSON spec][geojsonspec]. T
 
 [geoops](https://github.com/ropenscilabs/geoops) supports manipulations on these classes.
 
-## installation
+## Installation
 
 ```{r eval=FALSE}
 devtools::install_github("ropensci/geojson")

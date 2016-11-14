@@ -44,7 +44,7 @@ geometrycollection.character <- function(x) {
   verify_names(x, c('type', 'geometries'))
   verify_class(x, "GeometryCollection")
   coords <- get_coordinates(x)
-  structure(x, class = "geogeometrycollection",
+  structure(x, class = c("geogeometrycollection", "geojson"),
             geoms = feat_geom_n(x),
             featgeoms = feat_geom(x),
             coords = coords)

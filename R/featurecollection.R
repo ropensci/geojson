@@ -48,7 +48,7 @@ featurecollection.character <- function(x) {
   gtype <- get_type(x)
   no_feats <- asc(jqr::jq(unclass(x), ".features | length"))
   five_feats <- paste0(asc(jqr::jq(unclass(x), ".features[].geometry.type")), collapse = ", ")
-  structure(x, class = "geofeaturecollection",
+  structure(x, class = c("geofeaturecollection", "geojson"),
             type = gtype,
             no_features = no_feats,
             five_feats = five_feats)
