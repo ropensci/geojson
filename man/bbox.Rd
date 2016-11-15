@@ -16,25 +16,34 @@ bbox_get(x)
 \item{bbox}{(numeric) a vector or list of length 4. If \code{NULL},
 the bounding box is calculated for you}
 }
+\value{
+a bounding box, of the form \code{[west, south, east, north]}
+for 2D or of the form
+\code{[west, south, min-altitude, east, north, max-altitude]} for 3D
+}
 \description{
 Add or get bounding box
 }
 \details{
 Note that \code{bbox_get} outputs the bbox if it exists, but
 does not calculate it from the geojson. See \code{\link{geo_bbox}}
-to calculate a bounding box
+to calculate a bounding box. Bounding boxes can be 2D or 3D.
 }
 \examples{
+# make a polygon
 x <- '{ "type": "Polygon",
 "coordinates": [
   [ [100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0] ]
   ]
 }'
-
-# add bbox
 (y <- polygon(x))
+
+# add bbox - without an input, we figure out the 2D bbox for you
 y \%>\% feature() \%>\% bbox_add()
-y \%>\% feature() \%>\% bbox_add(c(-10.0, -10.0, 10.0, 10.0))
+## 2D bbox
+y \%>\% feature() \%>\% bbox_add(c(100.0, -10.0, 105.0, 10.0))
+## 3D bbox
+y \%>\% feature() \%>\% bbox_add(c(100.0, -10.0, -100.0, 105.0, 10.0, 0.0))
 
 # get bounding box
 z <- y \%>\% feature() \%>\% bbox_add()
@@ -44,6 +53,6 @@ bbox_get(z)
 bbox_get(x)
 }
 \references{
-\url{http://geojson.org/geojson-spec.html#bounding-boxes}
+\url{https://tools.ietf.org/html/rfc7946#section-5}
 }
 

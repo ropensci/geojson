@@ -68,6 +68,16 @@ Given the above, but considering that GeoJSON blobs exist that have CRS
 attributes in them, we provide CRS helpers in this package. But moving
 forward these are not likely to be used much.
 }
+
+\section{Coordinate precision}{
+
+According to RFC 7946 (\url{https://tools.ietf.org/html/rfc7946#section-11.2})
+consider that 6 decimal places amoutns to ~10 centimeters, a precision
+well within that of current GPS sytems. Further, A GeoJSON text containing
+many detailed Polygons can be inflated almost by a factor of two by
+increasing coordinate precision from 6 to 15 decimal places - so consider
+whether it is worth it to have more decimal places.
+}
 \author{
 Scott Chamberlain, Jeroen Ooms
 }
