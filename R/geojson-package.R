@@ -49,6 +49,16 @@
 #'  the Geobuf format
 #' }
 #'
+#' @section Coordinate Reference System:
+#' According to RFC 7946
+#' (\url{https://tools.ietf.org/html/rfc7946#page-12}) the CRS for all GeoJSON
+#' objects must be WGS-84, equivalent to \code{urn:ogc:def:crs:OGC::CRS84}.
+#' And lat/long must be in decimal degrees.
+#'
+#' Given the above, but considering that GeoJSON blobs exist that have CRS
+#' attributes in them, we provide CRS helpers in this package. But moving
+#' forward these are not likely to be used much.
+#'
 #' @importFrom jsonlite fromJSON toJSON
 #' @importFrom jqr jq
 #' @import methods
