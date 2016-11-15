@@ -2,7 +2,7 @@ Package: geojson
 Type: Package
 Title: Classes for 'GeoJSON'
 Description: Classes for 'GeoJSON' to make working with 'GeoJSON' easier.
-Version: 0.0.8.9359
+Version: 0.1.0
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut", "cre"), email = "myrmecocystus@gmail.com"),
     person("Jeroen", "Ooms", role = "aut")
@@ -11,6 +11,7 @@ License: MIT + file LICENSE
 URL: https://github.com/ropensci/geojson
 BugReports: https://github.com/ropensci/geojson/issues
 LazyData: true
+VignetteBuilder: knitr
 Imports:
     methods,
     sp,
@@ -23,5 +24,6 @@ Suggests:
     geojsonlint (>= 0.2.0),
     tibble,
     testthat,
-    covr
+    covr,
+    knitr
 RoxygenNote: 5.0.1

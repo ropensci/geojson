@@ -70,7 +70,7 @@ library("geojson")
 
 ## geojson class
 
-this is just a characstring string with S3 class `geojson` attached to make it 
+Essentially a character string with S3 class `geojson` attached to make it 
 easy to perform operations on
 
 ```{r}

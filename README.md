@@ -7,13 +7,27 @@ geojson
 [![codecov](https://codecov.io/gh/ropensci/geojson/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/geojson)
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/geojson)](https://github.com/metacran/cranlogs.app)
 
-`geojson` aims to deal only with geojson data, without requiring any of the `sp`/`rgdal`/`rgeos` stack. That means this package can be relatively light weight.
+`geojson` aims to deal only with geojson data, without requiring any of the 
+`sp`/`rgdal`/`rgeos` stack.  That means this package can be relatively light weight.
 
-We'll define classes (`S3` or `R6`) following the [GeoJSON spec][geojsonspec]. These classes sort of overlap with `sp`'s classes, but not really. There's also some overlap in GeoJSON classes with Well-Known Text (WKT) classes, but GeoJSON has a subset of WKT's classes.
+We'll define classes (`S3` or `R6`) following the [GeoJSON spec][geojsonspec]. These 
+classes sort of overlap with `sp`'s classes, but not really. There's also some 
+overlap in GeoJSON classes with Well-Known Text (WKT) classes, but GeoJSON has a 
+subset of WKT's classes.
 
-[geoops](https://github.com/ropenscilabs/geoops) supports manipulations on these classes.
+[geoops](https://github.com/ropenscilabs/geoops) supports manipulations on 
+these classes.
 
-## installation
+## Installation
+
+Stable CRAN version
+
+
+```r
+install.packages("geojson")
+```
+
+Dev version
 
 
 ```r
@@ -27,7 +41,8 @@ library("geojson")
 
 ## geojson class
 
-this is just a characstring string with S3 class `geojson` attached to make it easy to perform operations on
+Essentially a character string with S3 class `geojson` attached to make it 
+easy to perform operations on
 
 
 ```r
@@ -35,6 +50,7 @@ x <- "{\"type\":\"FeatureCollection\",\"features\":[{\"type\":\"Feature\",\"geom
 as.geojson(x)
 #> <geojson> 
 #>   type:  FeatureCollection 
+#>   bounding box:  99.74 32.45 99.74 32.45 
 #>   features (n): 1 
 #>   features (geometry / length):
 #>     Point / 2
@@ -365,7 +381,8 @@ data_frame(a = 1:5, b = list(pt), c = list(mls))
 * Please [report any issues or bugs](https://github.com/ropensci/geojson/issues).
 * License: MIT
 * Get citation information for `geojson` in R doing `citation(package = 'geojson')`
-* Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+* Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). 
+By participating in this project you agree to abide by its terms.
 
 [![ropensci_footer](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
 
