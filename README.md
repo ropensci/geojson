@@ -6,6 +6,7 @@ geojson
 [![Build Status](https://travis-ci.org/ropensci/geojson.svg?branch=master)](https://travis-ci.org/ropensci/geojson)
 [![codecov](https://codecov.io/gh/ropensci/geojson/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/geojson)
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/geojson)](https://github.com/metacran/cranlogs.app)
+[![cran version](http://www.r-pkg.org/badges/version/geojson)](https://cran.r-project.org/package=geojson)
 
 `geojson` aims to deal only with geojson data, without requiring any of the 
 `sp`/`rgdal`/`rgeos` stack.  That means this package can be relatively light weight.
