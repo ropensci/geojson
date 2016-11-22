@@ -41,15 +41,14 @@ knitr::opts_chunk$set(
 [![cran version](http://www.r-pkg.org/badges/version/geojson)](https://cran.r-project.org/package=geojson)
 
 `geojson` aims to deal only with geojson data, without requiring any of the 
-`sp`/`rgdal`/`rgeos` stack.  That means this package can be relatively light weight.
+`sp`/`rgdal`/`rgeos` stack.  That means this package is light weight.
 
-We'll define classes (`S3` or `R6`) following the [GeoJSON spec][geojsonspec]. These 
+We've defined classes (`S3`) following the [GeoJSON spec][geojsonspec]. These 
 classes sort of overlap with `sp`'s classes, but not really. There's also some 
 overlap in GeoJSON classes with Well-Known Text (WKT) classes, but GeoJSON has a 
 subset of WKT's classes.
 
-[geoops](https://github.com/ropenscilabs/geoops) supports manipulations on 
-these classes.
+Although not ready yet, [geoops](https://github.com/ropenscilabs/geoops) supports manipulations on the classes defined in this package.
 
 ## Installation
 
@@ -217,8 +216,8 @@ data_frame(a = 1:5, b = list(pt), c = list(mls))
 * Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). 
 By participating in this project you agree to abide by its terms.
 
-[![ropensci_footer](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
+[![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
 
-[geojsonspec]: http://geojson.org/geojson-spec.html
+[geojsonspec]: https://tools.ietf.org/html/rfc7946
 [jqr]: https://github.com/ropensci/jqr
 [jq]: https://github.com/stedolan/jq
