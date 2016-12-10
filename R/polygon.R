@@ -43,12 +43,12 @@ polygon <- function(x, ...) {
 
 #' @export
 polygon.default <- function(x, ...) {
-  x <- try(grDevices::xy.coords(x), silent = TRUE)
-  if (!inherits(x, "try-error")) {
+  gp <- try(grDevices::xy.coords(x), silent = TRUE)
+  if (!inherits(gp, "try-error")) {
     ## the non-generic graphics version
-    graphics::polygon(x, ...)
+    graphics::polygon(gp, ...)
   } else {
-  stop("no method for ", class(x), call. = FALSE)
+    stop("no method for ", class(x), call. = FALSE)
   }
   invisible()
 }
