@@ -4,13 +4,21 @@
 \alias{polygon}
 \title{polygon class}
 \usage{
-polygon(x)
+polygon(x, ...)
 }
 \arguments{
 \item{x}{input}
+
+\item{...}{(ignored in geojson use, extra arguments passed to \code{\link[graphics]{polygon}})}
 }
 \description{
 polygon class
+}
+\section{Note}{
+
+This function masks the non-generic graphics package function of the same
+name, if the input is interpretable by \code{\link[grDevices]{xy.coords}}
+then the default method will hand back to \code{\link[graphics]{polygon}}.
 }
 \examples{
 x <- '{ "type": "Polygon",
