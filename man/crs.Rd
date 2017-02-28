@@ -3,6 +3,7 @@
 \name{crs}
 \alias{crs}
 \alias{crs_add}
+\alias{crs}
 \alias{crs_get}
 \title{Add or get CRS}
 \usage{
@@ -50,4 +51,3 @@ crs_get(z)
 \url{https://github.com/OSGeo/proj.4},
 \url{http://geojson.org/geojson-spec.html#coordinate-reference-system-objects}
 }
-

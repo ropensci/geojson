@@ -24,4 +24,3 @@ poly <- polygon(x)
 
 geo_type(poly)
 }
-

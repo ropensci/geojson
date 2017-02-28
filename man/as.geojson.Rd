@@ -3,15 +3,15 @@
 \docType{methods}
 \name{as.geojson}
 \alias{as.geojson}
-\alias{as.geojson,SpatialLines-method}
-\alias{as.geojson,SpatialLinesDataFrame-method}
-\alias{as.geojson,SpatialPoints-method}
-\alias{as.geojson,SpatialPointsDataFrame-method}
-\alias{as.geojson,SpatialPolygons-method}
-\alias{as.geojson,SpatialPolygonsDataFrame-method}
-\alias{as.geojson,character-method}
-\alias{as.geojson,geojson-method}
 \alias{as.geojson,json-method}
+\alias{as.geojson,geojson-method}
+\alias{as.geojson,character-method}
+\alias{as.geojson,SpatialPointsDataFrame-method}
+\alias{as.geojson,SpatialPoints-method}
+\alias{as.geojson,SpatialLinesDataFrame-method}
+\alias{as.geojson,SpatialLines-method}
+\alias{as.geojson,SpatialPolygonsDataFrame-method}
+\alias{as.geojson,SpatialPolygons-method}
 \title{Geojson class}
 \usage{
 as.geojson(x)
@@ -99,4 +99,3 @@ as.geojson(sp_poly)
 sp_polydf <- as(sp_poly, "SpatialPolygonsDataFrame")
 as.geojson(sp_polydf)
 }
-

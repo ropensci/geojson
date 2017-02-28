@@ -39,4 +39,3 @@ file <- system.file("examples", "geometrycollection1.geojson", package = "geojso
 geo_type(y)
 geo_pretty(y)
 }
-

@@ -26,4 +26,3 @@ x <- '{ "type": "Polygon",
 poly <- polygon(x)
 geo_pretty(poly)
 }
-

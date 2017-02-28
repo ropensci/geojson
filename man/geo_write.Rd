@@ -27,4 +27,3 @@ geo_write(
 readLines(file)
 unlink(file)
 }
-

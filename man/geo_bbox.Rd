@@ -93,4 +93,3 @@ geo_bbox(str)
 library('jsonlite')
 geo_bbox(toJSON(fromJSON(str), auto_unbox = TRUE))
 }
-

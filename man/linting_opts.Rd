@@ -40,4 +40,3 @@ linting_opts(lint = TRUE, method = "lint", error = TRUE)
 linting_opts(lint = TRUE, method = "validate")
 linting_opts(lint = TRUE, method = "validate", error = TRUE)
 }
-

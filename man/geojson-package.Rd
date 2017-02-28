@@ -2,8 +2,8 @@
 % Please edit documentation in R/geojson-package.R
 \docType{package}
 \name{geojson-package}
-\alias{geojson}
 \alias{geojson-package}
+\alias{geojson}
 \title{geojson}
 \description{
 Classes for GeoJSON to make working with GeoJSON easier
@@ -78,8 +78,8 @@ many detailed Polygons can be inflated almost by a factor of two by
 increasing coordinate precision from 6 to 15 decimal places - so consider
 whether it is worth it to have more decimal places.
 }
+
 \author{
 Scott Chamberlain, Jeroen Ooms
 }
 \keyword{package}
-

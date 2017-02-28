@@ -41,4 +41,3 @@ geo_pretty(y)
 library('tibble')
 data_frame(a = 1:5, b = list(y))
 }
-

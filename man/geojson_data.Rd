@@ -28,4 +28,3 @@ The data objects included in the list, accessible by name
 }
 }
 \keyword{datasets}
-

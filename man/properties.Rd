@@ -33,4 +33,3 @@ properties_get(x, property = 'population')
 \references{
 \url{http://geojson.org/geojson-spec.html}
 }
-

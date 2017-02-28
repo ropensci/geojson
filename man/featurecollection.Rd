@@ -40,4 +40,3 @@ featurecollection(featls)
 ## mixed geometry types
 
 }
-
