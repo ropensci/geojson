@@ -23,7 +23,8 @@ switch_verify_names <- function(x) {
 
 verify_names <- function(x, nms) {
   if (asc(jqr::jq(unclass(x), ".type")) == "Feature") {
-    keys <- strsplit(asc(unclass(jqr::jq(unclass(x), ".geometry | keys"))), ",")[[1]]
+    keys <- strsplit(
+      asc(unclass(jqr::jq(unclass(x), ".geometry | keys"))), ",")[[1]]
   } else {
     keys <- strsplit(asc(unclass(jqr::jq(unclass(x), "keys"))), ",")[[1]]
   }
@@ -31,7 +32,8 @@ verify_names <- function(x, nms) {
 }
 
 verify_class_ <- function(x, clss) {
-  if (asc(jqr::jq(unclass(x), ".type")) != clss) stop("object is not of type ", clss, call. = FALSE)
+  if (asc(jqr::jq(unclass(x), ".type")) != clss) stop("object is not of type ",
+                                                      clss, call. = FALSE)
 }
 
 verify_class <- function(x, clss) {
@@ -45,7 +47,8 @@ verify_class <- function(x, clss) {
 
 checkforpkg <- function(x) {
   if (!requireNamespace(x, quietly = TRUE)) {
-    warning(sprintf("'%s' not installed, skipping GeoJSON linting", x), call. = FALSE)
+    warning(sprintf("'%s' not installed, skipping GeoJSON linting", x),
+            call. = FALSE)
     invisible(FALSE)
   } else {
     invisible(TRUE)
@@ -89,7 +92,9 @@ as_x <- function(clz, x) {
   } else if (ext == clz) {
     x
   } else {
-    stop("type can not be '", ext, sprintf("'; must be one of '%s' or 'Feature'", clz), call. = FALSE)
+    stop("type can not be '",
+         ext, sprintf("'; must be one of '%s' or 'Feature'", clz),
+         call. = FALSE)
   }
 }
 

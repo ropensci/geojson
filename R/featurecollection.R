@@ -3,8 +3,10 @@
 #' @export
 #' @param x input
 #' @examples
-#' file <- system.file("examples", 'featurecollection1.geojson', package = "geojson")
-#' file <- system.file("examples", 'featurecollection2.geojson', package = "geojson")
+#' file <- system.file("examples", 'featurecollection1.geojson',
+#'   package = "geojson")
+#' file <- system.file("examples", 'featurecollection2.geojson',
+#'   package = "geojson")
 #' str <- paste0(readLines(file), collapse = " ")
 #' (y <- featurecollection(str))
 #' geo_type(y)
@@ -47,7 +49,8 @@ featurecollection.character <- function(x) {
   switch_verify_names(x)
   gtype <- get_type(x)
   no_feats <- asc(jqr::jq(unclass(x), ".features | length"))
-  five_feats <- paste0(asc(jqr::jq(unclass(x), ".features[].geometry.type")), collapse = ", ")
+  five_feats <- paste0(asc(jqr::jq(unclass(x), ".features[].geometry.type")),
+                       collapse = ", ")
   structure(x, class = c("geofeaturecollection", "geojson"),
             type = gtype,
             no_features = no_feats,

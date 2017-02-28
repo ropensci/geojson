@@ -13,8 +13,10 @@ featurecollection(x)
 featurecollection class
 }
 \examples{
-file <- system.file("examples", 'featurecollection1.geojson', package = "geojson")
-file <- system.file("examples", 'featurecollection2.geojson', package = "geojson")
+file <- system.file("examples", 'featurecollection1.geojson',
+  package = "geojson")
+file <- system.file("examples", 'featurecollection2.geojson',
+  package = "geojson")
 str <- paste0(readLines(file), collapse = " ")
 (y <- featurecollection(str))
 geo_type(y)

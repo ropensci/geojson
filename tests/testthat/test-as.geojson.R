@@ -10,7 +10,7 @@ test_that("character to geojson works - Point", {
   expect_equal(get_type(aa), "FeatureCollection")
   expect_equal(
     unique(
-      gsub("\\\"", "", unclass(jqr::jq(unclass(aa), ".features[].geometry.type")))
+      gsub("\\\"", "", unclass(jqr::jq(unclass(aa), ".features[].geometry.type"))) # nodoc
     ),
     "Point"
   )
@@ -29,7 +29,7 @@ test_that("character to geojson works - Polygon", {
   expect_equal(get_type(aa), "FeatureCollection")
   expect_equal(
     unique(
-      gsub("\\\"", "", unclass(jqr::jq(unclass(aa), ".features[].geometry.type")))
+      gsub("\\\"", "", unclass(jqr::jq(unclass(aa), ".features[].geometry.type"))) # nodoc
     ),
     "Polygon"
   )
@@ -63,7 +63,7 @@ test_that("SpatialPointsDataFrame to geojson works", {
   expect_equal(get_type(aa), "FeatureCollection")
   expect_equal(
     unique(
-      gsub("\\\"", "", unclass(jqr::jq(unclass(aa), ".features[].geometry.type")))
+      gsub("\\\"", "", unclass(jqr::jq(unclass(aa), ".features[].geometry.type"))) # nodoc
     ),
     "Point"
   )
@@ -103,7 +103,7 @@ test_that("SpatialLinesDataFrame to geojson works", {
   # correct feature type
   expect_equal(
     unique(
-      gsub("\\\"", "", unclass(jqr::jq(unclass(aa), ".features[].geometry.type")))
+      gsub("\\\"", "", unclass(jqr::jq(unclass(aa), ".features[].geometry.type"))) # nodoc
     ),
     "MultiLineString"
   )
@@ -135,7 +135,7 @@ test_that("SpatialPolygonsDataFrame to geojson works", {
   # correct feature type
   expect_equal(
     unique(
-      gsub("\\\"", "", unclass(jqr::jq(unclass(aa), ".features[].geometry.type")))
+      gsub("\\\"", "", unclass(jqr::jq(unclass(aa), ".features[].geometry.type"))) # nodoc
     ),
     "Polygon"
   )

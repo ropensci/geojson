@@ -118,13 +118,13 @@ feat_geom <- function(x) {
   switch(
     get_type(x),
     GeometryCollection = {
-      #paste0("  geometries: ", cchar(jqr::jq(unclass(x), ".geometries[].type")))
       paste0(
         "  geometries (geometry / length):\n    ",
         paste(
           cchar(unclass(jqr::jq(unclass(x), ".geometries[].type"))),
           # FIXME - needs diff. logic for diff. object types
-          cchar(unclass(jqr::jq(unclass(x), ".geometries[].coordinates | length"))),
+          cchar(
+            unclass(jqr::jq(unclass(x), ".geometries[].coordinates | length"))),
           sep = " / ", collapse = "\n    "
         )
       )
@@ -133,9 +133,13 @@ feat_geom <- function(x) {
       paste0(
         "  features (geometry / length):\n    ",
         paste(
-          gsub("\\\"", "", unclass(jqr::jq(unclass(x), ".features[].geometry.type"))),
+          gsub("\\\"", "",
+               unclass(jqr::jq(unclass(x), ".features[].geometry.type"))),
           # FIXME - needs diff. logic for diff. object types
-          gsub("\\\"", "", unclass(jqr::jq(unclass(x), ".features[].geometry.coordinates | length"))),
+          gsub("\\\"", "",
+               unclass(
+                 jqr::jq(unclass(x),
+                         ".features[].geometry.coordinates | length"))),
           sep = " / ", collapse = "\n    "
         )
       )

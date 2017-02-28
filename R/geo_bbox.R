@@ -23,11 +23,12 @@
 #' y %>% feature() %>% geo_bbox()
 #'
 #' # linestring
-#' x <- '{ "type": "LineString", "coordinates": [ [100.0, 0.0], [101.0, 1.0] ] }'
+#' x <- '{ "type": "LineString", "coordinates": [ [100.0, 0.0], [101.0, 1.0] ]}'
 #' (y <- linestring(x))
 #' geo_bbox(y)
 #' y %>% feature() %>% geo_bbox()
-#' file <- system.file("examples", 'linestring_one.geojson', package = "geojson")
+#' file <- system.file("examples", 'linestring_one.geojson',
+#'   package = "geojson")
 #' str <- paste0(readLines(file), collapse = " ")
 #' (y <- linestring(str))
 #' geo_bbox(y)
@@ -35,7 +36,8 @@
 #'
 #' # multilinestring
 #' x <- '{ "type": "MultiLineString",
-#'  "coordinates": [ [ [100.0, 0.0], [101.0, 1.0] ], [ [102.0, 2.0], [103.0, 3.0] ] ] }'
+#'  "coordinates": [ [ [100.0, 0.0], [101.0, 1.0] ], [ [102.0, 2.0],
+#'  [103.0, 3.0] ] ] }'
 #' (y <- multilinestring(x))
 #' geo_bbox(y)
 #' y %>% feature() %>% geo_bbox()
@@ -85,7 +87,8 @@ geo_bbox <- function(x) {
 
 #' @export
 geo_bbox.default <- function(x) {
-  stop("no 'geo_bbox' method for ", paste0(class(x), collapse = "/"), call. = FALSE)
+  stop("no 'geo_bbox' method for ", paste0(class(x), collapse = "/"),
+       call. = FALSE)
 }
 
 #' @export
@@ -106,7 +109,8 @@ geo_bbox.geofeaturecollection <- function(x) {
   feats <- jqr::jq(unclass(x), '.features[]')
   featsbboxs <- lapply(feats, function(z) {
     class(z) <- tolower(get_type(z))
-    x <- structure(jqr::jq(unclass(z), '.geometry'), class = paste0("geo", class(z)))
+    x <- structure(jqr::jq(unclass(z), '.geometry'),
+                   class = paste0("geo", class(z)))
     geo_bbox(x)
   })
   c(
