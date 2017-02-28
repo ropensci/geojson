@@ -52,9 +52,6 @@ hint <- function(x) {
 
 hint_geojson <- function(x) {
   if (checkforpkg('geojsonlint')) {
-    if (getOption("geojson.lint")) {
-      #if (!hint(x)) stop("object not proper GeoJSON", call. = FALSE)
-      hint(x)
-    }
+    if (getOption("geojson.lint")) hint(x)
   }
 }
