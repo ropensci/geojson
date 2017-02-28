@@ -9,8 +9,10 @@
 #' @param decimals (integer) how many decimals (digits behind the dot) to
 #' store for numbers
 #' @param pretty (logical) pretty print JSON. Default: \code{FALSE}
+#'
 #' @return for \code{from_geobuf} JSON as a character string, and for
 #' \code{to_geobuf} raw or file written to disk
+#'
 #' @details \code{from_geobuf} uses \code{\link[protolite]{geobuf2json}},
 #' while \code{to_geobuf} uses \code{\link[protolite]{json2geobuf}}
 #'
@@ -19,6 +21,10 @@
 #' object, Thus, for \code{to_geobuf} we check the geojson class, and
 #' convert to a \strong{Feature} if the class is something other than
 #' the acceptable set.
+#'
+#' @references Geobuf is a compact binary encoding for geographic data
+#' using protocol buffers \url{https://github.com/mapbox/geobuf}
+#'
 #' @examples
 #' file <- system.file("examples/test.pb", package = "geojson")
 #' (json <- from_geobuf(file))

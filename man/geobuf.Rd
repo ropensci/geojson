@@ -71,3 +71,7 @@ x <- '{"type": "MultiPoint", "coordinates": [ [100.0, 0.0], [101.0, 1.0] ] }'
 (y <- multipoint(x))
 to_geobuf(y)
 }
+\references{
+Geobuf is a compact binary encoding for geographic data
+using protocol buffers \url{https://github.com/mapbox/geobuf}
+}
