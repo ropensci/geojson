@@ -29,3 +29,11 @@ geo_write.geojson <- function(x, file) {
     file = file
   )
 }
+
+#' @export
+geo_write.geo_list <- function(x, file) {
+  cat(
+    jsonlite::toJSON(unclass(x), pretty = TRUE, auto_unbox = TRUE),
+    file = file
+  )
+}

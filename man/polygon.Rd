@@ -7,7 +7,11 @@
 polygon(x)
 }
 \arguments{
-\item{x}{input}
+\item{x}{input, either JSON character string or a list}
+}
+\value{
+an object of class geopolygon and either geojson (string input),
+or geo_list (list input)
 }
 \description{
 polygon class
@@ -40,4 +44,13 @@ geo_pretty(y)
 # add to a data.frame
 library('tibble')
 data_frame(a = 1:5, b = list(y))
+
+# list
+x <- list(type = "Polygon")
+x$coordinates <- list(
+  matrix(c(100, 101, 0, 1), ncol = 2),
+  matrix(c(102, 103, 1, 2), ncol = 2),
+  matrix(c(104, 105, 2, 3), ncol = 2)
+)
+(y <- polygon(x))
 }

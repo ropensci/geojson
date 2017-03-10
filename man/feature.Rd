@@ -7,7 +7,11 @@
 feature(x)
 }
 \arguments{
-\item{x}{input}
+\item{x}{input, either JSON character string or a list}
+}
+\value{
+an object of class geofeature and either geojson (string input),
+or geo_list (list input)
 }
 \description{
 feature class
@@ -46,4 +50,9 @@ multilinestring(x) \%>\% feature()
 # add to a data.frame
 library('tibble')
 data_frame(a = 1:5, b = list(multilinestring(x)))
+
+# from a list
+x <- list(type = "MultiPoint", coordinates =
+  matrix(c(100.0, 101.0, 0.0, 1.0), ncol = 2))
+multipoint(x) \%>\% feature()
 }

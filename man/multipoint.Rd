@@ -7,7 +7,11 @@
 multipoint(x)
 }
 \arguments{
-\item{x}{input}
+\item{x}{input, either JSON character string or a list}
+}
+\value{
+an object of class geomultipoint and either geojson (string input),
+or geo_list (list input)
 }
 \description{
 multipoint class
@@ -24,4 +28,10 @@ unlink(f)
 # add to a data.frame
 library('tibble')
 data_frame(a = 1:5, b = list(y))
+
+# list
+x <- list(type = "MultiPoint", coordinates =
+  matrix(c(100.0, 101.0, 0.0, 1.0), ncol = 2))
+(y <- multipoint(x))
+y
 }

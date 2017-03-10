@@ -7,7 +7,11 @@
 featurecollection(x)
 }
 \arguments{
-\item{x}{input}
+\item{x}{input, either JSON character string or a list}
+}
+\value{
+an object of class geofeaturecollection and either geojson
+(string input), or geo_list (list input)
 }
 \description{
 featurecollection class
@@ -30,8 +34,8 @@ library('tibble')
 data_frame(a = 1:5, b = list(y))
 
 # features to featurecollection
-x <- '{ "type": "Point", "coordinates": [100.0, 0.0] }'
-point(x) \%>\% feature() \%>\% featurecollection()
+w <- '{ "type": "Point", "coordinates": [100.0, 0.0] }'
+point(w) \%>\% feature() \%>\% featurecollection()
 
 ## all points
 x <- '{ "type": "Point", "coordinates": [100.0, 0.0] }'
@@ -40,5 +44,20 @@ featls <- lapply(list(x, y), function(z) feature(point(z)))
 featurecollection(featls)
 
 ## mixed geometry types
+# FIXME - give examples
 
+# from a list
+x <- list(type = "LineString")
+lngs <- c(-131.5, -123.4, -124.5, -118.8, -122, -114.6, -108.3, -105.8,
+  -105.1, -97.7, -96.3, -92.1, -90.7, -85.8, -84, -78, -69.6, -83.7, -90.4,
+  -93.9, -100.9, -97.7, -117.8, -124.8, -132.9)
+lats <- c(60.9, 60.4, 56.8, 55.4, 50.1, 51.4, 57.1, 55.2, 51.8, 55.6, 51.6,
+  54, 50.7, 51.2, 48.9, 49.2, 55.2, 53.5, 56.4, 59.4, 63.9, 66.8, 65.9,
+  70.5, 69.3)
+x$coordinates <- matrix(c(lngs, lats), ncol = 2, byrow = FALSE)
+linestring(x) \%>\% feature() \%>\% featurecollection()
+## many into one FeatureCollection
+tt <- lapply(replicate(10, linestring(x), simplify = FALSE), feature) \%>\%
+  featurecollection()
+jsonlite::toJSON(unclass(tt), auto_unbox = TRUE, pretty = TRUE)
 }

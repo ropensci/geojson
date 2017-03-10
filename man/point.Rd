@@ -7,21 +7,49 @@
 point(x)
 }
 \arguments{
-\item{x}{input}
+\item{x}{input, either JSON character string or a list}
+}
+\value{
+an object of class geopoint and either geojson (string input),
+or geo_list (list input)
 }
 \description{
 point class
 }
 \examples{
+# character
+## make a point
 x <- '{ "type": "Point", "coordinates": [100.0, 0.0] }'
 (y <- point(x))
+## type
 geo_type(y)
+## pretty print
 geo_pretty(y)
+## write to disk
 geo_write(y, f <- tempfile(fileext = ".geojson"))
 jsonlite::fromJSON(f, FALSE)
 unlink(f)
-
-# add to a data.frame
+## add to a data.frame
 library('tibble')
-data_frame(a = 1:5, b = list(y))
+(df <- data_frame(a = 1:5, b = list(y)))
+df$b
+df$b[[1]]
+
+# list
+x <- list(type = "Point", coordinates = c(100.0, 0.0))
+(y <- point(x))
+y
+y$type
+y$coordinates
+## type
+geo_type(y)
+## write to disk
+geo_write(y, f <- tempfile(fileext = ".geojson"))
+jsonlite::fromJSON(f)
+unlink(f)
+## add to a data.frame
+library('tibble')
+(df <- data_frame(a = 1:5, b = list(y)))
+df$b
+df$b[[1]]
 }

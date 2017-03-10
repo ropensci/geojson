@@ -7,13 +7,17 @@
 geometrycollection(x)
 }
 \arguments{
-\item{x}{input}
+\item{x}{input, either JSON character string or a list}
+}
+\value{
+an object of class geogeometrycollection and either geojson
+(string input), or geo_list (list input)
 }
 \description{
 geometrycollection class
 }
 \examples{
-x <- '{
+m <- '{
  "type": "GeometryCollection",
  "geometries": [
    {
@@ -26,7 +30,7 @@ x <- '{
    }
   ]
 }'
-(y <- geometrycollection(x))
+(y <- geometrycollection(m))
 geo_type(y)
 geo_pretty(y)
 geo_write(y, f <- tempfile(fileext = ".geojson"))
@@ -34,8 +38,26 @@ jsonlite::fromJSON(f, FALSE)
 unlink(f)
 
 # bigger geometrycollection
-file <- system.file("examples", "geometrycollection1.geojson", package = "geojson")
+file <- system.file("examples", "geometrycollection1.geojson",
+  package = "geojson")
 (y <- geometrycollection(paste0(readLines(file), collapse="")))
 geo_type(y)
 geo_pretty(y)
+
+
+# list
+x <- list(
+ type = "GeometryCollection",
+ geometries = list(
+   list(
+     type = "Point",
+     coordinates = c(100.0, 0.0)
+   ),
+   list(
+     type = "LineString",
+     coordinates = list(c(101.0, 0.0), c(102.0, 1.0) )
+   )
+ )
+)
+geometrycollection(x)
 }

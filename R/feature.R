@@ -1,7 +1,9 @@
 #' feature class
 #'
 #' @export
-#' @param x input
+#' @param x input, either JSON character string or a list
+#' @return an object of class geofeature and either geojson (string input),
+#' or geo_list (list input)
 #' @details Feature objects:
 #' \itemize{
 #'  \item A feature object must have a member with the name "geometry". The
@@ -34,6 +36,11 @@
 #' # add to a data.frame
 #' library('tibble')
 #' data_frame(a = 1:5, b = list(multilinestring(x)))
+#'
+#' # from a list
+#' x <- list(type = "MultiPoint", coordinates =
+#'   matrix(c(100.0, 101.0, 0.0, 1.0), ncol = 2))
+#' multipoint(x) %>% feature()
 feature <- function(x) {
   UseMethod("feature")
 }
@@ -83,11 +90,28 @@ feature.character <- function(x) {
   x <- as_feature(x)
   verify_class_(x, "Feature")
   switch_verify_names(x)
+  type <- get_type(x)
   coords <- get_coordinates(x)
   structure(x, class = c("geofeature", "geojson"),
-            type = get_type(x),
-            coords = get_coordinates(x))
+            type = type,
+            coords = coords)
 }
+
+#' @export
+feature.geo_list <- function(x) {
+  #hint_geojson(x)
+  x <- as_feature(x)
+  verify_class_(x, "Feature")
+  switch_verify_names(x)
+  type <- get_type(x)
+  coords <- get_coordinates(x)
+  structure(x, class = c("geofeature", "geo_list"),
+            type = type,
+            coords = coords)
+}
+
+#' @export
+feature.list <- feature.geo_list
 
 #' @export
 print.geofeature <- function(x, ...) {
@@ -96,10 +120,18 @@ print.geofeature <- function(x, ...) {
   cat("  coordinates: ", attr(x, "coords"), "\n")
 }
 
-as_feature <- function(x) {
+as_feature <- function(x) UseMethod("as_feature")
+as_feature.character <- function(x) {
   if (asc(jqr::jq(unclass(x), ".type")) == "Feature") {
-    x
+    return(x)
   } else {
-    sprintf('{ "type": "Feature", "properties": {}, "geometry": %s }', x)
+    return(sprintf('{ "type": "Feature", "properties": {}, "geometry": %s }', x))
+  }
+}
+as_feature.list <- function(x) {
+  if (unclass(x)[["type"]] == "Feature") {
+    return(x)
+  } else {
+    return(list(type = "Feature", properties = c(), geometry = x))
   }
 }

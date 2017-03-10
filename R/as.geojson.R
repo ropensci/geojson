@@ -94,11 +94,21 @@ summary.geojson <- function(object, ...) {
   cat(object)
 }
 
-get_type <- function(x) {
+get_type <- function(x) UseMethod("get_type")
+get_type.default <- function(x) stop("no 'get_type' method for ", class(x))
+get_type.character <- function(x) {
   if (asc(jqr::jq(unclass(x), ".type")) == "Feature") {
     asc(unclass(jqr::jq(unclass(x), ".geometry.type")))
   } else {
     cchar(jqr::jq(unclass(x), ".type"))
+  }
+}
+get_type.json <- get_type.geojson <- get_type.character
+get_type.list <- function(x) {
+  if (unclass(x)[["type"]] == "Feature") {
+    unclass(x)[["geometry"]][["type"]]
+  } else {
+    unclass(x)[["type"]]
   }
 }
 
@@ -106,10 +116,20 @@ feat_geom_n <- function(x) {
   switch(
     get_type(x),
     GeometryCollection = {
-      paste0("  geometries (n): ", jqr::jq(unclass(x), ".geometries | length"))
+      if (inherits(x, "list")) {
+        len <- length(unclass(x)[["geometries"]])
+      } else {
+        len <- jqr::jq(unclass(x), ".geometries | length")
+      }
+      paste0("  geometries (n): ", len)
     },
     FeatureCollection = {
-      paste0("  features (n): ", jqr::jq(unclass(x), ".features | length"))
+      if (inherits(x, "list")) {
+        len <- length(unclass(x)[["features"]])
+      } else {
+        len <- jqr::jq(unclass(x), ".features | length")
+      }
+      paste0("  features (n): ", len)
     }
   )
 }
@@ -118,30 +138,36 @@ feat_geom <- function(x) {
   switch(
     get_type(x),
     GeometryCollection = {
+      if (inherits(x, "list")) {
+        typevec <- pluck(unclass(x)[["geometries"]], "type", "")
+        lenvec <- vapply(unclass(x)[["geometries"]], length, 1)
+      } else {
+        typevec <- cchar(unclass(jqr::jq(unclass(x), ".geometries[].type")))
+        lenvec <- cchar(
+          unclass(jqr::jq(unclass(x), ".geometries[].coordinates | length")))
+      }
       paste0(
         "  geometries (geometry / length):\n    ",
-        paste(
-          cchar(unclass(jqr::jq(unclass(x), ".geometries[].type"))),
-          # FIXME - needs diff. logic for diff. object types
-          cchar(
-            unclass(jqr::jq(unclass(x), ".geometries[].coordinates | length"))),
-          sep = " / ", collapse = "\n    "
-        )
+        # FIXME - needs diff. logic for diff. object types
+        paste(typevec, lenvec, sep = " / ", collapse = "\n    ")
       )
     },
     FeatureCollection = {
+      if (inherits(x, "list")) {
+        typevec <- "x"
+        lenvec <- "x"
+      } else {
+        typevec <- gsub("\\\"", "",
+             unclass(jqr::jq(unclass(x), ".features[].geometry.type")))
+        # FIXME - needs diff. logic for diff. object types
+        lenvec <- gsub("\\\"", "",
+             unclass(
+               jqr::jq(unclass(x),
+                       ".features[].geometry.coordinates | length")))
+      }
       paste0(
         "  features (geometry / length):\n    ",
-        paste(
-          gsub("\\\"", "",
-               unclass(jqr::jq(unclass(x), ".features[].geometry.type"))),
-          # FIXME - needs diff. logic for diff. object types
-          gsub("\\\"", "",
-               unclass(
-                 jqr::jq(unclass(x),
-                         ".features[].geometry.coordinates | length"))),
-          sep = " / ", collapse = "\n    "
-        )
+        paste(typevec, lenvec, sep = " / ", collapse = "\n    ")
       )
     }
   )

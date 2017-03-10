@@ -7,7 +7,7 @@ Description: Classes for 'GeoJSON' to make working with 'GeoJSON' easier.
     properties, and coordinate reference systems; linting through 
     the geojsonlint package; and serializing to/from Geobuf binary 'GeoJSON'
     format.
-Version: 0.1.2
+Version: 0.1.2.9300
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut", "cre"), email = "myrmecocystus@gmail.com"),
     person("Jeroen", "Ooms", role = "aut")

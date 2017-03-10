@@ -28,6 +28,9 @@ geo_type.geojson <- function(x) {
 }
 
 #' @export
+geo_type.geo_list <- function(x) x[["type"]]
+
+#' @export
 geo_type.geometrycollection <- function(x) {
   cchar(unclass(jqr::jq(unclass(x), ".geometries[].type")))
 }
