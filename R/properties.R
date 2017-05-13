@@ -19,7 +19,7 @@ properties_add <- function(x, ...) {
   tmp <- lazyeval::lazy_dots(...)
   kvpairs <- list()
   for (i in seq_along(tmp)) {
-    kvpairs[[names(tmp[i])]] <- tmp[[i]]$expr
+    kvpairs[[names(tmp[i])]] <- lazyeval::lazy_eval(tmp[[i]])
   }
   kvpairsjson <- jsonlite::toJSON(kvpairs, auto_unbox = TRUE)
   jqr::jq(unclass(x), paste0(". | .properties = ", kvpairsjson))
