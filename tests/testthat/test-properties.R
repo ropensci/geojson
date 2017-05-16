@@ -51,4 +51,16 @@ test_that("properties_get fails well", {
   expect_error(
     properties_get(5),
     "jq method not implemented for numeric")
+
+  # .list must be a list
+  expect_error(
+    properties_add(.list = 5),
+    ".list must be a list"
+  )
+
+  # all .list elements must be named
+  expect_error(
+    properties_add(.list = list(4, a = 5)),
+    "all elements of .list must be named"
+  )
 })
