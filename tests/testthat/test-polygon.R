@@ -72,3 +72,13 @@ test_that("polygon fails well with geojson linting on", {
 })
 
 invisible(linting_opts())
+
+test_that("despite masking, we get the old polygon behaviour as well", {
+  m <- matrix(c(0, 0.5, 1, 0, 1, 0), ncol = 2); plot(m, type = "n", asp = 1);
+
+  expect_silent(polygon(m, border = "firebrick"))
+  expect_silent(polygon(list(x = m[,1], y = m[, 2])))
+  expect_silent(polygon(as.data.frame(m)))
+  ## list must be named, though data.frame doesn't need them
+  expect_error(polygon(list(m[,1], m[, 2])), "no method for list")
+})

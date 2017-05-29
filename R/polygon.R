@@ -1,7 +1,13 @@
 #' polygon class
 #'
+#' @section Note:
+#' This function masks the non-generic graphics package function of the same
+#' name, if the input is interpretable by \code{\link[grDevices]{xy.coords}}
+#' then the default method will hand back to \code{\link[graphics]{polygon}}.
+#' @importFrom grDevices xy.coords
 #' @export
 #' @param x input
+#' @param ... (ignored in geojson use, extra arguments passed to \code{\link[graphics]{polygon}})
 #' @examples
 #' x <- '{ "type": "Polygon",
 #' "coordinates": [
@@ -31,17 +37,24 @@
 #' library('tibble')
 #' data_frame(a = 1:5, b = list(y))
 
-polygon <- function(x) {
+polygon <- function(x, ...) {
   UseMethod("polygon")
 }
 
 #' @export
-polygon.default <- function(x) {
-  stop("no method for ", class(x), call. = FALSE)
+polygon.default <- function(x, ...) {
+  gp <- try(grDevices::xy.coords(x), silent = TRUE)
+  if (!inherits(gp, "try-error")) {
+    ## the non-generic graphics version
+    graphics::polygon(gp, ...)
+  } else {
+    stop("no method for ", class(x), call. = FALSE)
+  }
+  invisible()
 }
 
 #' @export
-polygon.character <- function(x) {
+polygon.character <- function(x, ...) {
   json_val(x)
   hint_geojson(x)
   x <- as_x("Polygon", x)
