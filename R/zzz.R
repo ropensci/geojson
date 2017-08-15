@@ -102,3 +102,8 @@ json_val <- function(x) {
   val <- jsonlite::validate(x)
   if (!val) stop(attr(val, "err"), call. = FALSE)
 }
+
+sub_n <- function(x, n = 5) {
+  to <- min(length(x), n)
+  if (to == 0) x else x[1:to]
+}
