@@ -29,5 +29,6 @@ Suggests:
     geojsonlint (>= 0.2.0),
     tibble,
     testthat,
-    knitr
+    knitr,
+    rmarkdown
 RoxygenNote: 6.0.1
