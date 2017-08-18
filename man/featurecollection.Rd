@@ -38,7 +38,4 @@ x <- '{ "type": "Point", "coordinates": [100.0, 0.0] }'
 y <- '{ "type": "Point", "coordinates": [100.0, 50.0] }'
 featls <- lapply(list(x, y), function(z) feature(point(z)))
 featurecollection(featls)
-
-## mixed geometry types
-
 }
