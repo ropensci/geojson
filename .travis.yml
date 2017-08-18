@@ -4,6 +4,9 @@ cache: packages
 r_packages:
   - geojsonlint
 
+r_github_packages:
+  - jimhester/covr
+
 addons:
   apt:
     packages:
