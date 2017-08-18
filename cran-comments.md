@@ -1,9 +1,8 @@
 ## Test environments
 
-* local OS X install, R 3.3.2
-* ubuntu 12.04 (on travis-ci), R 3.3.2
+* local OS X install, R 3.4.1 patched
+* ubuntu 12.04 (on travis-ci), R 3.4.1
 * win-builder (devel and release)
-* R-hub (Ubuntu Linux R-release, Fedora Linux R-devel, Windows R-oldrel)
 
 ## R CMD check results
 
@@ -21,8 +20,7 @@ There are no reverse dependencies.
 
 ---
 
-This version fixes bug in internal function that checked for existence
-of a Suggested package (should address failing CRAN Solaris checks).
+This version fixes a bug and adds a small feature.
 
 
 Thanks! 
