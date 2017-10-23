@@ -48,10 +48,10 @@ easy to perform operations on
 ```r
 x <- "{\"type\":\"FeatureCollection\",\"features\":[{\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-99.74,32.45]},\"properties\":{}}]}"
 as.geojson(x)
-#> <geojson>
-#>   type:  FeatureCollection
-#>   bounding box:  99.74 32.45 99.74 32.45
-#>   features (n): 1
+#> <geojson> 
+#>   type:  FeatureCollection 
+#>   bounding box:  99.74 32.45 99.74 32.45 
+#>   features (n): 1 
 #>   features (geometry / length):
 #>     Point / 2
 ```
@@ -74,8 +74,8 @@ x <- '{
   ]
 }'
 (y <- geometrycollection(x))
-#> <GeometryCollection>
-#>   geometries (n): 2
+#> <GeometryCollection> 
+#>   geometries (n): 2 
 #>   geometries (geometry / length):
 #>     Point / 2
 #>     LineString / 2
@@ -129,7 +129,7 @@ geo_pretty(y)
 #>         }
 #>     ]
 #> }
-#>
+#> 
 ```
 
 write to disk
@@ -140,38 +140,38 @@ geo_write(y, f <- tempfile(fileext = ".geojson"))
 jsonlite::fromJSON(f, FALSE)
 #> $type
 #> [1] "GeometryCollection"
-#>
+#> 
 #> $geometries
 #> $geometries[[1]]
 #> $geometries[[1]]$type
 #> [1] "Point"
-#>
+#> 
 #> $geometries[[1]]$coordinates
 #> $geometries[[1]]$coordinates[[1]]
 #> [1] 100
-#>
+#> 
 #> $geometries[[1]]$coordinates[[2]]
 #> [1] 0
-#>
-#>
-#>
+#> 
+#> 
+#> 
 #> $geometries[[2]]
 #> $geometries[[2]]$type
 #> [1] "LineString"
-#>
+#> 
 #> $geometries[[2]]$coordinates
 #> $geometries[[2]]$coordinates[[1]]
 #> $geometries[[2]]$coordinates[[1]][[1]]
 #> [1] 101
-#>
+#> 
 #> $geometries[[2]]$coordinates[[1]][[2]]
 #> [1] 0
-#>
-#>
+#> 
+#> 
 #> $geometries[[2]]$coordinates[[2]]
 #> $geometries[[2]]$coordinates[[2]][[1]]
 #> [1] 102
-#>
+#> 
 #> $geometries[[2]]$coordinates[[2]][[2]]
 #> [1] 1
 ```
@@ -187,8 +187,8 @@ Add properties
 x <- '{ "type": "LineString", "coordinates": [ [100.0, 0.0], [101.0, 1.0] ]}'
 res <- linestring(x) %>% feature() %>% properties_add(population = 1000)
 res
-#> <Feature>
-#>   type:  LineString
+#> <Feature> 
+#>   type:  LineString 
 #>   coordinates:  [[100,0],[101,1]]
 ```
 
@@ -217,7 +217,7 @@ z
 #> {
 #>     "type": "Feature",
 #>     "properties": {
-#>
+#> 
 #>     },
 #>     "geometry": {
 #>         "type": "LineString",
@@ -248,7 +248,7 @@ Get crs
 crs_get(z)
 #> $type
 #> [1] "name"
-#>
+#> 
 #> $properties
 #> $properties$name
 #> [1] "urn:ogc:def:crs:OGC:1.3:CRS84"
@@ -265,7 +265,7 @@ tt
 #> {
 #>     "type": "Feature",
 #>     "properties": {
-#>
+#> 
 #>     },
 #>     "geometry": {
 #>         "type": "LineString",
@@ -304,7 +304,7 @@ bbox_get(tt)
 ```r
 x <- '{ "type": "Point", "coordinates": [100.0, 0.0] }'
 (pt <- point(x))
-#> <Point>
+#> <Point> 
 #>   coordinates:  [100,0]
 ```
 
@@ -327,9 +327,9 @@ data_frame(a = 1:5, b = list(pt))
 x <- '{ "type": "MultiLineString",
   "coordinates": [ [ [100.0, 0.0], [101.0, 1.0] ], [ [102.0, 2.0], [103.0, 3.0] ] ] }'
 (mls <- multilinestring(x))
-#> <MultiLineString>
-#>   no. lines:  2
-#>   no. nodes / line:  2, 2
+#> <MultiLineString> 
+#>   no. lines:  2 
+#>   no. nodes / line:  2, 2 
 #>   coordinates:  [[[100,0],[101,1]],[[102,2],[103,3]]]
 ```
 
@@ -368,7 +368,6 @@ data_frame(a = 1:5, b = list(pt), c = list(mls))
 * Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md).
 By participating in this project you agree to abide by its terms.
 
-[![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
 
 [geojsonspec]: https://tools.ietf.org/html/rfc7946
 [jqr]: https://github.com/ropensci/jqr
