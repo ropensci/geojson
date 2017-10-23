@@ -3,8 +3,8 @@ Type: Package
 Title: Classes for 'GeoJSON'
 Description: Classes for 'GeoJSON' to make working with 'GeoJSON' easier.
     Includes S3 classes for 'GeoJSON' classes with brief summary output,
-    and a few methods such as extracting and addin bounding boxes, 
-    properties, and coordinate reference systems; linting through 
+    and a few methods such as extracting and addin bounding boxes,
+    properties, and coordinate reference systems; linting through
     the geojsonlint package; and serializing to/from Geobuf binary 'GeoJSON'
     format.
 Version: 0.1.4
@@ -20,9 +20,9 @@ VignetteBuilder: knitr
 Imports:
     methods,
     sp,
-    jsonlite (>= 1.1),
-    protolite (>= 1.5),
-    jqr (>= 0.2.4),
+    jsonlite (>= 1.5),
+    protolite (>= 1.7),
+    jqr (>= 1.0.0),
     magrittr,
     lazyeval
 Suggests:
