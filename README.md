@@ -5,15 +5,15 @@ geojson
 
 [![Build Status](https://travis-ci.org/ropensci/geojson.svg?branch=master)](https://travis-ci.org/ropensci/geojson)
 [![codecov](https://codecov.io/gh/ropensci/geojson/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/geojson)
-[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/geojson)](https://github.com/metacran/cranlogs.app)
-[![cran version](http://www.r-pkg.org/badges/version/geojson)](https://cran.r-project.org/package=geojson)
+[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/geojson)](https://github.com/metacran/cranlogs.app)
+[![cran version](https://www.r-pkg.org/badges/version/geojson)](https://cran.r-project.org/package=geojson)
 
-`geojson` aims to deal only with geojson data, without requiring any of the 
+`geojson` aims to deal only with geojson data, without requiring any of the
 `sp`/`rgdal`/`rgeos` stack.  That means this package is light weight.
 
-We've defined classes (`S3`) following the [GeoJSON spec][geojsonspec]. These 
-classes sort of overlap with `sp`'s classes, but not really. There's also some 
-overlap in GeoJSON classes with Well-Known Text (WKT) classes, but GeoJSON has a 
+We've defined classes (`S3`) following the [GeoJSON spec][geojsonspec]. These
+classes sort of overlap with `sp`'s classes, but not really. There's also some
+overlap in GeoJSON classes with Well-Known Text (WKT) classes, but GeoJSON has a
 subset of WKT's classes.
 
 Although not ready yet, [geoops](https://github.com/ropenscilabs/geoops) supports manipulations on the classes defined in this package.
@@ -41,7 +41,7 @@ library("geojson")
 
 ## geojson class
 
-Essentially a character string with S3 class `geojson` attached to make it 
+Essentially a character string with S3 class `geojson` attached to make it
 easy to perform operations on
 
 
@@ -187,25 +187,9 @@ Add properties
 x <- '{ "type": "LineString", "coordinates": [ [100.0, 0.0], [101.0, 1.0] ]}'
 res <- linestring(x) %>% feature() %>% properties_add(population = 1000)
 res
-#> {
-#>     "type": "Feature",
-#>     "properties": {
-#>         "population": 1000
-#>     },
-#>     "geometry": {
-#>         "type": "LineString",
-#>         "coordinates": [
-#>             [
-#>                 100,
-#>                 0
-#>             ],
-#>             [
-#>                 101,
-#>                 1
-#>             ]
-#>         ]
-#>     }
-#> }
+#> <Feature> 
+#>   type:  LineString 
+#>   coordinates:  [[100,0],[101,1]]
 ```
 
 Get a property
@@ -328,7 +312,7 @@ x <- '{ "type": "Point", "coordinates": [100.0, 0.0] }'
 ```r
 library("tibble")
 data_frame(a = 1:5, b = list(pt))
-#> # A tibble: 5 × 2
+#> # A tibble: 5 x 2
 #>       a              b
 #>   <int>         <list>
 #> 1     1 <S3: geopoint>
@@ -352,7 +336,7 @@ x <- '{ "type": "MultiLineString",
 
 ```r
 data_frame(a = 1:5, b = list(mls))
-#> # A tibble: 5 × 2
+#> # A tibble: 5 x 2
 #>       a                        b
 #>   <int>                   <list>
 #> 1     1 <S3: geomultilinestring>
@@ -365,7 +349,7 @@ data_frame(a = 1:5, b = list(mls))
 
 ```r
 data_frame(a = 1:5, b = list(pt), c = list(mls))
-#> # A tibble: 5 × 3
+#> # A tibble: 5 x 3
 #>       a              b                        c
 #>   <int>         <list>                   <list>
 #> 1     1 <S3: geopoint> <S3: geomultilinestring>
@@ -381,10 +365,9 @@ data_frame(a = 1:5, b = list(pt), c = list(mls))
 * Please [report any issues or bugs](https://github.com/ropensci/geojson/issues).
 * License: MIT
 * Get citation information for `geojson` in R doing `citation(package = 'geojson')`
-* Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). 
+* Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md).
 By participating in this project you agree to abide by its terms.
 
-[![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
 
 [geojsonspec]: https://tools.ietf.org/html/rfc7946
 [jqr]: https://github.com/ropensci/jqr

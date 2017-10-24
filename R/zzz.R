@@ -187,4 +187,8 @@ coords2str.matrix <- function(x) {
 #' @export
 coords2str.list <- function(x) {
   toit(paste0(lapply(x, coords2str), collapse = ", "))
+
+sub_n <- function(x, n = 5) {
+  to <- min(length(x), n)
+  if (to == 0) x else x[1:to]
 }

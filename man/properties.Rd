@@ -4,9 +4,9 @@
 \alias{properties}
 \alias{properties_add}
 \alias{properties_get}
-\title{Add properties, crs, and bounding box}
+\title{Add or get properties}
 \usage{
-properties_add(x, ...)
+properties_add(x, ..., .list = NULL)
 
 properties_get(x, property)
 }
@@ -15,10 +15,12 @@ properties_get(x, property)
 
 \item{...}{Properties to be added, supports NSE as well as SE}
 
+\item{.list}{a named list of properties to add. must be named}
+
 \item{property}{(character) property name}
 }
 \description{
-Add properties, crs, and bounding box
+Add or get properties
 }
 \examples{
 # add properties
@@ -26,7 +28,28 @@ x <- '{ "type": "LineString", "coordinates": [ [100.0, 0.0], [101.0, 1.0] ]}'
 (y <- linestring(x))
 y \%>\% feature() \%>\% properties_add(population = 1000)
 
+## add with a named list already created
+x <- '{ "type": "LineString", "coordinates": [ [100.0, 0.0], [101.0, 1.0] ]}'
+(y <- linestring(x))
+props <- list(population = 1000, temperature = 89, size = 5)
+y \%>\% feature() \%>\% properties_add(.list = props)
+
+## combination of NSE and .list
+x <- '{ "type": "LineString", "coordinates": [ [100.0, 0.0], [101.0, 1.0] ]}'
+(y <- linestring(x))
+props <- list(population = 1000, temperature = 89, size = 5)
+y \%>\% feature() \%>\% properties_add(stuff = 4, .list = props)
+
+# features to featurecollection
+x <- '{ "type": "Point", "coordinates": [100.0, 0.0] }'
+point(x) \%>\%
+  feature() \%>\%
+  featurecollection() \%>\%
+  properties_add(population = 10)
+
 # get property
+x <- '{ "type": "LineString", "coordinates": [ [100.0, 0.0], [101.0, 1.0] ]}'
+(y <- linestring(x))
 x <- y \%>\% feature() \%>\% properties_add(population = 1000)
 properties_get(x, property = 'population')
 }

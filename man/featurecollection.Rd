@@ -42,6 +42,7 @@ x <- '{ "type": "Point", "coordinates": [100.0, 0.0] }'
 y <- '{ "type": "Point", "coordinates": [100.0, 50.0] }'
 featls <- lapply(list(x, y), function(z) feature(point(z)))
 featurecollection(featls)
+<<<<<<< HEAD
 
 ## mixed geometry types
 # FIXME - give examples
@@ -60,4 +61,6 @@ linestring(x) \%>\% feature() \%>\% featurecollection()
 tt <- lapply(replicate(10, linestring(x), simplify = FALSE), feature) \%>\%
   featurecollection()
 jsonlite::toJSON(unclass(tt), auto_unbox = TRUE, pretty = TRUE)
+=======
+>>>>>>> master
 }
