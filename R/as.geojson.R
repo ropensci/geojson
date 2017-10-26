@@ -146,3 +146,44 @@ feat_geom <- function(x) {
     }
   )
 }
+
+#' Convert GeoJSON character string to approriate GeoJSON class
+#'
+#' Automatically detects and adds the class
+#'
+#' @param x GeoJSON character string
+#'
+#' @export
+#'
+#' @examples
+#' mp <- '{"type":"MultiPoint","coordinates":[[100,0],[101,1]]}'
+#' to_geojson(mp)
+#'
+#' ft <- '{"type":"Feature","properties":{"a":"b"},
+#' "geometry":{"type": "MultiPoint","coordinates": [ [100.0, 0.0], [101.0, 1.0] ]}}'
+#' to_geojson(mp)
+#'
+#' fc <- '{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"a":"b"},
+#' "geometry":{"type": "MultiPoint","coordinates": [ [100.0, 0.0], [101.0, 1.0] ]}}]}'
+#' to_geojson(fc)
+to_geojson <- function(x) {
+  type <- asc(jqr::jq(unclass(x), ".type"))
+
+  fn <- switch(type,
+    "Point" = point,
+    "LineString" = linestring,
+    "Polygon" = polygon,
+    "MultiPoint" = multipoint,
+    "MultiLineString" = multilinestring,
+    "MultiPolygon" = multipolygon,
+    "Feature" = feature,
+    "FeatureCollection" = featurecollection,
+    "GeometryCollection" = geometrycollection
+  )
+
+  if (is.null(fn)) {
+    stop("Invalid GeoJSON type: ", type, call. = FALSE)
+  }
+
+  fn(x)
+}
