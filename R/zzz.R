@@ -77,6 +77,10 @@ get_coordinates <- function(x) {
   paste0(substring(x, 1, 70), if (nchar(x) > 70) " ..." else "" )
 }
 
+dotprint <- function(x) {
+  paste0(substring(x, 1, 70), if (nchar(x) > 70) " ..." else "" )
+}
+
 get_each_nodes <- function(x) {
   z <- asc(jqr::jq(x, ".coordinates[] | length "))
   z <- z[1:min(c(10, length(z)))]

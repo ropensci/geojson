@@ -86,7 +86,9 @@ print.geojson <- function(x, ...) {
   cat("  type: ", get_type(x), "\n")
   cat("  bounding box: ", geo_bbox(x), "\n")
   cat(feat_geom_n(x), "\n")
-  cat(feat_geom(x), "\n")
+  #if (geo_type(x) %in% c("FeatureCollection", "GeometryCollection")) {
+    cat(feat_geom(x), "\n")
+  #}
 }
 
 #' @export
@@ -105,6 +107,24 @@ get_type <- function(x) {
 feat_geom_n <- function(x) {
   switch(
     get_type(x),
+    Point = {
+      paste0("  points (n): ", jqr::jq(unclass(x), ".coordinates | length"))
+    },
+    MultiPoint = {
+      paste0("  points (n): ", length(jqr::jq(unclass(x), ".coordinates[]")))
+    },
+    Polygon = {
+      paste0("  points (n): ", jqr::jq(unclass(x), ".coordinates[] | length"))
+    },
+    MultiPolygon = {
+      paste0("  polygons (n): ", length(asc(jqr::jq(unclass(x), ".coordinates[] | length "))))
+    },
+    LineString = {
+      paste0("  points (n): ", length(asc(jqr::jq(unclass(x), ".coordinates[] | length"))))
+    },
+    MultiLineString = {
+      paste0("  lines (n): ", length(asc(jqr::jq(unclass(x), ".coordinates[] | length "))))
+    },
     GeometryCollection = {
       paste0("  geometries (n): ", jqr::jq(unclass(x), ".geometries | length"))
     },
@@ -117,6 +137,24 @@ feat_geom_n <- function(x) {
 feat_geom <- function(x) {
   switch(
     get_type(x),
+    Point = {
+      paste0("  coordinates: ", jqr::jq(unclass(x), ".coordinates"))
+    },
+    MultiPoint = {
+      paste0("  coordinates: ", dotprint(jqr::jq(unclass(x), ".coordinates")))
+    },
+    Polygon = {
+      paste0("  coordinates: ", dotprint(jqr::jq(unclass(x), ".coordinates")))
+    },
+    MultiPolygon = {
+      paste0("  coordinates: ", dotprint(jqr::jq(unclass(x), ".coordinates")))
+    },
+    LineString = {
+      paste0("  coordinates: ", dotprint(jqr::jq(unclass(x), ".coordinates")))
+    },
+    MultiLineString = {
+      paste0("  coordinates: ", get_coordinates(x))
+    },
     GeometryCollection = {
       paste0(
         "  geometries (geometry / length):\n    ",

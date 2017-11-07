@@ -1,3 +1,19 @@
+geojson 0.2.0
+=============
+
+### NEW FEATURES
+
+* xx (#xx)
+* xx (#xx)
+* xx (#xx)
+
+### MINOR IMPROVEMENTS
+
+* xx (#xx)
+* xx (#xx)
+* xx (#xx)
+
+
 geojson 0.1.4
 =============
 
@@ -10,7 +26,7 @@ to FeatureCollection objects as well. (#22)
 
 ### BUG FIXES
 
-* Fixed bug in `print.featurecollection()` that was not calculating and 
+* Fixed bug in `print.featurecollection()` that was not calculating and
 printing number of features correctly (#24)
 
 

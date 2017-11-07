@@ -14,6 +14,9 @@
 #' # add to a data.frame
 #' library('tibble')
 #' data_frame(a = 1:5, b = list(y))
+#'
+#' # as.geojson coercion
+#' as.geojson(x)
 point <- function(x) {
   UseMethod("point")
 }

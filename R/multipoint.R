@@ -14,6 +14,9 @@
 #' # add to a data.frame
 #' library('tibble')
 #' data_frame(a = 1:5, b = list(y))
+#'
+#' # as.geojson coercion
+#' as.geojson(x)
 multipoint <- function(x) {
   UseMethod("multipoint")
 }
@@ -30,9 +33,10 @@ multipoint.character <- function(x) {
   x <- as_x("MultiPoint", x)
   verify_names(x, c('type', 'coordinates'))
   verify_class(x, "MultiPoint")
+  coords <- dotprint(cchar(jqr::jq(unclass(x), ".coordinates")))
   structure(x,
             class = c("geomultipoint", "geojson"),
-            coords = cchar(jqr::jq(unclass(x), ".coordinates")))
+            coords = coords)
 }
 
 #' @export

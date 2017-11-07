@@ -16,12 +16,13 @@
 
 ## Reverse dependencies
 
-There are no reverse dependencies.
+* I have run R CMD check on the 1 downstream dependency.
+  (Summary at <https://github.com/ropensci/geojson/blob/master/revdep/README.md>).
+  No problems were found.
 
----
+-------
 
-This version fixes a bug and adds a small feature.
-
+This version includes xxxx.
 
 Thanks!
 Scott Chamberlain
