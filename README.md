@@ -16,7 +16,9 @@ classes sort of overlap with `sp`'s classes, but not really. There's also some
 overlap in GeoJSON classes with Well-Known Text (WKT) classes, but GeoJSON has a
 subset of WKT's classes.
 
-Although not ready yet, [geoops](https://github.com/ropenscilabs/geoops) supports manipulations on the classes defined in this package.
+The package [geoops](https://github.com/ropenscilabs/geoops) supports manipulations on
+the classes defined in this package. This package is used within
+[geojsonio](https://github.com/ropensci/geojsonio) to make some tasks easier.
 
 ## Installation
 
