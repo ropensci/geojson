@@ -16,13 +16,14 @@
 
 ## Reverse dependencies
 
-* I have run R CMD check on the 1 downstream dependency.
+* I have run R CMD check on the 2 downstream dependencies.
   (Summary at <https://github.com/ropensci/geojson/blob/master/revdep/README.md>).
   No problems were found.
 
 -------
 
-This version includes xxxx.
+This version includes a new function and small improvement
+to an existing function.
 
 Thanks!
 Scott Chamberlain

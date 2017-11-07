@@ -3,15 +3,16 @@ geojson 0.2.0
 
 ### NEW FEATURES
 
-* xx (#xx)
-* xx (#xx)
-* xx (#xx)
+* gains new function `to_geojson` convert GeoJSON character
+string to the approriate GeoJSON class by detecting GeoJSON
+type automatically. this makes some other tasks easier
+(#28) (#29)
 
 ### MINOR IMPROVEMENTS
 
-* xx (#xx)
-* xx (#xx)
-* xx (#xx)
+* Improve `as.geojson` function to do print summary on
+all GeoJSON types well, not just GeometryCollection
+and FeatureCollection (#27)
 
 
 geojson 0.1.4
