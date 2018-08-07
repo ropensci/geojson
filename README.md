@@ -2,7 +2,7 @@ geojson
 =======
 
 
-
+[![cran checks](https://cranchecks.info/badges/worst/geojson)](https://cranchecks.info/pkgs/geojson)
 [![Build Status](https://travis-ci.org/ropensci/geojson.svg?branch=master)](https://travis-ci.org/ropensci/geojson)
 [![codecov](https://codecov.io/gh/ropensci/geojson/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/geojson)
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/geojson)](https://github.com/metacran/cranlogs.app)
