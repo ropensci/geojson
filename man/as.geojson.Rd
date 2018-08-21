@@ -12,6 +12,7 @@
 \alias{as.geojson,SpatialLines-method}
 \alias{as.geojson,SpatialPolygonsDataFrame-method}
 \alias{as.geojson,SpatialPolygons-method}
+\alias{as.geojson,sf-method}
 \title{Geojson class}
 \usage{
 as.geojson(x)
@@ -33,6 +34,8 @@ as.geojson(x)
 \S4method{as.geojson}{SpatialPolygonsDataFrame}(x)
 
 \S4method{as.geojson}{SpatialPolygons}(x)
+
+\S4method{as.geojson}{sf}(x)
 }
 \arguments{
 \item{x}{input, an object of class character, json, SpatialPoints,
