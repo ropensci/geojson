@@ -59,7 +59,8 @@ cchar <- function(x) {
   gsub("\"", "", as.character(x))
 }
 
-asc <- function(x) gsub("\\\"|\\[|\\]", "", as.character(x))
+# asc <- function(x) gsub("\\\"|\\[|\\]", "", as.character(x))
+asc <- function(x) stringi::stri_replace_all_regex(x, "\\\"|\\[|\\]", "")
 
 is_feature <- function(x) {
   cchar(jqr::jq(unclass(x), ".type")) == "Feature"
