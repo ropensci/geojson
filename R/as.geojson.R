@@ -56,6 +56,13 @@
 #' ## SpatialPolygonsDataFrame
 #' sp_polydf <- as(sp_poly, "SpatialPolygonsDataFrame")
 #' as.geojson(sp_polydf)
+#'
+#' ## sf objects
+#' if (requireNamespace('sf')) {
+#'   nc <- sf::st_read(system.file("shape/nc.shp", package = "sf"), quiet = TRUE)
+#'   as.geojson(nc)
+#' }
+#'
 
 setGeneric("as.geojson", function(x) {
   standardGeneric("as.geojson")

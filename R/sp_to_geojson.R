@@ -89,5 +89,6 @@ setMethod("as.geojson", "SpatialPolygons", function(x){
 
 #' @rdname as.geojson
 setMethod("as.geojson", "sf", function(x){
+  if (!requireNamespace('sf')) stop('please install `sf`')
   as.geojson(sf::as_Spatial(x))
 })
