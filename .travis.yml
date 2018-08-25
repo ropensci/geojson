@@ -44,4 +44,4 @@ notifications:
 
 environment:
   global:
-    _R_CHECK_FORCE_SUGGESTS_: 0
+    _R_CHECK_FORCE_SUGGESTS_: false
