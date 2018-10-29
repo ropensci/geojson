@@ -2,11 +2,9 @@ language: r
 cache: packages
 dist: trusty
 
-r_packages:
+r_binary_packages:
+  - covr
   - geojsonlint
-
-r_github_packages:
-  - jimhester/covr
 
 matrix:
   include:
@@ -26,6 +24,7 @@ before_install:
 addons:
   apt:
     packages:
+      - libudunits2-dev
       - libv8-dev
       - libprotobuf-dev
       - libprotoc-dev
@@ -33,7 +32,7 @@ addons:
       - valgrind
 
 after_success:
-  - Rscript -e 'covr::codecov()'
+  - if [[ "${R_CODECOV}" ]]; then R -e 'covr::codecov(type = "all")'; fi
 
 notifications:
   email:
