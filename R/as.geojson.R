@@ -72,7 +72,8 @@ setOldClass("geojson")
 
 #' @rdname as.geojson
 setMethod("as.geojson", "json", function(x){
-  stopifnot(jsonlite::validate(x))
+  jsonval <- jsonlite::validate(x)
+  if (!jsonval) stop("json invalid: ", attr(jsonval, "err"))
   structure(x, class = c("geojson", "json"))
 })
 
@@ -83,7 +84,8 @@ setMethod("as.geojson", "geojson", function(x){
 
 #' @rdname as.geojson
 setMethod("as.geojson", "character", function(x){
-  stopifnot(jsonlite::validate(x))
+  jsonval <- jsonlite::validate(x)
+  if (!jsonval) stop("json invalid: ", attr(jsonval, "err"))
   structure(x, class = c("geojson", "json"))
 })
 
