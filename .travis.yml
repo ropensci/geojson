@@ -5,7 +5,9 @@ sudo: required
 
 r_binary_packages:
   - covr
-  - geojsonlint
+
+r_github_packages:
+  - ropensci/geojsonlint
 
 matrix:
   include:
