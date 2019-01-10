@@ -174,7 +174,7 @@ geo_bbox.geomultipolygon <- function(x) {
 grab_coords <- function(x, str) {
   as.numeric(stex(cchar(unclass(
     jqr::jq(unclass(x), str)
-  )), "[0-9.]+"))
+  )), "-?[0-9.]+"))
 }
 
 make_box <- function(x, y) {
