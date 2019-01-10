@@ -22,6 +22,17 @@ test_that("geo_bbox works - Point input", {
   expect_equal(aa, c(100, 0, 101, 1))
 })
 
+test_that("geo_bbox works - Negative coordinates", {
+  x <- '{"type": "Polygon", "coordinates": [ [ [-101, 0], [-100, 0], [-100, -1], [-101, 0] ] ] }'
+  y <- polygon(x)
+  aa <- geo_bbox(y)
+
+  expect_is(aa, "numeric")
+  expect_type(aa, "double")
+  expect_equal(length(aa), 4)
+  expect_equal(aa, c(-101, -1, -100, 0))
+})
+
 test_that("geo_bbox fails well", {
   expect_error(
     geo_bbox(5),
