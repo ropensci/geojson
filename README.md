@@ -362,6 +362,40 @@ tibble(a = 1:5, b = list(pt), c = list(mls))
 #> 5     5 <S3: geopoint> <S3: geomultilinestring>
 ```
 
+## geobuf
+
+Geobuf is a compact binary encoding for geographic data
+using protocol buffers <https://github.com/mapbox/geobuf> (via the [protolite][])
+package.
+
+
+```r
+file <- system.file("examples/test.pb", package = "geojson")
+(json <- from_geobuf(file))
+#> {"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[102,0.5]},"id":999,"properties":{"prop0":"value0","double":0.0123,"negative_int":-100,"positive_int":100,"negative_double":-1.2345e+16,"positive_double":1.2345e+16,"null":null,"array":[1,2,3.1],"object":{"foo":[5,6,7]}},"blabla":{"foo":[1,1,1]}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[102,0],[103,-1.1],[104,-3],[105,1]]},"id":123,"properties":{"custom1":"test","prop0":"value0","prop1":0}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[100,0],[101,0],[101,1],[100,1],[100,0]],[[99,10],[101,0],[100,1],[99,10]]]},"id":"test-id","properties":{"prop0":"value0","prop1":{"this":"that"}},"custom1":"jeroen"},{"type":"Feature","geometry":{"type":"MultiPolygon","coordinates":[[[[102,2],[103,2],[103,3],[102,2]]],[[[100,0],[101,0],[101,1],[100,1],[100,0]],[[100.2,0.2],[100.2,0.8],[100.2,0.2]]]]}},{"type":"Feature","geometry":{"type":"GeometryCollection","geometries":[{"type":"Point","coordinates":[100,0]},{"type":"LineString","coordinates":[[101,0],[102,1]]},{"type":"MultiPoint","coordinates":[[100,0],[101,1]]},{"type":"MultiLineString","coordinates":[[[100,0],[101,1]],[[102,2],[103,3]]]},{"type":"MultiPolygon","coordinates":[[[[102,2],[103,2],[103,3],[102,3],[102,2]]],[[[100,0],[101,0],[101,1],[100,1],[100,0]],[[100.2,0.2],[100.8,0.2],[100.8,0.8],[100.2,0.8],[100.2,0.2]]]]}]}}]}
+pb <- to_geobuf(json)
+class(pb)
+#> [1] "raw"
+f <- tempfile(fileext = ".pb")
+to_geobuf(json, f)
+from_geobuf(f)
+#> {"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[102,0.5]},"id":999,"properties":{"prop0":"value0","double":0.0123,"negative_int":-100,"positive_int":100,"negative_double":-1.2345e+16,"positive_double":1.2345e+16,"null":null,"array":[1,2,3.1],"object":{"foo":[5,6,7]}},"blabla":{"foo":[1,1,1]}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[102,0],[103,-1.1],[104,-3],[105,1]]},"id":123,"properties":{"custom1":"test","prop0":"value0","prop1":0}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[100,0],[101,0],[101,1],[100,1],[100,0]],[[99,10],[101,0],[100,1],[99,10]]]},"id":"test-id","properties":{"prop0":"value0","prop1":{"this":"that"}},"custom1":"jeroen"},{"type":"Feature","geometry":{"type":"MultiPolygon","coordinates":[[[[102,2],[103,2],[103,3],[102,2]]],[[[100,0],[101,0],[101,1],[100,1],[100,0]],[[100.2,0.2],[100.2,0.8],[100.2,0.2]]]]}},{"type":"Feature","geometry":{"type":"GeometryCollection","geometries":[{"type":"Point","coordinates":[100,0]},{"type":"LineString","coordinates":[[101,0],[102,1]]},{"type":"MultiPoint","coordinates":[[100,0],[101,1]]},{"type":"MultiLineString","coordinates":[[[100,0],[101,1]],[[102,2],[103,3]]]},{"type":"MultiPolygon","coordinates":[[[[102,2],[103,2],[103,3],[102,3],[102,2]]],[[[100,0],[101,0],[101,1],[100,1],[100,0]],[[100.2,0.2],[100.8,0.2],[100.8,0.8],[100.2,0.8],[100.2,0.2]]]]}]}}]}
+
+x <- '{ "type": "Polygon",
+"coordinates": [
+  [ [100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0] ]
+  ]
+}'
+y <- polygon(x)
+to_geobuf(y)
+#>  [1] 10 02 18 06 2a 1a 0a 18 08 04 12 01 04 1a 11 80 84 af 5f 00 80 89 7a
+#> [24] 00 00 80 89 7a ff 88 7a 00
+
+x <- '{"type": "MultiPoint", "coordinates": [ [100.0, 0.0], [101.0, 1.0] ] }'
+y <- multipoint(x)
+to_geobuf(y)
+#>  [1] 10 02 18 06 2a 11 0a 0f 08 01 1a 0b 80 84 af 5f 00 80 89 7a 80 89 7a
+```
 
 ## Meta
 
@@ -377,3 +411,4 @@ By participating in this project you agree to abide by its terms.
 [geojsonspec]: https://tools.ietf.org/html/rfc7946
 [jqr]: https://github.com/ropensci/jqr
 [jq]: https://github.com/stedolan/jq
+[protolite]: https://github.com/jeroen/protolite
