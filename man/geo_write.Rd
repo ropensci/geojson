@@ -9,7 +9,7 @@ geo_write(x, file)
 \arguments{
 \item{x}{input, an object of class \code{geojson}}
 
-\item{file}{(character) a file path}
+\item{file}{(character) a file path, or connection}
 }
 \description{
 Write geojson to disk

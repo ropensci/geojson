@@ -10,7 +10,7 @@ test_that("tibbles work with multipolygon inputs", {
   }'
   y <- multipolygon(x)
 
-  aa <- tibble::data_frame(a = 1:5, b = list(y))
+  aa <- tibble::tibble(a = 1:5, b = list(y))
 
   expect_is(aa, "tbl_df")
   expect_type(aa$a, "integer")

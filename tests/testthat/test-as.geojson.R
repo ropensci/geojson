@@ -43,7 +43,11 @@ test_that("character to geojson works - Polygon", {
 test_that("character to geojson - fails well", {
   expect_error(as.geojson(5), "unable to find an inherited method")
   expect_error(as.geojson(mtcars), "unable to find an inherited method")
-  expect_error(as.geojson("asdfasdf"), "is not TRUE")
+  expect_error(as.geojson("asdfasdf"), "json invalid")
+  expect_error(
+    as.geojson("{\"type\":\"Point\",\"coordinates\":[-99.74,32.4])}"),
+    "lexical error"
+  )
 })
 
 
@@ -147,4 +151,13 @@ test_that("SpatialPolygonsDataFrame to geojson works", {
 
   # sp_to_geojson works identically
   expect_identical(aa, sp_to_geojson(sp_polydf))
+})
+
+
+test_that("sf to geojson works", {
+  skip_if_not_installed("sf")
+
+  nc <- sf::st_read(system.file("shape/nc.shp", package = "sf"), quiet = TRUE)
+  gnc <- geojson::as.geojson(nc)
+  expect_is(gnc, "geojson")
 })

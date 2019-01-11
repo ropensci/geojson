@@ -56,6 +56,13 @@
 #' ## SpatialPolygonsDataFrame
 #' sp_polydf <- as(sp_poly, "SpatialPolygonsDataFrame")
 #' as.geojson(sp_polydf)
+#'
+#' ## sf objects
+#' if (requireNamespace('sf')) {
+#'   nc <- sf::st_read(system.file("shape/nc.shp", package = "sf"), quiet = TRUE)
+#'   as.geojson(nc)
+#' }
+#'
 
 setGeneric("as.geojson", function(x) {
   standardGeneric("as.geojson")
@@ -65,7 +72,8 @@ setOldClass("geojson")
 
 #' @rdname as.geojson
 setMethod("as.geojson", "json", function(x){
-  stopifnot(jsonlite::validate(x))
+  jsonval <- jsonlite::validate(x)
+  if (!jsonval) stop("json invalid: ", attr(jsonval, "err"))
   structure(x, class = c("geojson", "json"))
 })
 
@@ -76,7 +84,8 @@ setMethod("as.geojson", "geojson", function(x){
 
 #' @rdname as.geojson
 setMethod("as.geojson", "character", function(x){
-  stopifnot(jsonlite::validate(x))
+  jsonval <- jsonlite::validate(x)
+  if (!jsonval) stop("json invalid: ", attr(jsonval, "err"))
   structure(x, class = c("geojson", "json"))
 })
 

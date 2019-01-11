@@ -23,14 +23,17 @@ geo_write(y, f <- tempfile(fileext = ".geojson"))
 jsonlite::fromJSON(f, FALSE)
 unlink(f)
 
-file <- system.file("examples", 'multilinestring_one.geojson', package = "geojson")
-str <- paste0(readLines(file), collapse = " ")
+file <- system.file("examples", 'multilinestring_one.geojson', 
+  package = "geojson")
+con <- file(file)
+str <- paste0(readLines(con), collapse = " ")
 (y <- multilinestring(str))
 y[1]
 geo_type(y)
 geo_pretty(y)
+close(con)
 
 # add to a data.frame
 library('tibble')
-data_frame(a = 1:5, b = list(y))
+tibble(a = 1:5, b = list(y))
 }

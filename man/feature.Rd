@@ -45,5 +45,5 @@ multilinestring(x) \%>\% feature()
 
 # add to a data.frame
 library('tibble')
-data_frame(a = 1:5, b = list(multilinestring(x)))
+tibble(a = 1:5, b = list(multilinestring(x)))
 }

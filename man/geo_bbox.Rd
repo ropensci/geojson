@@ -43,10 +43,12 @@ geo_bbox(y)
 y \%>\% feature() \%>\% geo_bbox()
 file <- system.file("examples", 'linestring_one.geojson',
   package = "geojson")
-str <- paste0(readLines(file), collapse = " ")
+con <- file(file)
+str <- paste0(readLines(con), collapse = " ")
 (y <- linestring(str))
 geo_bbox(y)
 y \%>\% feature() \%>\% geo_bbox()
+close(con)
 
 # multilinestring
 x <- '{ "type": "MultiLineString",

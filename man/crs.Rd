@@ -3,7 +3,6 @@
 \name{crs}
 \alias{crs}
 \alias{crs_add}
-\alias{crs}
 \alias{crs_get}
 \title{Add or get CRS}
 \usage{

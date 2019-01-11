@@ -39,5 +39,5 @@ geo_pretty(y)
 
 # add to a data.frame
 library('tibble')
-data_frame(a = 1:5, b = list(y))
+tibble(a = 1:5, b = list(y))
 }
