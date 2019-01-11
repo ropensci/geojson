@@ -12,48 +12,47 @@ Classes for GeoJSON to make working with GeoJSON easier
 
 GeoJSON objects:
 \itemize{
- \item \code{\link{feature}} - Feature
- \item \code{\link{featurecollection}} - FeatureCollection
- \item \code{\link{geometrycollection}} - GeometryCollection
- \item \code{\link{linestring}} - LineString
- \item \code{\link{multilinestring}} - MultiLineString
- \item \code{\link{multipoint}} - MultiPoint
- \item \code{\link{multipolygon}} - MultiPolygon
- \item \code{\link{point}} - Point
- \item \code{\link{polygon}} - Polygon
+\item \code{\link{feature}} - Feature
+\item \code{\link{featurecollection}} - FeatureCollection
+\item \code{\link{geometrycollection}} - GeometryCollection
+\item \code{\link{linestring}} - LineString
+\item \code{\link{multilinestring}} - MultiLineString
+\item \code{\link{multipoint}} - MultiPoint
+\item \code{\link{multipolygon}} - MultiPolygon
+\item \code{\link{point}} - Point
+\item \code{\link{polygon}} - Polygon
 }
 The above are assigned two classes. All of them are class \strong{geojson},
 but also have a class name that is \strong{geo} plus the name of
 the geometry, e.g., \strong{geopolygon} for polygon.
 
-
 GeoJSON properties:
 \itemize{
- \item \code{\link{properties_add}}, \code{\link{properties_get}} - Add
- or get properties
- \item \code{\link{crs_add}}, \code{\link{crs_get}} - Add or get CRS
- \item \code{\link{bbox_add}}, \code{\link{bbox_get}} - Add or get
- bounding box
+\item \code{\link{properties_add}}, \code{\link{properties_get}} - Add
+or get properties
+\item \code{\link{crs_add}}, \code{\link{crs_get}} - Add or get CRS
+\item \code{\link{bbox_add}}, \code{\link{bbox_get}} - Add or get
+bounding box
 }
 
 GeoJSON operations:
 \itemize{
- \item \code{\link{geo_bbox}} - calculate a bounding box for any GeoJSON
- object
- \item \code{\link{geo_pretty}} - pretty print any GeoJSON object
- \item \code{\link{geo_type}} - get the object type for any GeoJSON
- object
- \item \code{\link{geo_write}} - easily write any GeoJSON to a file
- \item More complete GeoJSON operations are provdied in the package
- \pkg{geoops}
+\item \code{\link{geo_bbox}} - calculate a bounding box for any GeoJSON
+object
+\item \code{\link{geo_pretty}} - pretty print any GeoJSON object
+\item \code{\link{geo_type}} - get the object type for any GeoJSON
+object
+\item \code{\link{geo_write}} - easily write any GeoJSON to a file
+\item More complete GeoJSON operations are provdied in the package
+\pkg{geoops}
 }
 
 GeoJSON/Geobuf serialization:
 \itemize{
- \item \code{\link{from_geobuf}} - Geobuf to GeoJSON
- \item \code{\link{to_geobuf}} - GeoJSON to Geobuf
- \item Check out \url{https://github.com/mapbox/geobuf} for inormation on
- the Geobuf format
+\item \code{\link{from_geobuf}} - Geobuf to GeoJSON
+\item \code{\link{to_geobuf}} - GeoJSON to Geobuf
+\item Check out \url{https://github.com/mapbox/geobuf} for inormation on
+the Geobuf format
 }
 }
 

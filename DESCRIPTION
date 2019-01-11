@@ -18,6 +18,7 @@ BugReports: https://github.com/ropensci/geojson/issues
 LazyData: true
 VignetteBuilder: knitr
 Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
 Imports:
     methods,
     sp,
