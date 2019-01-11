@@ -27,7 +27,7 @@ unlink(f)
 
 # add to a data.frame
 library('tibble')
-data_frame(a = 1:5, b = list(y))
+tibble(a = 1:5, b = list(y))
 
 # features to featurecollection
 x <- '{ "type": "Point", "coordinates": [100.0, 0.0] }'

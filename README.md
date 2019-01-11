@@ -2,6 +2,7 @@ geojson
 =======
 
 
+
 [![cran checks](https://cranchecks.info/badges/worst/geojson)](https://cranchecks.info/pkgs/geojson)
 [![Build Status](https://travis-ci.org/ropensci/geojson.svg?branch=master)](https://travis-ci.org/ropensci/geojson)
 [![codecov](https://codecov.io/gh/ropensci/geojson/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/geojson)
@@ -52,7 +53,7 @@ x <- "{\"type\":\"FeatureCollection\",\"features\":[{\"type\":\"Feature\",\"geom
 as.geojson(x)
 #> <geojson> 
 #>   type:  FeatureCollection 
-#>   bounding box:  99.74 32.45 99.74 32.45 
+#>   bounding box:  -99.74 32.45 -99.74 32.45 
 #>   features (n): 1 
 #>   features (geometry / length):
 #>     Point / 2
@@ -313,10 +314,10 @@ x <- '{ "type": "Point", "coordinates": [100.0, 0.0] }'
 
 ```r
 library("tibble")
-data_frame(a = 1:5, b = list(pt))
+tibble(a = 1:5, b = list(pt))
 #> # A tibble: 5 x 2
-#>       a              b
-#>   <int>         <list>
+#>       a b             
+#>   <int> <list>        
 #> 1     1 <S3: geopoint>
 #> 2     2 <S3: geopoint>
 #> 3     3 <S3: geopoint>
@@ -337,10 +338,10 @@ x <- '{ "type": "MultiLineString",
 
 
 ```r
-data_frame(a = 1:5, b = list(mls))
+tibble(a = 1:5, b = list(mls))
 #> # A tibble: 5 x 2
-#>       a                        b
-#>   <int>                   <list>
+#>       a b                       
+#>   <int> <list>                  
 #> 1     1 <S3: geomultilinestring>
 #> 2     2 <S3: geomultilinestring>
 #> 3     3 <S3: geomultilinestring>
@@ -350,10 +351,10 @@ data_frame(a = 1:5, b = list(mls))
 
 
 ```r
-data_frame(a = 1:5, b = list(pt), c = list(mls))
+tibble(a = 1:5, b = list(pt), c = list(mls))
 #> # A tibble: 5 x 3
-#>       a              b                        c
-#>   <int>         <list>                   <list>
+#>       a b              c                       
+#>   <int> <list>         <list>                  
 #> 1     1 <S3: geopoint> <S3: geomultilinestring>
 #> 2     2 <S3: geopoint> <S3: geomultilinestring>
 #> 3     3 <S3: geopoint> <S3: geomultilinestring>
@@ -369,6 +370,8 @@ data_frame(a = 1:5, b = list(pt), c = list(mls))
 * Get citation information for `geojson` in R doing `citation(package = 'geojson')`
 * Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
 By participating in this project you agree to abide by its terms.
+
+[![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
 
 
 [geojsonspec]: https://tools.ietf.org/html/rfc7946
