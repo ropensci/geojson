@@ -11,9 +11,9 @@ linting_opts(lint = FALSE, method = "hint", error = FALSE)
 
 \item{method}{(character) method to use:
 \itemize{
- \item hint - uses \code{\link[geojsonlint]{geojson_hint}}
- \item lint - uses \code{\link[geojsonlint]{geojson_lint}}
- \item validate - uses \code{\link[geojsonlint]{geojson_validate}}
+\item hint - uses \code{\link[geojsonlint]{geojson_hint}}
+\item lint - uses \code{\link[geojsonlint]{geojson_lint}}
+\item validate - uses \code{\link[geojsonlint]{geojson_validate}}
 }}
 
 \item{error}{(logical) Throw an error on parse failure? If \code{TRUE}, then

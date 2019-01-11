@@ -69,6 +69,7 @@
 #'
 #' @importFrom jsonlite fromJSON toJSON
 #' @importFrom jqr jq
+#' @importFrom stringi stri_replace_all_regex
 #' @import methods
 #' @name geojson-package
 #' @author Scott Chamberlain, Jeroen Ooms

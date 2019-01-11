@@ -93,10 +93,10 @@ setMethod("as.geojson", "character", function(x){
 print.geojson <- function(x, ...) {
   cat("<geojson>", "\n")
   cat("  type: ", get_type(x), "\n")
-  cat("  bounding box: ", geo_bbox(x), "\n")
+  # cat("  bounding box: ", geo_bbox(x), "\n")
   cat(feat_geom_n(x), "\n")
   #if (geo_type(x) %in% c("FeatureCollection", "GeometryCollection")) {
-    cat(feat_geom(x), "\n")
+  cat(feat_geom(x), "\n")
   #}
 }
 
@@ -177,19 +177,20 @@ feat_geom <- function(x) {
       )
     },
     FeatureCollection = {
-      paste0(
-        "  features (geometry / length):\n    ",
-        paste(
-          gsub("\\\"", "",
-               unclass(jqr::jq(unclass(x), ".features[].geometry.type"))),
-          # FIXME - needs diff. logic for diff. object types
-          gsub("\\\"", "",
-               unclass(
-                 jqr::jq(unclass(x),
-                         ".features[].geometry.coordinates | length"))),
-          sep = " / ", collapse = "\n    "
-        )
+      pieces <- paste(
+        gsub("\\\"", "",
+             unclass(jqr::jq(unclass(x), ".features[].geometry.type"))),
+        # FIXME - needs diff. logic for diff. object types
+        gsub("\\\"", "",
+             unclass(
+               jqr::jq(unclass(x),
+                       ".features[].geometry.coordinates | length"))),
+        sep = " / "
       )
+      pieces <- pieces[1:min(c(10, length(pieces)))]
+      pieces <- paste0(pieces, collapse = "\n    ")
+      paste0(
+        "  features (geometry / length) [first 10]:\n    ", pieces)
     }
   )
 }
