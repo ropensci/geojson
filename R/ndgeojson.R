@@ -5,11 +5,15 @@
 #'
 #' @name ndgeo
 #' @param x input, an object of class `geojson`
-#' @param file a file. required.
+#' @param file (character) a file. not a connection. required.
 #' @param sep (character) a character separator to use in [writeLines()]
 #' @param txt text, a file, or a url. required.
 #' @param pagesize (integer) number of lines to read/write from/to the 
 #' connection per iteration
+#' 
+#' @note **IMPORTANT**: `ngeo_read` for now only handles lines of geojson 
+#' in your file that are either features or geometry objects (e.g., point,
+#' multipoint, polygon, multipolygon, linestring, multilinestring)
 #' 
 #' @details
 #' 
@@ -72,24 +76,24 @@
 #' ndgeo_read(file)
 #' 
 #' \dontrun{
-#' hawaii_small <- '/Users/sckott/Downloads/honolulu_hawaii_small.geojsonl'
-#' res = ndgeo_read(hawaii_small)
-#' res
-#' 
-#' hawaii_big <- '/Users/sckott/Downloads/honolulu_hawaii.geojsonl'
-#' res = ndgeo_read(hawaii_big)
-#' res
-#' 
 #' # read from a URL
 #' url <- "https://storage.googleapis.com/osm-extracts.interline.io/honolulu_hawaii.geojsonl"
 #' f <- tempfile(fileext = ".geojsonl")
 #' download.file(url, f)
-#' ndgeo_read(f)
+#' x <- ndgeo_read(f)
+#' x
 #' 
-#' 
-#' # geojson text sequences
-#' ndgeo_write(x, outfile, sep = "\\u001e")
-#' readLines(file(outfile))
+#' # geojson text sequences from file
+#' file <- system.file("examples", 'featurecollection2.geojson',
+#'   package = "geojson")
+#' str <- paste0(readLines(file), collapse = " ")
+#' x <- featurecollection(str)
+#' outfile <- tempfile(fileext = ".geojson")
+#' ndgeo_write(x, outfile, sep = "\u001e\n")
+#' con <- file(outfile)
+#' readLines(con)
+#' close(con)
+#' ndgeo_read(outfile)
 #' }
 
 #' @export
@@ -101,12 +105,13 @@ ndgeo_write <- function(x, file, sep = "\n") {
 #' @export
 #' @rdname ndgeo
 ndgeo_write.default <- function(x, file, sep = "\n") {
-  stop("no 'ndgeo_write' method for ", class(x), call. = FALSE)
+  stop("no 'ndgeo_write' method for ", class(x)[1L], call. = FALSE)
 }
 
 #' @export
 #' @rdname ndgeo
 ndgeo_write.geofeaturecollection <- function(x, file, sep = "\n") {
+  stopifnot(is.character(file))
   con <- file(file)
   on.exit(close(con))
   tmp <- jqr::jq(unclass(x), ".features[]")
@@ -116,6 +121,7 @@ ndgeo_write.geofeaturecollection <- function(x, file, sep = "\n") {
 #' @export
 #' @rdname ndgeo
 ndgeo_write.geofeature <- function(x, file, sep = "\n") {
+  stopifnot(is.character(file))
   con <- file(file)
   on.exit(close(con))
   tmp <- jqr::jq(unclass(x), ".features[]")
@@ -137,24 +143,7 @@ ndgeo_read <- function(txt, pagesize = 500) {
       txt <- file(txt)
     }
   }
-  # on.exit(close(txt))
   tmp <- stream_in_geojson(txt, pagesize = pagesize)
   as.geojson(sprintf('{"type": "FeatureCollection", "features": [ %s ]}', 
       paste0(tmp, collapse = ", ")))
-
-  # (txt <- file(file))
-  # jsonlite::stream_in(txt, )
-  # res <- vector("character", length = length(tmp))
-  # foobar <- function(x) {
-  #   # res <<- to_feature(x)
-  #   res <<- x
-  # }
-
-  # tmp <- readLines(con = txt)
-  # tmp2 <- vector("character", length = length(tmp))
-  # for (i in seq_along(tmp)) {
-  #   tmp2[i] <- to_feature(tmp[i])
-  # }
-  # as.geojson(sprintf('{"type": "FeatureCollection", "features": [ %s ]}', 
-  #     paste0(tmp2, collapse = ", ")))
 }
