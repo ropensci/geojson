@@ -1,14 +1,19 @@
-# modified from jsonlite::stream_in
-# con <- file(file)
-# stream_in_geojson(con)
-
-# con <- file('/Users/sckott/Downloads/honolulu_hawaii_small.geojsonl')
-# stream_in_geojson(con)
-
+#' @note modified from jsonlite::stream_in
+#' @noRd 
+#' @param con a connection. closed on exit. make a new connection if you reuse
+#' the same file on subsequent uses. required
+#' @param pagesize number of lines to process in each loop. default: 500
+#' @examples \dontrun{
+#' file <- system.file("examples", 'ndgeojson1.json', package = "geojson")
+#' con <- file(file)
+#' con
+#' stream_in_geojson(con)
+#' }
 stream_in_geojson <- function(con, pagesize = 500) {
   if (!inherits(con, "connection")) {
     stop("Argument 'con' must be a connection.")
   }
+  stopifnot(inherits(pagesize, c('integer', 'numeric')))
 
   res <- character()
   count <- 0
@@ -32,7 +37,11 @@ stream_in_geojson <- function(con, pagesize = 500) {
   repeat {
     page <- readLines(con, n = pagesize, encoding = "UTF-8")
     if (length(page)) {
+      # remove zero length lines
       cleanpage <- Filter(nchar, page)
+      # clean up text sequences special character
+      cleanpage <- gsub("\036", "", cleanpage)
+      # process
       counter(Map(to_feature, cleanpage, extract_features(cleanpage)))
       cat("\r Found", count, "records...")
     }
@@ -43,7 +52,6 @@ stream_in_geojson <- function(con, pagesize = 500) {
 }
 
 to_feature <- function(w, type) {
-  # type <- tolower(cchar(jqr::jq(unclass(w), ".type")))
   if (
     type %in% c('point', 'multipoint', 'polygon', 'multipolygon', 
     'linestring', 'multilinestring')

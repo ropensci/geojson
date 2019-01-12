@@ -22,7 +22,7 @@ ndgeo_read(txt, pagesize = 500)
 \arguments{
 \item{x}{input, an object of class \code{geojson}}
 
-\item{file}{a file. required.}
+\item{file}{(character) a file. not a connection. required.}
 
 \item{sep}{(character) a character separator to use in \code{\link[=writeLines]{writeLines()}}}
 
@@ -49,6 +49,11 @@ file, or URL into the appropriate geojson type
 As an alternative to \code{ndgeo_read}, you can simply use
 \code{\link[jsonlite:stream_in]{jsonlite::stream_in()}} to convert newline-delimited GeoJSON
 to a data.frame
+}
+\note{
+\strong{IMPORTANT}: \code{ngeo_read} for now only handles lines of geojson
+in your file that are either features or geometry objects (e.g., point,
+multipoint, polygon, multipolygon, linestring, multilinestring)
 }
 \examples{
 # featurecollection
@@ -82,24 +87,24 @@ file <- system.file("examples", 'ndgeojson3.json', package = "geojson")
 ndgeo_read(file)
 
 \dontrun{
-hawaii_small <- '/Users/sckott/Downloads/honolulu_hawaii_small.geojsonl'
-res = ndgeo_read(hawaii_small)
-res
-
-hawaii_big <- '/Users/sckott/Downloads/honolulu_hawaii.geojsonl'
-res = ndgeo_read(hawaii_big)
-res
-
 # read from a URL
 url <- "https://storage.googleapis.com/osm-extracts.interline.io/honolulu_hawaii.geojsonl"
 f <- tempfile(fileext = ".geojsonl")
 download.file(url, f)
-ndgeo_read(f)
+x <- ndgeo_read(f)
+x
 
-
-# geojson text sequences
-ndgeo_write(x, outfile, sep = "\\\\u001e")
-readLines(file(outfile))
+# geojson text sequences from file
+file <- system.file("examples", 'featurecollection2.geojson',
+  package = "geojson")
+str <- paste0(readLines(file), collapse = " ")
+x <- featurecollection(str)
+outfile <- tempfile(fileext = ".geojson")
+ndgeo_write(x, outfile, sep = "\\u001e\\n")
+con <- file(outfile)
+readLines(con)
+close(con)
+ndgeo_read(outfile)
 }
 }
 \references{

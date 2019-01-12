@@ -19,6 +19,7 @@ sp_to_geojson <- function(x){
     type = jsonlite::unbox("FeatureCollection"),
     features = features
   ), always_decimal = TRUE, rownames = FALSE)
+  json <- as.geojson(unclass(json))
   structure(json, class = c("geojson", "json"))
 }
 
