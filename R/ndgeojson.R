@@ -10,6 +10,7 @@
 #' @param txt text, a file, or a url. required.
 #' @param pagesize (integer) number of lines to read/write from/to the 
 #' connection per iteration
+#' @param verbose (logical) print messages. default: `TRUE`
 #' 
 #' @note **IMPORTANT**: `ngeo_read` for now only handles lines of geojson 
 #' in your file that are either features or geometry objects (e.g., point,
@@ -130,7 +131,7 @@ ndgeo_write.geofeature <- function(x, file, sep = "\n") {
 
 #' @export
 #' @rdname ndgeo
-ndgeo_read <- function(txt, pagesize = 500) {
+ndgeo_read <- function(txt, pagesize = 500, verbose = TRUE) {
   if (!is.character(txt) && !inherits(txt, "connection")) {
     stop("'txt' must be a string, URL or file.")
   }
@@ -143,7 +144,7 @@ ndgeo_read <- function(txt, pagesize = 500) {
       txt <- file(txt)
     }
   }
-  tmp <- stream_in_geojson(txt, pagesize = pagesize)
+  tmp <- stream_in_geojson(txt, pagesize = pagesize, verbose = verbose)
   as.geojson(sprintf('{"type": "FeatureCollection", "features": [ %s ]}', 
       paste0(tmp, collapse = ", ")))
 }
