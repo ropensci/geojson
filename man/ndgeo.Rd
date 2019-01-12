@@ -17,7 +17,7 @@ ndgeo_write(x, file, sep = "\\n")
 
 \method{ndgeo_write}{geofeature}(x, file, sep = "\\n")
 
-ndgeo_read(txt, pagesize = 500)
+ndgeo_read(txt, pagesize = 500, verbose = TRUE)
 }
 \arguments{
 \item{x}{input, an object of class \code{geojson}}
@@ -30,6 +30,8 @@ ndgeo_read(txt, pagesize = 500)
 
 \item{pagesize}{(integer) number of lines to read/write from/to the
 connection per iteration}
+
+\item{verbose}{(logical) print messages. default: \code{TRUE}}
 }
 \value{
 a \code{geojson} class object
