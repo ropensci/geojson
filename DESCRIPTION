@@ -22,9 +22,9 @@ Roxygen: list(markdown = TRUE)
 Imports:
     methods,
     sp,
-    jsonlite (>= 1.5),
-    protolite (>= 1.7),
-    jqr (>= 1.0.0),
+    jsonlite (>= 1.6),
+    protolite (>= 1.8),
+    jqr (>= 1.1.0),
     magrittr,
     lazyeval
 Suggests:
@@ -36,3 +36,6 @@ Suggests:
     sf,
     stringi
 RoxygenNote: 6.1.1
+X-schema.org-applicationCategory: Geospatial
+X-schema.org-keywords: geojson, geospatial, conversion, data, input-output, bbox, polygon, geobuf
+X-schema.org-isPartOf: https://ropensci.org
