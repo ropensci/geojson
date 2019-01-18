@@ -4,12 +4,15 @@ Title: Classes for 'GeoJSON'
 Description: Classes for 'GeoJSON' to make working with 'GeoJSON' easier.
     Includes S3 classes for 'GeoJSON' classes with brief summary output,
     and a few methods such as extracting and adding bounding boxes,
-    properties, and coordinate reference systems; linting through
-    the 'geojsonlint' package; and serializing to/from 'Geobuf' binary
-    'GeoJSON' format.
+    properties, and coordinate reference systems; working with 
+    newline delimited 'GeoJSON'; linting through the 'geojsonlint' 
+    package; and serializing to/from 'Geobuf' binary 'GeoJSON' 
+    format.
 Version: 0.2.8.9100
 Authors@R: c(
-    person("Scott", "Chamberlain", role = c("aut", "cre"), email = "myrmecocystus@gmail.com"),
+    person("Scott", "Chamberlain", role = c("aut", "cre"), 
+        email = "myrmecocystus@gmail.com",
+        comment = c(ORCID="0000-0003-1444-9135")),
     person("Jeroen", "Ooms", role = "aut")
     )
 License: MIT + file LICENSE

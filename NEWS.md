@@ -1,3 +1,24 @@
+geojson 0.3.0
+=============
+
+### NEW FEATURES
+
+* package gains two new functions for working with newline-delimited GeoJSON: `ndgeo_write()` and `ndgeo_read()`. `ndgeo_write()` leverages `writeLines()` to write to disk, while `ndgeo_read()` leverages a modified version of `jsonlite::stream_in()` to stream in line by line. `ndgeo_write()` works only with the geojson package classes `geofeature` and `geofeaturecollection` (#31) (#38)
+* `as.geojson()` generic gains a new method for `sf`, see `showMethods('as.geojson')` to see methods available. The method is only available if you have `sf` installed  (#30) thanks @cpsievert
+
+### MINOR IMPROVEMENTS
+
+* add examples of using geobuf capabilities to the README (#35)
+* in `as.geojson()` now throw warning message from `jsonlite` when json is invalid to help user sort out what's wrong with their JSON when the input is not valid JSON (#32)
+* speed up for an internal method `asc()` to use `stringi::stri_replace_all()` if installed, and if not fall back to using `gsub()`
+* replace usage of `tibble::data_frame()` with `tibble::tibble()` throughout package
+
+### BUG FIXES
+
+* change to `print.geojson()` to not calculate and print the bounding box because for very large geojson can take a very long time. Also changed to precomputing everything so printing geojson objects is fast (#36)
+* fix to `geo_bbox()` to handle negative coordinates (#33) (#34) thanks very much @aoles
+
+
 geojson 0.2.0
 =============
 
