@@ -18,13 +18,16 @@ test_that("ndgeo_write", {
   expect_equal(length(bb), 3)
 
   close(fconn)
+  unlink(outfile)
 })
 
 test_that("ndgeo_write fails well", {
   expect_error(ndgeo_write(), "argument \"x\" is missing")
   expect_error(ndgeo_write(5), "no 'ndgeo_write' method for numeric")
   expect_error(ndgeo_write(x, 5), "is not TRUE")
-  expect_error(ndgeo_write(x, tempfile(), 5), "invalid 'sep' argument")
+  z <- tempfile()
+  expect_error(ndgeo_write(x, z, 5), "invalid 'sep' argument")
+  unlink(z)
 })
 
 
@@ -48,6 +51,8 @@ test_that("ndgeo_read fails well", {
   expect_error(ndgeo_read(), "argument \"txt\" is missing")
   expect_error(ndgeo_read(5), "'txt' must be a string, URL or file.")
   expect_error(ndgeo_read('x', 'x'), "Argument 'con' must be a connection")
-  expect_error(ndgeo_read(file(tempfile()), 'x'), "is not TRUE")
+  z <- tempfile()
+  expect_error(ndgeo_read(file(z), 'x'), "is not TRUE")
+  unlink(z)
 })
 
