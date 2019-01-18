@@ -72,6 +72,7 @@ readLines(outfile)
 jsonlite::stream_in(file(outfile))
 ## read
 ndgeo_read(outfile)
+unlink(outfile)
 
 # feature
 x <- '{ "type": "Point", "coordinates": [100.0, 0.0] }'
@@ -107,6 +108,7 @@ con <- file(outfile)
 readLines(con)
 close(con)
 ndgeo_read(outfile)
+unlink(outfile)
 }
 }
 \references{
