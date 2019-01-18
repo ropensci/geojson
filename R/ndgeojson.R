@@ -84,6 +84,7 @@
 #' download.file(url, f)
 #' x <- ndgeo_read(f)
 #' x
+#' unlink(f)
 #' 
 #' # geojson text sequences from file
 #' file <- system.file("examples", 'featurecollection2.geojson',

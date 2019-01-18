@@ -8,7 +8,7 @@ Description: Classes for 'GeoJSON' to make working with 'GeoJSON' easier.
     newline delimited 'GeoJSON'; linting through the 'geojsonlint' 
     package; and serializing to/from 'Geobuf' binary 'GeoJSON' 
     format.
-Version: 0.2.8.9100
+Version: 0.3.0
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut", "cre"), 
         email = "myrmecocystus@gmail.com",
