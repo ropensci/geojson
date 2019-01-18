@@ -1,44 +1,28 @@
-# Setup
+# Platform
 
-## Platform
-
-|setting  |value                                       |
+|field    |value                                       |
 |:--------|:-------------------------------------------|
-|version  |R version 3.4.2 Patched (2017-10-12 r73552) |
+|version  |R version 3.5.2 Patched (2018-12-31 r75943) |
+|os       |macOS Mojave 10.14.2                        |
 |system   |x86_64, darwin15.6.0                        |
 |ui       |X11                                         |
 |language |(EN)                                        |
 |collate  |en_US.UTF-8                                 |
-|tz       |America/Los_Angeles                         |
-|date     |2017-11-07                                  |
+|ctype    |en_US.UTF-8                                 |
+|tz       |US/Pacific                                  |
+|date     |2019-01-18                                  |
 
-## Packages
+# Dependencies
 
-|package   |*  |version    |date       |source                             |
-|:---------|:--|:----------|:----------|:----------------------------------|
-|geojson   |   |0.1.4.9100 |2017-11-07 |Github (ropensci/geojson@b7950d1)  |
-|rmarkdown |   |1.6.0.9009 |2017-11-07 |Github (rstudio/rmarkdown@6e68143) |
+|package |old   |new |Δ  |
+|:-------|:-----|:---|:--|
+|geojson |0.2.0 |NA  |*  |
 
-# Check results
+# Revdeps
 
-1 packages
+## All (1)
 
-|package   |version | errors| warnings| notes|
-|:---------|:-------|------:|--------:|-----:|
-|geojsonio |0.4.2   |      0|        0|     1|
-
-## geojsonio (0.4.2)
-Maintainer: Scott Chamberlain <myrmecocystus@gmail.com>  
-Bug reports: https://github.com/ropensci/geojsonio/issues
-
-0 errors | 0 warnings | 1 note 
-
-```
-checking installed package size ... NOTE
-  installed size is  5.1Mb
-  sub-directories of 1Mb or more:
-    doc        1.4Mb
-    examples   1.5Mb
-    vign       1.0Mb
-```
+|package   |version |error |warning |note |
+|:---------|:-------|:-----|:-------|:----|
+|geojsonio |0.6.0   |      |        |     |
 
