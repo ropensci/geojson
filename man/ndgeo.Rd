@@ -65,18 +65,12 @@ file <- system.file("examples", 'featurecollection2.geojson',
 str <- paste0(readLines(file), collapse = " ")
 (x <- featurecollection(str))
 outfile <- tempfile(fileext = ".geojson")
-# fconn <- file(outfile)
 ndgeo_write(x, outfile)
-fconn <- file(outfile)
 readLines(outfile)
 jsonlite::stream_in(file(outfile))
 ## read
 ndgeo_read(outfile)
 unlink(outfile)
-
-# feature
-x <- '{ "type": "Point", "coordinates": [100.0, 0.0] }'
-(z <- point(x) \%>\% feature())
 
 # read from an existing file
 ## GeoJSON objects all of same type: Feature
@@ -90,13 +84,18 @@ file <- system.file("examples", 'ndgeojson3.json', package = "geojson")
 ndgeo_read(file)
 
 \dontrun{
-# read from a URL
+# read from a file
 url <- "https://storage.googleapis.com/osm-extracts.interline.io/honolulu_hawaii.geojsonl"
 f <- tempfile(fileext = ".geojsonl")
 download.file(url, f)
 x <- ndgeo_read(f)
 x
 unlink(f)
+
+# read from a URL
+url <- "https://storage.googleapis.com/osm-extracts.interline.io/honolulu_hawaii.geojsonl"
+x <- ndgeo_read(url)
+x
 
 # geojson text sequences from file
 file <- system.file("examples", 'featurecollection2.geojson',
