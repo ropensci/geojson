@@ -53,18 +53,12 @@
 #' str <- paste0(readLines(file), collapse = " ")
 #' (x <- featurecollection(str))
 #' outfile <- tempfile(fileext = ".geojson")
-#' # fconn <- file(outfile)
 #' ndgeo_write(x, outfile)
-#' fconn <- file(outfile)
 #' readLines(outfile)
 #' jsonlite::stream_in(file(outfile))
 #' ## read
 #' ndgeo_read(outfile)
 #' unlink(outfile)
-#' 
-#' # feature
-#' x <- '{ "type": "Point", "coordinates": [100.0, 0.0] }'
-#' (z <- point(x) %>% feature())
 #' 
 #' # read from an existing file
 #' ## GeoJSON objects all of same type: Feature
@@ -78,13 +72,18 @@
 #' ndgeo_read(file)
 #' 
 #' \dontrun{
-#' # read from a URL
+#' # read from a file
 #' url <- "https://storage.googleapis.com/osm-extracts.interline.io/honolulu_hawaii.geojsonl"
 #' f <- tempfile(fileext = ".geojsonl")
 #' download.file(url, f)
 #' x <- ndgeo_read(f)
 #' x
 #' unlink(f)
+#' 
+#' # read from a URL
+#' url <- "https://storage.googleapis.com/osm-extracts.interline.io/honolulu_hawaii.geojsonl"
+#' x <- ndgeo_read(url)
+#' x
 #' 
 #' # geojson text sequences from file
 #' file <- system.file("examples", 'featurecollection2.geojson',
@@ -141,7 +140,7 @@ ndgeo_read <- function(txt, pagesize = 500, verbose = TRUE) {
   if (is.character(txt) && length(txt) == 1) {
     if (grepl("^https?://", txt, useBytes = TRUE)) {
       tfile <- tempfile()
-      utils::download.file(txt, file, quiet = TRUE)
+      utils::download.file(txt, tfile, quiet = TRUE)
       txt <- file(tfile)
     } else if (file.exists(txt)) {
       txt <- file(txt)

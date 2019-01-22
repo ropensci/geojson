@@ -34,7 +34,7 @@ test_that("ndgeo_write fails well", {
 
 context("ndgeo_read")
 
-test_that("ndgeo_read", {
+test_that("ndgeo_read: from file", {
   file <- system.file("examples", 'ndgeojson1.json', package = "geojson")
   aa <- ndgeo_read(file, verbose = FALSE)
 
@@ -44,6 +44,19 @@ test_that("ndgeo_read", {
   expect_match(aa, "FeatureCollection")
   expect_match(aa, "features")
   expect_match(aa, "coordinates")
+  expect_equal(length(aa), 1)
+})
+
+test_that("ndgeo_read: from url", {
+  url <- "https://storage.googleapis.com/osm-extracts.interline.io/honolulu_hawaii.geojsonl"
+  aa <- ndgeo_read(url, verbose = FALSE)
+
+  expect_is(aa, "geojson")
+  expect_is(unclass(aa), "character")
+  expect_true(nzchar(aa))
+  expect_true(grepl("FeatureCollection", aa))
+  expect_true(grepl("features", aa))
+  expect_true(grepl("coordinates", aa))
   expect_equal(length(aa), 1)
 })
 
