@@ -1,6 +1,6 @@
 is_generator <- function(x, y) {
   if (!inherits(x, y)) {
-    stop("x must be of class '", class(x), "'", call. = FALSE)
+    stop("x must be of class '", y, "'", call. = FALSE)
   }
 }
 is.point <- function(x) is_generator(x, "geopoint")
