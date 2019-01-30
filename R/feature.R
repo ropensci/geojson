@@ -37,45 +37,24 @@
 feature <- function(x) {
   UseMethod("feature")
 }
-
 #' @export
 feature.default <- function(x) {
-  stop("no method for ", class(x), call. = FALSE)
+  stop("no method for ", class(x)[1L], call. = FALSE)
 }
-
 #' @export
 feature.geofeature <- function(x) x
-
 #' @export
-feature.geopoint <- function(x) {
-  feature(unclass(x))
-}
-
+feature.geopoint <- function(x) feat_un(x)
 #' @export
-feature.geomultipoint <- function(x) {
-  feature(unclass(x))
-}
-
+feature.geomultipoint <- function(x) feat_un(x)
 #' @export
-feature.geolinestring <- function(x) {
-  feature(unclass(x))
-}
-
+feature.geolinestring <- function(x) feat_un(x)
 #' @export
-feature.geomultilinestring <- function(x) {
-  feature(unclass(x))
-}
-
+feature.geomultilinestring <- function(x) feat_un(x)
 #' @export
-feature.geopolygon <- function(x) {
-  feature(unclass(x))
-}
-
+feature.geopolygon <- function(x) feat_un(x)
 #' @export
-feature.geomultipolygon <- function(x) {
-  feature(unclass(x))
-}
-
+feature.geomultipolygon <- function(x) feat_un(x)
 #' @export
 feature.character <- function(x) {
   json_val(x)
@@ -103,3 +82,5 @@ as_feature <- function(x) {
     sprintf('{ "type": "Feature", "properties": {}, "geometry": %s }', x)
   }
 }
+
+feat_un <- function(x) feature(unclass(x))
