@@ -29,7 +29,8 @@ Imports:
     protolite (>= 1.8),
     jqr (>= 1.1.0),
     magrittr,
-    lazyeval
+    lazyeval,
+    glue
 Suggests:
     geojsonlint (>= 0.2.0),
     tibble,

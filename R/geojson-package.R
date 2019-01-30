@@ -69,6 +69,7 @@
 #'
 #' @importFrom jsonlite fromJSON toJSON
 #' @importFrom jqr jq
+#' @importFrom glue glue
 #' @import methods
 #' @name geojson-package
 #' @author Scott Chamberlain, Jeroen Ooms
