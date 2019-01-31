@@ -10,7 +10,7 @@
   "codeRepository": "https://github.com/ropensci/geojson",
   "issueTracker": "https://github.com/ropensci/geojson/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.3.0",
+  "version": "0.3.2",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -219,8 +219,8 @@
   "contIntegration": "https://travis-ci.org/ropensci/geojson",
   "releaseNotes": "https://github.com/ropensci/geojson/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/geojson/blob/master/README.md",
-  "fileSize": "1005.226KB",
+  "fileSize": "1008.62KB",
   "applicationCategory": "Geospatial",
   "isPartOf": "https://ropensci.org",
-  "keywords": ["geojson", "geospatial", "conversion", "data", "input-output", "bbox", "polygon", "geobuf", "spatial", "rstats", "r", "r-package"]
+  "keywords": ["geojson", "geospatial", "conversion", "data", "input-output", "bbox", "polygon", "geobuf", "spatial", "rstats", "r", "r-package", "crs", "ndgeojson"]
 }
