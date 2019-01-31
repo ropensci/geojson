@@ -10,13 +10,13 @@
 |collate  |en_US.UTF-8                                 |
 |ctype    |en_US.UTF-8                                 |
 |tz       |US/Pacific                                  |
-|date     |2019-01-18                                  |
+|date     |2019-01-30                                  |
 
 # Dependencies
 
 |package |old   |new |Δ  |
 |:-------|:-----|:---|:--|
-|geojson |0.2.0 |NA  |*  |
+|geojson |0.3.0 |NA  |*  |
 
 # Revdeps
 
