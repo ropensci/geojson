@@ -40,6 +40,12 @@ test_that("methods on multipolygons work", {
   unlink(f)
 })
 
+test_that("print method for multipolygon", {
+  expect_output(print(aa), "<MultiPolygon>")
+  expect_output(print(aa), "no. polygons")
+  expect_output(print(aa), "coordinates:")
+})
+
 test_that("empty linestring object works", {
   expect_is(multipolygon('{"type": "MultiPolygon", "coordinates": []}'),
             "geomultipolygon")
@@ -69,6 +75,8 @@ test_that("multipolygon fails well", {
                  [[100.2, 0.2], [100.8, 0.2], [100.2, 0.2]]]
                  ]'),
     "invalid char in json text")
+
+  expect_error(multipolygon(5), "no method for numeric")
 })
 
 test_that("multipolygon fails well with geojson linting on", {

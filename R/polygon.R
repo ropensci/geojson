@@ -37,7 +37,7 @@ polygon <- function(x) {
 
 #' @export
 polygon.default <- function(x) {
-  stop("no method for ", class(x), call. = FALSE)
+  stop("no method for ", class(x)[1L], call. = FALSE)
 }
 
 #' @export
@@ -60,8 +60,8 @@ polygon.character <- function(x) {
 #' @export
 print.geopolygon <- function(x, ...) {
   cat("<Polygon>", "\n")
-  cat("  no. lines: ", attr(x, 'no_lines'), "\n")
-  cat("  no. holes: ", attr(x, 'no_holes'), "\n")
-  cat("  no. nodes / line: ", attr(x, 'no_nodes_each_line'), "\n")
-  cat("  coordinates: ", attr(x, 'coords'), "\n")
+  cat("  no. lines: ", attr(x, "no_lines"), "\n")
+  cat("  no. holes: ", attr(x, "no_holes"), "\n")
+  cat("  no. nodes / line: ", attr(x, "no_nodes_each_line"), "\n")
+  cat("  coordinates: ", attr(x, "coords"), "\n")
 }

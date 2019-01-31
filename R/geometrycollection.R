@@ -34,14 +34,17 @@ geometrycollection <- function(x) {
 
 #' @export
 geometrycollection.default <- function(x) {
-  stop("no method for ", class(x), call. = FALSE)
+  stop("no method for ", class(x)[1L], call. = FALSE)
 }
+
+#' @export
+geometrycollection.geogeometrycollection <- function(x) x
 
 #' @export
 geometrycollection.character <- function(x) {
   json_val(x)
   hint_geojson(x)
-  verify_names(x, c('type', 'geometries'))
+  verify_names(x, c("type", "geometries"))
   verify_class(x, "GeometryCollection")
   coords <- get_coordinates(x)
   structure(x, class = c("geogeometrycollection", "geojson"),
@@ -53,6 +56,6 @@ geometrycollection.character <- function(x) {
 #' @export
 print.geogeometrycollection <- function(x, ...) {
   cat("<GeometryCollection>", "\n")
-  cat(attr(x, 'geoms'), "\n")
-  cat(attr(x, 'featgeoms'), "\n")
+  cat(attr(x, "geoms"), "\n")
+  cat(attr(x, "featgeoms"), "\n")
 }

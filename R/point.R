@@ -23,7 +23,7 @@ point <- function(x) {
 
 #' @export
 point.default <- function(x) {
-  stop("no method for ", class(x), call. = FALSE)
+  stop("no method for ", class(x)[1L], call. = FALSE)
 }
 
 #' @export
@@ -31,7 +31,7 @@ point.character <- function(x) {
   json_val(x)
   hint_geojson(x)
   x <- as_x("Point", x)
-  verify_names(x, c('type', 'coordinates'))
+  verify_names(x, c("type", "coordinates"))
   verify_class(x, "Point")
   hint_geojson(x)
   structure(x,

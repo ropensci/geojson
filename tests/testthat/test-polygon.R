@@ -38,6 +38,14 @@ test_that("methods on polygons work", {
   unlink(f)
 })
 
+test_that("print method for polygon", {
+  expect_output(print(aa), "<Polygon>")
+  expect_output(print(aa), "no. lines")
+  expect_output(print(aa), "no. holes")
+  expect_output(print(aa), "no. nodes / line:")
+  expect_output(print(aa), "coordinates:")
+})
+
 test_that("polygon fails well", {
   expect_error(polygon('{"type": "FooBar"}'), "type can not be 'FooBar'")
 
@@ -53,6 +61,8 @@ test_that("polygon fails well", {
 
   expect_error(polygon('{"type": "Polygon", "coordinates": [[[100.0,0.0],[101.0,0.0],[101.0,1.0],[100.0,1.0],[100.0,aa]]]}'),
                "invalid char in json text")
+
+  expect_error(polygon(5), "no method for numeric")
 })
 
 test_that("polygon fails well with geojson linting on", {

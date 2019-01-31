@@ -33,6 +33,11 @@ test_that("methods on multipoints work", {
   unlink(f)
 })
 
+test_that("print method for multipoint", {
+  expect_output(print(aa), "<MultiPoint>")
+  expect_output(print(aa), "coordinates:")
+})
+
 test_that("multipoint fails well", {
   expect_error(multipoint('{"type": "FooBar"}'), "type can not be 'FooBar'")
 
@@ -45,6 +50,8 @@ test_that("multipoint fails well", {
 
   expect_error(multipoint('{"type": "MultiPoint", "coordinates": [1,s]}'),
                "invalid char in json text")
+
+  expect_error(multipoint(5), "no method for numeric")
 })
 
 test_that("multipoint fails well with geojson linting on", {

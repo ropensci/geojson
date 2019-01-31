@@ -60,6 +60,70 @@ test_that("to_geobuf - from character", {
 close(file(testpb))
 close(file(lineone))
 
+
+
+
+
+test_that("to_geobuf - from geofeature", {
+  y <- feature(point('{ "type": "Point", "coordinates": [100.0, 0.0] }'))
+  aa <- to_geobuf(y)
+  # saveRDS(aa, file = "tests/testthat/feature.rds")
+
+  expect_is(aa, "raw")
+  expect_equal(length(aa), 17)
+  expect_equal_to_reference(aa, "feature.rds")
+})
+test_that("to_geobuf - from geolinestring", {
+  y <- linestring(
+    '{"type":"LineString","coordinates":[[100.0,0.0],[101.0, 1.0]]}')
+  aa <- to_geobuf(y)
+  # saveRDS(aa, file = "tests/testthat/linestring.rds")
+
+  expect_is(aa, "raw")
+  expect_equal(length(aa), 23)
+  expect_equal_to_reference(aa, "linestring.rds")
+})
+test_that("to_geobuf - from geomultilinestring", {
+  x <- '{ "type": "MultiLineString",
+  "coordinates": [ [ [100.0, 0.0], [101.0, 1.0] ], [[102.0,2.0],[103.0,3.0]]]}'
+  y <- multilinestring(x)
+  aa <- to_geobuf(y)
+  # saveRDS(aa, file = "tests/testthat/multilinestring.rds")
+
+  expect_is(aa, "raw")
+  expect_equal(length(aa), 41)
+  expect_equal_to_reference(aa, "multilinestring.rds")
+})
+test_that("to_geobuf - from geomultipolygon", {
+  x <- '{ "type": "MultiPolygon",
+  "coordinates": [
+    [[[102.0, 2.0], [103.0, 2.0], [103.0, 3.0], [102.0, 3.0], [102.0, 2.0]]],
+    [[[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]],
+    [[100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]]]
+    ]
+  }'
+  y <- multipolygon(x)
+  aa <- to_geobuf(y)
+  # saveRDS(aa, file = "tests/testthat/multipolygon.rds")
+
+  expect_is(aa, "raw")
+  expect_equal(length(aa), 76)
+  expect_equal_to_reference(aa, "multipolygon.rds")
+})
+test_that("to_geobuf - from geopoint", {
+  y <- point('{ "type": "Point", "coordinates": [100.0, 0.0] }')
+  aa <- to_geobuf(y)
+  # saveRDS(aa, file = "tests/testthat/point.rds")
+
+  expect_is(aa, "raw")
+  expect_equal(length(aa), 17)
+  expect_equal_to_reference(aa, "point.rds")
+})
+
+
+
+
+
 test_that("to_geobuf - from geopolygon", {
   x <- '{ "type": "Polygon",
      "coordinates": [

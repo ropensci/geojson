@@ -34,12 +34,15 @@
 #' z <- x %>% feature() %>% crs_add(crs)
 #' crs_get(z)
 crs_add <- function(x, crs) {
+  stopifnot(inherits(x, "geojson"))
+  stopifnot(inherits(crs, "character"))
   jqr::jq(unclass(x), paste0(". | .crs = ", crs))
 }
 
 #' @name crs
 #' @export
 crs_get <- function(x) {
+  stopifnot(inherits(x, c("jqson", "character")))
   tmp <- unclass(jqr::jq(unclass(x), ".crs"))
   if (tmp == "null") {
     NULL

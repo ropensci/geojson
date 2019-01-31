@@ -20,7 +20,7 @@ linestring <- function(x) {
 
 #' @export
 linestring.default <- function(x) {
-  stop("no method for ", class(x), call. = FALSE)
+  stop("no method for ", class(x)[1L], call. = FALSE)
 }
 
 #' @export
@@ -28,7 +28,7 @@ linestring.character <- function(x) {
   json_val(x)
   hint_geojson(x)
   x <- as_x("LineString", x)
-  verify_names(x, c('type', 'coordinates'))
+  verify_names(x, c("type", "coordinates"))
   verify_class(x, "LineString")
   structure(x,
             class = c("geolinestring", "geojson"),
@@ -38,5 +38,5 @@ linestring.character <- function(x) {
 #' @export
 print.geolinestring <- function(x, ...) {
   cat("<LineString>", "\n")
-  cat("  coordinates: ", attr(x, 'coords'), "\n")
+  cat("  coordinates: ", attr(x, "coords"), "\n")
 }

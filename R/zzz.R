@@ -1,3 +1,15 @@
+geojson_types <- c(
+  "FeatureCollection",
+  "Feature",
+  "Point",
+  "MultiPoint",
+  "MultiPoint",
+  "LineString",
+  "MultiLineString",
+  "Polygon",
+  "MultiPolygon"
+)
+
 pluck <- function(x, name, type) {
   if (missing(type)) {
     lapply(x, "[[", name)

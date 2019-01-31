@@ -30,6 +30,13 @@ test_that("methods on multilinestrings work", {
   unlink(f)
 })
 
+test_that("print method for multilinestring", {
+  expect_output(print(aa), "<MultiLineString>")
+  expect_output(print(aa), "no. lines")
+  expect_output(print(aa), "no. nodes / line:")
+  expect_output(print(aa), "coordinates:")
+})
+
 test_that("empty multilinestring object works", {
   expect_is(multilinestring('{"type": "MultiLineString", "coordinates": [ [ [],[] ] ] }'),
             "geomultilinestring")
@@ -39,6 +46,8 @@ test_that("empty multilinestring object works", {
 
   expect_is(multilinestring('{"type": "MultiLineString", "coordinates": [1]}'),
             "geomultilinestring")
+
+  expect_error(multilinestring(5), "no method for numeric")
 })
 
 test_that("multilinestring fails well", {

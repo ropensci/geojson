@@ -23,7 +23,7 @@ multipoint <- function(x) {
 
 #' @export
 multipoint.default <- function(x) {
-  stop("no method for ", class(x), call. = FALSE)
+  stop("no method for ", class(x)[1L], call. = FALSE)
 }
 
 #' @export
@@ -31,7 +31,7 @@ multipoint.character <- function(x) {
   json_val(x)
   hint_geojson(x)
   x <- as_x("MultiPoint", x)
-  verify_names(x, c('type', 'coordinates'))
+  verify_names(x, c("type", "coordinates"))
   verify_class(x, "MultiPoint")
   coords <- dotprint(cchar(jqr::jq(unclass(x), ".coordinates")))
   structure(x,

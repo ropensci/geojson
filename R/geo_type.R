@@ -19,7 +19,7 @@ geo_type <- function(x) {
 
 #' @export
 geo_type.default <- function(x) {
-  stop("no 'geo_type' method for ", class(x), call. = FALSE)
+  stop("no 'geo_type' method for ", class(x)[1L], call. = FALSE)
 }
 
 #' @export

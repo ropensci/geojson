@@ -13,13 +13,17 @@ bbox_get(x)
 \arguments{
 \item{x}{An object of class \code{geojson}}
 
-\item{bbox}{(numeric) a vector or list of length 4. If \code{NULL},
-the bounding box is calculated for you}
+\item{bbox}{(numeric) a vector or list of length 4 for a 2D bounding box
+or length 6 for a 3D bounding box. If \code{NULL}, the bounding box is
+calculated for you}
 }
 \value{
-a bounding box, of the form \code{[west, south, east, north]}
-for 2D or of the form
+\itemize{
+\item bbox_add: an object of class jqson/character from \pkg{jqr}
+\item bbox_get: a bounding box, of the form
+\code{[west, south, east, north]} for 2D or of the form
 \code{[west, south, min-altitude, east, north, max-altitude]} for 3D
+}
 }
 \description{
 Add or get bounding box
@@ -43,7 +47,7 @@ y \%>\% feature() \%>\% bbox_add()
 ## 2D bbox
 y \%>\% feature() \%>\% bbox_add(c(100.0, -10.0, 105.0, 10.0))
 ## 3D bbox
-y \%>\% feature() \%>\% bbox_add(c(100.0, -10.0, -100.0, 105.0, 10.0, 0.0))
+y \%>\% feature() \%>\% bbox_add(c(100.0, -10.0, 3, 105.0, 10.0, 17))
 
 # get bounding box
 z <- y \%>\% feature() \%>\% bbox_add()

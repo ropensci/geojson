@@ -8,12 +8,30 @@ poly <- polygon('{ "type": "Polygon",
    ]
 }')
 
+x <- '{
+ "type": "GeometryCollection",
+ "geometries": [
+   {
+     "type": "Point",
+     "coordinates": [100.0, 0.0]
+   },
+   {
+     "type": "LineString",
+     "coordinates": [ [101.0, 0.0], [102.0, 1.0] ]
+   }
+  ]
+}'
+geomcoll <- geometrycollection(x)
+
 test_that("geo_type works", {
   expect_is(geo_type(pt), "character")
   expect_equal(geo_type(pt), "Point")
 
   expect_is(geo_type(poly), "character")
   expect_equal(geo_type(poly), "Polygon")
+
+  expect_is(geo_type(geomcoll), "character")
+  expect_equal(geo_type(geomcoll), "GeometryCollection")
 })
 
 test_that("geo_type fails well", {

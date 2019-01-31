@@ -27,7 +27,7 @@ multipolygon <- function(x) {
 
 #' @export
 multipolygon.default <- function(x) {
-  stop("no method for ", class(x), call. = FALSE)
+  stop("no method for ", class(x)[1L], call. = FALSE)
 }
 
 #' @export
@@ -47,6 +47,6 @@ multipolygon.character <- function(x) {
 #' @export
 print.geomultipolygon <- function(x, ...) {
   cat("<MultiPolygon>", "\n")
-  cat("  no. polygons: ", attr(x, 'no_polygons'), "\n")
-  cat("  coordinates: ", attr(x, 'coords'), "\n")
+  cat("  no. polygons: ", attr(x, "no_polygons"), "\n")
+  cat("  coordinates: ", attr(x, "coords"), "\n")
 }

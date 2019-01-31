@@ -33,7 +33,7 @@ multilinestring <- function(x) {
 
 #' @export
 multilinestring.default <- function(x) {
-  stop("no method for ", class(x), call. = FALSE)
+  stop("no method for ", class(x)[1L], call. = FALSE)
 }
 
 #' @export
@@ -55,7 +55,7 @@ multilinestring.character <- function(x) {
 #' @export
 print.geomultilinestring <- function(x, ...) {
   cat("<MultiLineString>", "\n")
-  cat("  no. lines: ", attr(x, 'no_lines'), "\n")
-  cat("  no. nodes / line: ", attr(x, 'no_nodes_each_line'), "\n")
-  cat("  coordinates: ", attr(x, 'coords'), "\n")
+  cat("  no. lines: ", attr(x, "no_lines"), "\n")
+  cat("  no. nodes / line: ", attr(x, "no_nodes_each_line"), "\n")
+  cat("  coordinates: ", attr(x, "coords"), "\n")
 }

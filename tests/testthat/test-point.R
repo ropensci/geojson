@@ -34,6 +34,11 @@ test_that("methods on points work", {
   unlink(f)
 })
 
+test_that("print method for point", {
+  expect_output(print(aa), "<Point>")
+  expect_output(print(aa), "coordinates:")
+})
+
 test_that("point fails well", {
   expect_error(point('{"type": "FooBar"}'), "type can not be 'FooBar'")
 
@@ -50,6 +55,8 @@ test_that("point fails well", {
 
   expect_error(point('{"type": "Point", "coordinates": [1,s]}'),
                "invalid char in json text")
+
+  expect_error(point(5), "no method for numeric")
 })
 
 test_that("point fails well with geojson linting on", {
