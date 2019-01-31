@@ -21,7 +21,7 @@
 
 -------
 
-This version adds two new functions for working with newline-delimited GeoJSON, a new method for a generic, and makes some small improvements.
+This version fixes a bug overlooked in the previous CRAN release.
 
 Thanks!
 Scott Chamberlain

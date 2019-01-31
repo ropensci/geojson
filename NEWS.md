@@ -1,3 +1,11 @@
+geojson 0.3.2
+=============
+
+### BUG FIXES
+
+* fix typo within `ndgeo_read()` (#39)
+
+
 geojson 0.3.0
 =============
 
