@@ -53,9 +53,8 @@ x <- "{\"type\":\"FeatureCollection\",\"features\":[{\"type\":\"Feature\",\"geom
 as.geojson(x)
 #> <geojson> 
 #>   type:  FeatureCollection 
-#>   bounding box:  -99.74 32.45 -99.74 32.45 
 #>   features (n): 1 
-#>   features (geometry / length):
+#>   features (geometry / length) [first 5]:
 #>     Point / 2
 ```
 
@@ -395,6 +394,76 @@ x <- '{"type": "MultiPoint", "coordinates": [ [100.0, 0.0], [101.0, 1.0] ] }'
 y <- multipoint(x)
 to_geobuf(y)
 #>  [1] 10 02 18 06 2a 11 0a 0f 08 01 1a 0b 80 84 af 5f 00 80 89 7a 80 89 7a
+```
+
+## newline-delimited GeoJSON
+
+read nd-GeoJSON
+
+
+```r
+url <- "https://storage.googleapis.com/osm-extracts.interline.io/honolulu_hawaii.geojsonl"
+f <- tempfile(fileext = ".geojsonl")
+download.file(url, f)
+x <- ndgeo_read(f, verbose = FALSE)
+x
+#> <geojson> 
+#>   type:  FeatureCollection 
+#>   features (n): 65004 
+#>   features (geometry / length) [first 5]:
+#>     Point / 2
+#>     Point / 2
+#>     Point / 2
+#>     Point / 2
+#>     Point / 2
+```
+
+
+
+Write nd-GeoJSON
+
+One would think we could take the output of `ndego_read()` above
+and pass to `ndgeo_write()`. However, in this example, the json is too big
+for `jqr` to handle, the underlying parser tool. So here's a smaller 
+example:
+
+
+
+```r
+file <- system.file("examples", "featurecollection2.geojson",
+  package = "geojson")
+str <- paste0(readLines(file), collapse = " ")
+(x <- featurecollection(str))
+#> <FeatureCollection> 
+#>   type:  FeatureCollection 
+#>   no. features:  3 
+#>   features (1st 5):  Point, Point, Point
+```
+
+
+```r
+outfile <- tempfile(fileext = ".geojson")
+ndgeo_write(x, outfile)
+jsonlite::stream_in(file(outfile))
+#> 
+ Found 3 records...
+ Imported 3 records. Simplifying...
+#>      type id   properties.NOME
+#> 1 Feature  0 Sec de segunrança
+#> 2 Feature  1             Teste
+#> 3 Feature  3 Delacorte Theater
+#>                                                            properties.URL
+#> 1 http://www.theatermania.com/new-york/theaters/45th-street-theatre_2278/
+#> 2          http://www.bestofoffbroadway.com/theaters/47streettheatre.html
+#> 3     http://www.centralpark.com/pages/attractions/delacorte-theatre.html
+#>                      properties.ADDRESS1 properties.CIDADE properties.CEP
+#> 1                   354 West 45th Street           Goiânia       74250010
+#> 2                   304 West 47th Street          New York             NA
+#> 3 Central Park - Mid-Park at 80th Street          New York             NA
+#>   properties.ZIP geometry.type geometry.coordinates
+#> 1             NA         Point -49.25624, -16.68961
+#> 2       74250010         Point -49.27624, -16.65561
+#> 3       74250010         Point -49.27726, -16.67906
 ```
 
 ## Meta

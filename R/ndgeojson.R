@@ -147,6 +147,6 @@ ndgeo_read <- function(txt, pagesize = 500, verbose = TRUE) {
     }
   }
   tmp <- stream_in_geojson(txt, pagesize = pagesize, verbose = verbose)
-  as.geojson(sprintf('{"type": "FeatureCollection", "features": [ %s ]}', 
+  as.geojson(sprintf("{\"type\":\"FeatureCollection\",\"features\":[ %s ]}",
       paste0(tmp, collapse = ", ")))
 }

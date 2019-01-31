@@ -238,6 +238,43 @@ y <- multipoint(x)
 to_geobuf(y)
 ```
 
+## newline-delimited GeoJSON
+
+read nd-GeoJSON
+
+```{r}
+url <- "https://storage.googleapis.com/osm-extracts.interline.io/honolulu_hawaii.geojsonl"
+f <- tempfile(fileext = ".geojsonl")
+download.file(url, f)
+x <- ndgeo_read(f, verbose = FALSE)
+x
+```
+
+```{r echo=FALSE}
+unlink(f)
+```
+
+Write nd-GeoJSON
+
+One would think we could take the output of `ndego_read()` above
+and pass to `ndgeo_write()`. However, in this example, the json is too big
+for `jqr` to handle, the underlying parser tool. So here's a smaller 
+example:
+
+
+```{r}
+file <- system.file("examples", "featurecollection2.geojson",
+  package = "geojson")
+str <- paste0(readLines(file), collapse = " ")
+(x <- featurecollection(str))
+```
+
+```{r}
+outfile <- tempfile(fileext = ".geojson")
+ndgeo_write(x, outfile)
+jsonlite::stream_in(file(outfile))
+```
+
 ## Meta
 
 * Please [report any issues or bugs](https://github.com/ropensci/geojson/issues).
