@@ -1,9 +1,8 @@
 language: r
+dist: xenial
 cache: packages
-dist: trusty
-sudo: required
 
-r_binary_packages:
+r_packages:
   - covr
 
 r_github_packages:
@@ -11,31 +10,30 @@ r_github_packages:
 
 matrix:
   include:
-    - os: linux
-      r: oldrel
-    - os: linux
-      r: release
+    - r: oldrel
+    - r: release
       env: R_CODECOV=true
     - os: linux
       r: devel
       env: _R_CHECK_LENGTH_1_LOGIC2_=TRUE
 
-before_install:
-  - sudo add-apt-repository -y ppa:jeroen/jq
-  - sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes
-  - sudo apt-get --yes --force-yes update -qq
-  - sudo apt-get install --yes libprotobuf-dev protobuf-compiler libv8-3.14-dev libjq-dev
-  - sudo apt-get install --yes libudunits2-dev libproj-dev libgeos-dev libgdal-dev
-
 addons:
   apt:
+    sources:
+      - sourceline: 'ppa:jeroen/jq'
+      - sourceline: 'ppa:ubuntugis/ubuntugis-unstable'
     packages:
-      - libudunits2-dev
-      - libv8-dev
-      - libprotobuf-dev
-      - libprotoc-dev
-      - protobuf-compiler
-      - valgrind
+    - libudunits2-dev
+    - libv8-dev
+    - libprotobuf-dev
+    - libprotoc-dev
+    - libproj-dev
+    - libgeos-dev
+    - libgdal-dev
+    - protobuf-compiler
+    - valgrind
+    - libjq-dev
+    - netcdf-bin
 
 after_success:
   - if [[ "${R_CODECOV}" ]]; then R -e 'covr::codecov(type = "all")'; fi
