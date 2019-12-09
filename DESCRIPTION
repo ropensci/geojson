@@ -16,7 +16,7 @@ Authors@R: c(
     person("Jeroen", "Ooms", role = "aut")
     )
 License: MIT + file LICENSE
-URL: https://github.com/ropensci/geojson
+URL: https://docs.ropensci.org/geojson, https://github.com/ropensci/geojson
 BugReports: https://github.com/ropensci/geojson/issues
 LazyData: true
 VignetteBuilder: knitr
