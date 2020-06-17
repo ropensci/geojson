@@ -27,11 +27,9 @@ test_that("methods on points work", {
   expect_equal(geo_bbox(aa), c(100, 0, 100, 0))
   expect_equal(geo_type(aa), "Point")
 
-  geo_write(aa, f <- tempfile())
-  expect_is(f, "character")
-
-  # cleanup
-  unlink(f)
+  f <- file(tempfile())
+  geo_write(aa, f)
+  expect_is(f, "file")
 })
 
 test_that("print method for point", {

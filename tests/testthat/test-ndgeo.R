@@ -68,4 +68,3 @@ test_that("ndgeo_read fails well", {
   expect_error(ndgeo_read(file(z), 'x'), "is not TRUE")
   unlink(z)
 })
-

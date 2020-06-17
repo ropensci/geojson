@@ -29,11 +29,9 @@ test_that("methods on featurecollections work", {
   expect_equal(as.character(geo_bbox(aa)[1]), "-49.277263")
   expect_equal(geo_type(aa), "FeatureCollection")
 
-  geo_write(aa, f <- tempfile())
-  expect_is(f, "character")
-
-  # cleanup
-  unlink(f)
+  f <- file(tempfile())
+  geo_write(aa, f)
+  expect_is(f, "file")
 })
 
 test_that("empty featurecollection object works", {

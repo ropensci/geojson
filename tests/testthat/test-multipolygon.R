@@ -33,11 +33,9 @@ test_that("methods on multipolygons work", {
   expect_equal(geo_bbox(aa), c(2, 2, 102, 103))
   expect_equal(geo_type(aa), "MultiPolygon")
 
-  geo_write(aa, f <- tempfile())
-  expect_is(f, "character")
-
-  # cleanup
-  unlink(f)
+  f <- file(tempfile())
+  geo_write(aa, f)
+  expect_is(f, "file")
 })
 
 test_that("print method for multipolygon", {

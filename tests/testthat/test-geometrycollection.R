@@ -45,11 +45,9 @@ test_that("methods on geometrycollections work", {
 
   expect_match(geo_pretty(aa), "\n")
 
-  geo_write(aa, f <- tempfile())
-  expect_is(f, "character")
-
-  # cleanup
-  unlink(f)
+  f <- file(tempfile())
+  geo_write(aa, f)
+  expect_is(f, "file")
 })
 
 test_that("empty geometrycollection object works", {

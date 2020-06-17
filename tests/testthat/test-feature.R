@@ -30,11 +30,9 @@ test_that("methods on feature work", {
   expect_equal(geo_bbox(ft_pt), c(100, 0, 100, 0))
   expect_equal(geo_type(ft_pt), "Feature")
 
-  geo_write(ft_pt, f <- tempfile())
-  expect_is(f, "character")
-
-  # cleanup
-  unlink(f)
+  f <- file(tempfile())
+  geo_write(ft_pt, f)
+  expect_is(f, "file")
 })
 
 test_that("empty feature object works", {

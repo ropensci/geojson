@@ -14,12 +14,12 @@ test_that("stream_in_geojson", {
 test_that("stream_in_geojson fails well", {
   expect_error(stream_in_geojson(), "argument \"con\" is missing")
   expect_error(stream_in_geojson(5), "Argument 'con' must be a connection")
-  z <- tempfile()
-  w <- tempfile()
-  expect_error(stream_in_geojson(file(z), 'foo'), "is not TRUE")
-  expect_error(stream_in_geojson(file(w), verbose = 'foo'), 
+  z <- file(tempfile())
+  w <- file(tempfile())
+  expect_error(stream_in_geojson(z, 'foo'), "is not TRUE")
+  expect_error(stream_in_geojson(w, verbose = 'foo'), 
     "is not TRUE")
-  unlink(z)
-  unlink(w)
+  close(z)
+  close(w)
 })
 
