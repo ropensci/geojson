@@ -8,7 +8,7 @@ Description: Classes for 'GeoJSON' to make working with 'GeoJSON' easier.
     newline delimited 'GeoJSON'; linting through the 'geojsonlint' 
     package; and serializing to/from 'Geobuf' binary 'GeoJSON' 
     format.
-Version: 0.3.2.9100
+Version: 0.3.3.91
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut", "cre"), 
         email = "myrmecocystus@gmail.com",
@@ -38,7 +38,7 @@ Suggests:
     rmarkdown,
     sf,
     stringi
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0
 X-schema.org-applicationCategory: Geospatial
 X-schema.org-keywords: geojson, geospatial, conversion, data, input-output, bbox, polygon, geobuf
 X-schema.org-isPartOf: https://ropensci.org

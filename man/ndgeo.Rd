@@ -103,7 +103,7 @@ file <- system.file("examples", 'featurecollection2.geojson',
 str <- paste0(readLines(file), collapse = " ")
 x <- featurecollection(str)
 outfile <- tempfile(fileext = ".geojson")
-ndgeo_write(x, outfile, sep = "\\u001e\\n")
+ndgeo_write(x, outfile, sep = "\u001e\n")
 con <- file(outfile)
 readLines(con)
 close(con)
