@@ -133,11 +133,15 @@ to_geobuf.geopolygon <- function(x, file = NULL, decimals = 6) {
 }
 
 togb <- function(x, file = NULL, decimals = 6) {
+  if (file.exists(x)) {
+    x <- file(x)
+    on.exit(close(x))
+  }
   tmp <- protolite::json2geobuf(x, decimals = decimals)
   if (is.null(file)) {
     tmp
   } else {
-    on.exit(close(file(file)))
+    on.exit(close(file(file)), add = TRUE)
     writeBin(tmp, con = file)
   }
 }

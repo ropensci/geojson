@@ -31,7 +31,7 @@ test_that("from_geobuf - from raw bytes", {
 
 
 
-test_that("to_geobuf - from json", {
+test_that("to_geobuf - from file path", {
   aa <- to_geobuf(lineone)
 
   expect_is(aa, "raw")
@@ -154,7 +154,7 @@ test_that("from_geobuf fails well", {
   expect_error(from_geobuf(), "argument \"x\" is missing")
   expect_error(from_geobuf(list()), "no 'from_geobuf' method for list")
   expect_error(from_geobuf("adfasdf"), "adfasdf does not exist")
-  expect_error(from_geobuf(raw()), "No 'data_type' field set")
+  expect_error(from_geobuf(raw()),  class = "std::runtime_error")
 })
 
 test_that("to_geobuf fails well", {
