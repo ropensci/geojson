@@ -73,7 +73,7 @@
 #' 
 #' \dontrun{
 #' # read from a file
-#' url <- "https://storage.googleapis.com/osm-extracts.interline.io/honolulu_hawaii.geojsonl"
+#' url <- "https://raw.githubusercontent.com/ropensci/geojson/master/inst/examples/ndgeojson1.json"
 #' f <- tempfile(fileext = ".geojsonl")
 #' download.file(url, f)
 #' x <- ndgeo_read(f)
@@ -81,7 +81,7 @@
 #' unlink(f)
 #' 
 #' # read from a URL
-#' url <- "https://storage.googleapis.com/osm-extracts.interline.io/honolulu_hawaii.geojsonl"
+#' url <- "https://raw.githubusercontent.com/ropensci/geojson/master/inst/examples/ndgeojson1.json"
 #' x <- ndgeo_read(url)
 #' x
 #' 

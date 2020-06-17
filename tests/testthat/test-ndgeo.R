@@ -48,7 +48,7 @@ test_that("ndgeo_read: from file", {
 })
 
 test_that("ndgeo_read: from url", {
-  url <- "https://storage.googleapis.com/osm-extracts.interline.io/honolulu_hawaii.geojsonl"
+  url <- "https://raw.githubusercontent.com/ropensci/geojson/master/inst/examples/ndgeojson1.json"
   aa <- ndgeo_read(url, verbose = FALSE)
 
   expect_is(aa, "geojson")
