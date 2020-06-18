@@ -15,7 +15,7 @@ geo_write(x, file)
 Write geojson to disk
 }
 \details{
-Wrapper around \code{\link[jsonlite]{toJSON}} and
+Wrapper around \code{jsonlite::toJSON()} and
 \code{\link{cat}}
 }
 \examples{

@@ -30,8 +30,8 @@ for \code{from_geobuf} JSON as a character string, and for
 Geobuf serialization
 }
 \details{
-\code{from_geobuf} uses \code{\link[protolite]{geobuf2json}},
-while \code{to_geobuf} uses \code{\link[protolite]{json2geobuf}}
+\code{from_geobuf} uses \code{protolite::geobuf2json()},
+while \code{to_geobuf} uses \code{protolite::json2geobuf()}
 
 Note that \pkg{protolite} expects either a \strong{Feature},
 \strong{FeatureCollection}, or \strong{Geometry} class geojson
@@ -73,5 +73,5 @@ to_geobuf(y)
 }
 \references{
 Geobuf is a compact binary encoding for geographic data
-using protocol buffers \url{https://github.com/mapbox/geobuf}
+using protocol buffers https://github.com/mapbox/geobuf
 }

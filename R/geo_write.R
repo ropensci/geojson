@@ -1,9 +1,9 @@
 #' Write geojson to disk
 #'
 #' @export
-#' @param x input, an object of class \code{geojson}
+#' @param x input, an object of class `geojson`
 #' @param file (character) a file path, or connection
-#' @details Wrapper around \code{\link[jsonlite]{toJSON}} and
+#' @details Wrapper around `jsonlite::toJSON()` and
 #' \code{\link{cat}}
 #' @examples
 #' file <- tempfile(fileext = ".geojson")

@@ -2,28 +2,28 @@
 #'
 #' @name geobuf
 #' @export
-#' @param x (character) a file or raw object for \code{from_geobuf}, and
-#' json string for \code{to_geobuf}
+#' @param x (character) a file or raw object for `from_geobuf`, and
+#' json string for `to_geobuf`
 #' @param file (character) file to write protobuf to. if NULL, geobuf
 #' raw binary returned
 #' @param decimals (integer) how many decimals (digits behind the dot) to
 #' store for numbers
-#' @param pretty (logical) pretty print JSON. Default: \code{FALSE}
+#' @param pretty (logical) pretty print JSON. Default: `FALSE`
 #'
-#' @return for \code{from_geobuf} JSON as a character string, and for
-#' \code{to_geobuf} raw or file written to disk
+#' @return for `from_geobuf` JSON as a character string, and for
+#' `to_geobuf` raw or file written to disk
 #'
-#' @details \code{from_geobuf} uses \code{\link[protolite]{geobuf2json}},
-#' while \code{to_geobuf} uses \code{\link[protolite]{json2geobuf}}
+#' @details `from_geobuf` uses `protolite::geobuf2json()`,
+#' while `to_geobuf` uses `protolite::json2geobuf()`
 #'
-#' Note that \pkg{protolite} expects either a \strong{Feature},
-#' \strong{FeatureCollection}, or \strong{Geometry} class geojson
-#' object, Thus, for \code{to_geobuf} we check the geojson class, and
-#' convert to a \strong{Feature} if the class is something other than
+#' Note that \pkg{protolite} expects either a **Feature**,
+#' **FeatureCollection**, or **Geometry** class geojson
+#' object, Thus, for `to_geobuf` we check the geojson class, and
+#' convert to a **Feature** if the class is something other than
 #' the acceptable set.
 #'
 #' @references Geobuf is a compact binary encoding for geographic data
-#' using protocol buffers \url{https://github.com/mapbox/geobuf}
+#' using protocol buffers https://github.com/mapbox/geobuf
 #'
 #' @examples
 #' file <- system.file("examples/test.pb", package = "geojson")

@@ -3,11 +3,11 @@
 #' @export
 #' @param lint (logical) lint geojson or not. Default: \code{FALSE}
 #' @param method (character) method to use:
-#' \itemize{
-#'  \item hint - uses \code{\link[geojsonlint]{geojson_hint}}
-#'  \item lint - uses \code{\link[geojsonlint]{geojson_lint}}
-#'  \item validate - uses \code{\link[geojsonlint]{geojson_validate}}
-#' }
+#' 
+#' - hint - uses `geojsonlint::geojson_hint()`
+#' - lint - uses `geojsonlint::geojson_lint()`
+#' - validate - uses `geojsonlint::geojson_validate()`
+#' 
 #' @param error (logical) Throw an error on parse failure? If \code{TRUE}, then
 #' function returns \code{TRUE} on success, and stop with the error
 #' message on error. Default: \code{FALSE}
