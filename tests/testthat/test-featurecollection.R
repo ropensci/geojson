@@ -1,5 +1,7 @@
 context("featurecollection")
 
+invisible(linting_opts(suppress_pkgcheck_warnings = TRUE))
+
 file <- system.file("examples", "featurecollection2.geojson",
   package = "geojson")
 str <- paste0(readLines(file), collapse = " ")
@@ -53,7 +55,9 @@ test_that("featurecollection fails well", {
 })
 
 test_that("featurecollection fails well with geojson linting on", {
-  invisible(linting_opts(TRUE, method = "hint", error = TRUE))
+  invisible(linting_opts(TRUE, method = "hint", error = TRUE, TRUE))
+
+  skip_if_not_installed("geojsonlint")
 
   expect_error(
     featurecollection('{"type": "featurecollection", "coordinates": [[]]}'),

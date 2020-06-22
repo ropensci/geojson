@@ -1,5 +1,7 @@
 context("tibble's work")
 
+invisible(linting_opts(suppress_pkgcheck_warnings = TRUE))
+
 test_that("tibbles work with multipolygon inputs", {
   x <- '{ "type": "MultiPolygon",
   "coordinates": [

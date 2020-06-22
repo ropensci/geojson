@@ -1,5 +1,7 @@
 context("geo_pretty")
 
+invisible(linting_opts(suppress_pkgcheck_warnings = TRUE))
+
 pt <- point('{ "type": "Point", "coordinates": [100.0, 0.0] }')
 poly <- polygon('{ "type": "Polygon", "coordinates": [[ [100.0, 0.0], [100.0, 1.0], [101.0, 1.0], [101.0, 0.0], [100.0, 0.0] ]]}')
 

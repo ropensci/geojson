@@ -1,5 +1,7 @@
 context("geometrycollection")
 
+invisible(linting_opts(suppress_pkgcheck_warnings = TRUE))
+
 x <- '{
  "type": "GeometryCollection",
  "geometries": [
@@ -71,6 +73,8 @@ test_that("geometrycollection fails well", {
 
 test_that("geometrycollection fails well with geojson linting on", {
   invisible(linting_opts(TRUE, method = "hint", error = TRUE))
+
+  skip_if_not_installed("geojsonlint")
 
   expect_error(
     geometrycollection('{"type": "GeometryCollection", "coordinates":[]}'),

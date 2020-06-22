@@ -1,5 +1,7 @@
 context("geo_bbox")
 
+invisible(linting_opts(suppress_pkgcheck_warnings = TRUE))
+
 test_that("geo_bbox works - Point input", {
   x <- '{ "type": "Point", "coordinates": [100.0, 0.0] }'
   y <- point(x)

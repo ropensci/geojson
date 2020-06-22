@@ -1,5 +1,7 @@
 context("polygon")
 
+invisible(linting_opts(suppress_pkgcheck_warnings = TRUE))
+
 # spaces
 stt <- '{ "type": "Polygon",
   "coordinates": [
@@ -64,7 +66,9 @@ test_that("polygon fails well", {
 })
 
 test_that("polygon fails well with geojson linting on", {
-  invisible(linting_opts(TRUE, method = "hint", error = TRUE))
+  invisible(linting_opts(TRUE, method = "hint", error = TRUE, TRUE))
+
+  skip_if_not_installed("geojsonlint")
 
   expect_error(polygon('{"type": "Polygon", "coordinates": [[100.0,0.0],[101.0,0.0]]}'),
                "a number was found where a coordinate array should have been found")

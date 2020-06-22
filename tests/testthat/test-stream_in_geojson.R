@@ -1,5 +1,7 @@
 context("stream_in_geojson internal fxn")
 
+invisible(linting_opts(suppress_pkgcheck_warnings = TRUE))
+
 test_that("stream_in_geojson", {
   file <- system.file("examples", 'ndgeojson1.json', package = "geojson")
   con <- file(file)

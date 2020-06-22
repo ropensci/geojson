@@ -1,5 +1,7 @@
 context("feature")
 
+invisible(linting_opts(suppress_pkgcheck_warnings = TRUE))
+
 x <- '{ "type": "Point", "coordinates": [100.0, 0.0] }'
 pt <- point(x)
 ft_pt <- feature(pt)
@@ -54,7 +56,9 @@ test_that("feature fails well", {
 })
 
 test_that("linestring fails well with geojson linting on", {
-  invisible(linting_opts(TRUE, method = "hint", error = TRUE))
+  invisible(linting_opts(TRUE, method = "hint", error = TRUE, TRUE))
+
+  skip_if_not_installed("geojsonlint")
 
   expect_error(feature('{"type":"Feature","coordinates":[]}'),
             "Feature object cannot contain a \"coordinates\" member")

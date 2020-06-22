@@ -59,8 +59,10 @@ verify_class <- function(x, clss) {
 
 checkforpkg <- function(x) {
   if (!requireNamespace(x, quietly = TRUE)) {
-    warning(sprintf("'%s' not installed, skipping GeoJSON linting", x),
-            call. = FALSE)
+    if (!getOption("geojson.suppress_pkgcheck_warnings")) {
+      warning(sprintf("'%s' not installed, skipping GeoJSON linting", x),
+        call. = FALSE)
+    }
     invisible(FALSE)
   } else {
     invisible(TRUE)

@@ -1,5 +1,7 @@
 context("ndgeo_write")
 
+invisible(linting_opts(suppress_pkgcheck_warnings = TRUE))
+
 file <- system.file("examples", 'featurecollection2.geojson',
   package = "geojson")
 str <- paste0(readLines(file), collapse = " ")

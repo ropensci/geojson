@@ -1,5 +1,7 @@
 context("is-methods")
 
+invisible(linting_opts(suppress_pkgcheck_warnings = TRUE))
+
 test_that("is-methods", {
   expect_is(is_generator, "function")
   expect_is(is.point, "function")

@@ -1,5 +1,7 @@
 context("point")
 
+invisible(linting_opts(suppress_pkgcheck_warnings = TRUE))
+
 # spaces
 stt <- '{ "type": "Point", "coordinates": [100.0, 0.0] }'
 aa <- point(stt)
@@ -59,6 +61,8 @@ test_that("point fails well", {
 
 test_that("point fails well with geojson linting on", {
   invisible(linting_opts(TRUE, method = "hint", error = TRUE))
+
+  skip_if_not_installed("geojsonlint")
 
   expect_error(point('{"type": "Point", "coordinates": []}'),
                "position must have 2 or more elements")
