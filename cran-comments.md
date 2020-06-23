@@ -14,7 +14,7 @@
 
 -------
 
-This version fixes somem failing tests.
+This version fixes somem failing tests. This is a re-submission of this version with correction to some examples that were taking too long.
 
 Thanks!
 Scott Chamberlain
