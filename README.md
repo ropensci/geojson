@@ -4,7 +4,8 @@ geojson
 
 
 [![cran checks](https://cranchecks.info/badges/worst/geojson)](https://cranchecks.info/pkgs/geojson)
-[![Build Status](https://travis-ci.org/ropensci/geojson.svg?branch=master)](https://travis-ci.org/ropensci/geojson)
+[![R-CMD-check](https://github.com/ropensci/geojson/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/geojson/actions?query=workflow%3AR-CMD-check)
+[![R-CMD-check-docker](https://github.com/ropensci/geojson/workflows/R-CMD-check-docker/badge.svg)](https://github.com/ropensci/geojson/actions?query=workflow%3AR-CMD-check-docker)
 [![codecov](https://codecov.io/gh/ropensci/geojson/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/geojson)
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/geojson)](https://github.com/metacran/cranlogs.app)
 [![cran version](https://www.r-pkg.org/badges/version/geojson)](https://cran.r-project.org/package=geojson)
