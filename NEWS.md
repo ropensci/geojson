@@ -1,3 +1,11 @@
+geojson 0.3.4
+=============
+
+### MINOR IMPROVEMENTS
+
+* fixes for test suite: skip package check warnings when geojsonlint not available, and skip tests that would use geojsonlint (#40)
+
+
 geojson 0.3.2
 =============
 

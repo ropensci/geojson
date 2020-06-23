@@ -10,14 +10,14 @@
   "codeRepository": "https://github.com/ropensci/geojson",
   "issueTracker": "https://github.com/ropensci/geojson/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.3.2",
+  "version": "0.3.4",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.5.2",
+    "version": "4.0.2",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.5.2 Patched (2018-12-31 r75943)",
+  "runtimePlatform": "R version 4.0.2 RC (2020-06-14 r78689)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -219,8 +219,12 @@
   "contIntegration": "https://travis-ci.org/ropensci/geojson",
   "releaseNotes": "https://github.com/ropensci/geojson/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/geojson/blob/master/README.md",
-  "fileSize": "1008.62KB",
+  "fileSize": "1008.856KB",
   "applicationCategory": "Geospatial",
   "isPartOf": "https://ropensci.org",
-  "keywords": ["geojson", "geospatial", "conversion", "data", "input-output", "bbox", "polygon", "geobuf", "spatial", "rstats", "r", "r-package", "crs", "ndgeojson"]
+  "keywords": ["geojson", "geospatial", "conversion", "data", "input-output", "bbox", "polygon", "geobuf", "spatial", "rstats", "r", "r-package", "crs", "ndgeojson"],
+  "relatedLink": "https://docs.ropensci.org/geojson",
+  "contributor": {},
+  "copyrightHolder": {},
+  "funder": {}
 }
