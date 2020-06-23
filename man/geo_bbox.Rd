@@ -50,6 +50,7 @@ geo_bbox(y)
 y \%>\% feature() \%>\% geo_bbox()
 close(con)
 
+\dontrun{
 # multilinestring
 x <- '{ "type": "MultiLineString",
  "coordinates": [ [ [100.0, 0.0], [101.0, 1.0] ], [ [102.0, 2.0],
@@ -96,4 +97,5 @@ geo_bbox(str)
 # json
 library('jsonlite')
 geo_bbox(toJSON(fromJSON(str), auto_unbox = TRUE))
+}
 }
