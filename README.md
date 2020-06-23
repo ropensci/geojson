@@ -4,8 +4,8 @@ geojson
 
 
 [![cran checks](https://cranchecks.info/badges/worst/geojson)](https://cranchecks.info/pkgs/geojson)
-[![R-CMD-check](https://github.com/ropensci/geojson/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/geojson/actions?query=workflow%3AR-CMD-check)
-[![R-CMD-check-docker](https://github.com/ropensci/geojson/workflows/R-CMD-check-docker/badge.svg)](https://github.com/ropensci/geojson/actions?query=workflow%3AR-CMD-check-docker)
+[![R-check](https://github.com/ropensci/geojson/workflows/R-check/badge.svg)](https://github.com/ropensci/geojson/actions?query=workflow%3AR-check)
+[![R-check-fedora](https://github.com/ropensci/geojson/workflows/R-check-fedora/badge.svg)](https://github.com/ropensci/geojson/actions?query=workflow%3AR-check-fedora)
 [![codecov](https://codecov.io/gh/ropensci/geojson/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/geojson)
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/geojson)](https://github.com/metacran/cranlogs.app)
 [![cran version](https://www.r-pkg.org/badges/version/geojson)](https://cran.r-project.org/package=geojson)
@@ -444,7 +444,9 @@ str <- paste0(readLines(file), collapse = " ")
 outfile <- tempfile(fileext = ".geojson")
 ndgeo_write(x, outfile)
 jsonlite::stream_in(file(outfile))
-#>  Found 3 records... Imported 3 records. Simplifying...
+#> 
+ Found 3 records...
+ Imported 3 records. Simplifying...
 #>      type id   properties.NOME
 #> 1 Feature  0 Sec de segunrança
 #> 2 Feature  1             Teste

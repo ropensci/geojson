@@ -1,6 +1,6 @@
 on: [push, pull_request]
 
-name: R-CMD-check-docker
+name: R-check-fedora
 
 jobs:
   R-CMD-check-docker:
