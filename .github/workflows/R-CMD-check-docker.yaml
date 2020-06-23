@@ -33,7 +33,7 @@ jobs:
           key: ${{ runner.os }}-${{ matrix.config.image }}-${{ matrix.config.gcc }}-${{ hashFiles('DESCRIPTION') }}
           
       - name: Install dependencies
-        run: ${{ matrix.config.rscript }} -e "install.packages('remotes')" -e "remotes::install_deps(dependencies = TRUE)" -e "remotes::install_cran('rcmdcheck')"
+        run: ${{ matrix.config.rscript }} -e "options(repos=c(CRAN='https://cloud.r-project.org/')); install.packages('remotes')" -e "remotes::install_deps(dependencies = TRUE)" -e "remotes::install_cran('rcmdcheck')"
 
       - name: Check
         run: ${{ matrix.config.rscript }} -e "rcmdcheck::rcmdcheck(args = c('--no-manual', '--as-cran'), error_on = 'warning', check_dir = 'check')"
