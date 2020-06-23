@@ -34,7 +34,7 @@ Dev version
 
 
 ```r
-devtools::install_github("ropensci/geojson")
+remotes::install_github("ropensci/geojson")
 ```
 
 
@@ -317,11 +317,11 @@ tibble(a = 1:5, b = list(pt))
 #> # A tibble: 5 x 2
 #>       a b             
 #>   <int> <list>        
-#> 1     1 <S3: geopoint>
-#> 2     2 <S3: geopoint>
-#> 3     3 <S3: geopoint>
-#> 4     4 <S3: geopoint>
-#> 5     5 <S3: geopoint>
+#> 1     1 <geopoint [1]>
+#> 2     2 <geopoint [1]>
+#> 3     3 <geopoint [1]>
+#> 4     4 <geopoint [1]>
+#> 5     5 <geopoint [1]>
 ```
 
 
@@ -339,26 +339,26 @@ x <- '{ "type": "MultiLineString",
 ```r
 tibble(a = 1:5, b = list(mls))
 #> # A tibble: 5 x 2
-#>       a b                       
-#>   <int> <list>                  
-#> 1     1 <S3: geomultilinestring>
-#> 2     2 <S3: geomultilinestring>
-#> 3     3 <S3: geomultilinestring>
-#> 4     4 <S3: geomultilinestring>
-#> 5     5 <S3: geomultilinestring>
+#>       a b             
+#>   <int> <list>        
+#> 1     1 <gmltlnst [1]>
+#> 2     2 <gmltlnst [1]>
+#> 3     3 <gmltlnst [1]>
+#> 4     4 <gmltlnst [1]>
+#> 5     5 <gmltlnst [1]>
 ```
 
 
 ```r
 tibble(a = 1:5, b = list(pt), c = list(mls))
 #> # A tibble: 5 x 3
-#>       a b              c                       
-#>   <int> <list>         <list>                  
-#> 1     1 <S3: geopoint> <S3: geomultilinestring>
-#> 2     2 <S3: geopoint> <S3: geomultilinestring>
-#> 3     3 <S3: geopoint> <S3: geomultilinestring>
-#> 4     4 <S3: geopoint> <S3: geomultilinestring>
-#> 5     5 <S3: geopoint> <S3: geomultilinestring>
+#>       a b              c             
+#>   <int> <list>         <list>        
+#> 1     1 <geopoint [1]> <gmltlnst [1]>
+#> 2     2 <geopoint [1]> <gmltlnst [1]>
+#> 3     3 <geopoint [1]> <gmltlnst [1]>
+#> 4     4 <geopoint [1]> <gmltlnst [1]>
+#> 5     5 <geopoint [1]> <gmltlnst [1]>
 ```
 
 ## geobuf
@@ -387,8 +387,8 @@ x <- '{ "type": "Polygon",
 }'
 y <- polygon(x)
 to_geobuf(y)
-#>  [1] 10 02 18 06 2a 1a 0a 18 08 04 12 01 04 1a 11 80 84 af 5f 00 80 89 7a
-#> [24] 00 00 80 89 7a ff 88 7a 00
+#>  [1] 10 02 18 06 2a 1a 0a 18 08 04 12 01 04 1a 11 80 84 af 5f 00 80 89 7a 00 00
+#> [26] 80 89 7a ff 88 7a 00
 
 x <- '{"type": "MultiPoint", "coordinates": [ [100.0, 0.0], [101.0, 1.0] ] }'
 y <- multipoint(x)
@@ -402,17 +402,15 @@ read nd-GeoJSON
 
 
 ```r
-url <- "https://storage.googleapis.com/osm-extracts.interline.io/honolulu_hawaii.geojsonl"
+url <- "https://raw.githubusercontent.com/ropensci/geojson/master/inst/examples/ndgeojson1.json"
 f <- tempfile(fileext = ".geojsonl")
 download.file(url, f)
 x <- ndgeo_read(f, verbose = FALSE)
 x
 #> <geojson> 
 #>   type:  FeatureCollection 
-#>   features (n): 65004 
+#>   features (n): 3 
 #>   features (geometry / length) [first 5]:
-#>     Point / 2
-#>     Point / 2
 #>     Point / 2
 #>     Point / 2
 #>     Point / 2
@@ -445,9 +443,7 @@ str <- paste0(readLines(file), collapse = " ")
 outfile <- tempfile(fileext = ".geojson")
 ndgeo_write(x, outfile)
 jsonlite::stream_in(file(outfile))
-#> 
- Found 3 records...
- Imported 3 records. Simplifying...
+#>  Found 3 records... Imported 3 records. Simplifying...
 #>      type id   properties.NOME
 #> 1 Feature  0 Sec de segunrança
 #> 2 Feature  1             Teste
@@ -471,7 +467,7 @@ jsonlite::stream_in(file(outfile))
 * Please [report any issues or bugs](https://github.com/ropensci/geojson/issues).
 * License: MIT
 * Get citation information for `geojson` in R doing `citation(package = 'geojson')`
-* Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
+* Please note that this project is released with a [Contributor Code of Conduct][coc].
 By participating in this project you agree to abide by its terms.
 
 [![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
@@ -481,3 +477,4 @@ By participating in this project you agree to abide by its terms.
 [jqr]: https://github.com/ropensci/jqr
 [jq]: https://github.com/stedolan/jq
 [protolite]: https://github.com/jeroen/protolite
+[coc]: https://github.com/ropensci/geojson/blob/master/CODE_OF_CONDUCT.md

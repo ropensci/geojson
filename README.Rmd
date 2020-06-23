@@ -57,14 +57,14 @@ the classes defined in this package. This package is used within
 
 Stable CRAN version
 
-`````{r eval=FALSE}
+```{r eval=FALSE}
 install.packages("geojson")
 ```
 
 Dev version
 
 ```{r eval=FALSE}
-devtools::install_github("ropensci/geojson")
+remotes::install_github("ropensci/geojson")
 ```
 
 ```{r}
@@ -243,7 +243,7 @@ to_geobuf(y)
 read nd-GeoJSON
 
 ```{r}
-url <- "https://storage.googleapis.com/osm-extracts.interline.io/honolulu_hawaii.geojsonl"
+url <- "https://raw.githubusercontent.com/ropensci/geojson/master/inst/examples/ndgeojson1.json"
 f <- tempfile(fileext = ".geojsonl")
 download.file(url, f)
 x <- ndgeo_read(f, verbose = FALSE)
@@ -280,7 +280,7 @@ jsonlite::stream_in(file(outfile))
 * Please [report any issues or bugs](https://github.com/ropensci/geojson/issues).
 * License: MIT
 * Get citation information for `geojson` in R doing `citation(package = 'geojson')`
-* Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
+* Please note that this project is released with a [Contributor Code of Conduct][coc].
 By participating in this project you agree to abide by its terms.
 
 [![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
@@ -290,3 +290,4 @@ By participating in this project you agree to abide by its terms.
 [jqr]: https://github.com/ropensci/jqr
 [jq]: https://github.com/stedolan/jq
 [protolite]: https://github.com/jeroen/protolite
+[coc]: https://github.com/ropensci/geojson/blob/master/CODE_OF_CONDUCT.md
