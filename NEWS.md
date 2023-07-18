@@ -1,3 +1,11 @@
+geojson dev
+============
+
+* Removed geojsonlint and all linting facilities and code. `linting_opts()` is deprecated. 
+
+* New maintainer Michael Sumner. 
+
+
 geojson 0.3.4
 =============
 

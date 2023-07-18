@@ -5,15 +5,15 @@ Description: Classes for 'GeoJSON' to make working with 'GeoJSON' easier.
     Includes S3 classes for 'GeoJSON' classes with brief summary output,
     and a few methods such as extracting and adding bounding boxes,
     properties, and coordinate reference systems; working with 
-    newline delimited 'GeoJSON'; linting through the 'geojsonlint' 
-    package; and serializing to/from 'Geobuf' binary 'GeoJSON' 
+    newline delimited 'GeoJSON'; and serializing to/from 'Geobuf' binary 'GeoJSON' 
     format.
-Version: 0.3.4
+Version: 0.3.4.9001
 Authors@R: c(
-    person("Scott", "Chamberlain", role = c("aut", "cre"), 
+    person("Scott", "Chamberlain", role = c("aut"), 
         email = "myrmecocystus@gmail.com",
         comment = c(ORCID="0000-0003-1444-9135")),
-    person("Jeroen", "Ooms", role = "aut")
+    person("Jeroen", "Ooms", role = "aut"), 
+    person("Michael", "Sumner", role  = "cre", email = "mdsumner@gmail.com")
     )
 License: MIT + file LICENSE
 URL: https://docs.ropensci.org/geojson, https://github.com/ropensci/geojson
@@ -31,14 +31,13 @@ Imports:
     magrittr,
     lazyeval
 Suggests:
-    geojsonlint (>= 0.2.0),
     tibble,
     testthat,
     knitr,
     rmarkdown,
     sf,
     stringi
-RoxygenNote: 7.1.0
 X-schema.org-applicationCategory: Geospatial
 X-schema.org-keywords: geojson, geospatial, conversion, data, input-output, bbox, polygon, geobuf
 X-schema.org-isPartOf: https://ropensci.org
+RoxygenNote: 7.2.3

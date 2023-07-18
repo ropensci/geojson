@@ -1,6 +1,6 @@
 context("crs_add")
 
-invisible(linting_opts(suppress_pkgcheck_warnings = TRUE))
+
 
 x <- '{ "type": "Polygon",
 "coordinates": [

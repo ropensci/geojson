@@ -1,6 +1,6 @@
 context("as.geojson - character to geojson")
 
-invisible(linting_opts(suppress_pkgcheck_warnings = TRUE))
+
 
 library("sp")
 

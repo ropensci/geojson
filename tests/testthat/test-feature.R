@@ -1,6 +1,6 @@
 context("feature")
 
-invisible(linting_opts(suppress_pkgcheck_warnings = TRUE))
+
 
 x <- '{ "type": "Point", "coordinates": [100.0, 0.0] }'
 pt <- point(x)
@@ -43,7 +43,7 @@ test_that("empty feature object works", {
 })
 
 test_that("feature fails well", {
-  expect_error(feature('{"type": "FooBar"}'), 
+  expect_error(feature('{"type": "FooBar"}'),
     "type must be one of")
 
   expect_error(feature('{"type": "LineString"}'), "keys not correct")
@@ -54,29 +54,3 @@ test_that("feature fails well", {
   expect_error(feature('{"type": "LineString", "coordinates": [1,s]}'),
                "invalid char in json text")
 })
-
-test_that("linestring fails well with geojson linting on", {
-  invisible(linting_opts(TRUE, method = "hint", error = TRUE, TRUE))
-
-  skip_if_not_installed("geojsonlint")
-
-  expect_error(feature('{"type":"Feature","coordinates":[]}'),
-            "Feature object cannot contain a \"coordinates\" member")
-
-  expect_error(feature('{"type":"Feature","properties":{}}'),
-               "\"geometry\" member required")
-
-  expect_error(feature('{"type":"Feature","properties":{},"geometry":{}}'),
-               "\"type\" member required")
-
-  expect_error(feature('{"type":"Feature","properties":{},"geometry":{"type":"Point"}}'),
-               "\"coordinates\" member required")
-
-  expect_error(feature('{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[]}}'),
-               "position must have 2 or more elements")
-
-  expect_error(feature('{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[a]}}'),
-               "invalid char in json text")
-})
-
-invisible(linting_opts())
