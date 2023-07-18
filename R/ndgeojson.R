@@ -1,5 +1,5 @@
 #' Read and write newline-delimited GeoJSON (GeoJSON text sequences)
-#' 
+#'
 #' There are various flavors of newline-delimited GeoJSON, all of which
 #' we aim to handle here. See Details for more.
 #'
@@ -8,43 +8,43 @@
 #' @param file (character) a file. not a connection. required.
 #' @param sep (character) a character separator to use in [writeLines()]
 #' @param txt text, a file, or a url. required.
-#' @param pagesize (integer) number of lines to read/write from/to the 
+#' @param pagesize (integer) number of lines to read/write from/to the
 #' connection per iteration
 #' @param verbose (logical) print messages. default: `TRUE`
-#' 
-#' @note **IMPORTANT**: `ngeo_read` for now only handles lines of geojson 
+#'
+#' @note **IMPORTANT**: `ngeo_read` for now only handles lines of geojson
 #' in your file that are either features or geometry objects (e.g., point,
 #' multipoint, polygon, multipolygon, linestring, multilinestring)
-#' 
+#'
 #' @details
-#' 
-#' - `ndgeo_write`: writes \pkg{geojson} package types as 
+#'
+#' - `ndgeo_write`: writes \pkg{geojson} package types as
 #' newline-delimited GeoJSON to a file
-#' - `ndgeo_read`: reads newline-delimited GeoJSON from a string, 
+#' - `ndgeo_read`: reads newline-delimited GeoJSON from a string,
 #' file, or URL into the appropriate geojson type
-#' 
-#' As an alternative to `ndgeo_read`, you can simply use 
-#' [jsonlite::stream_in()] to convert newline-delimited GeoJSON 
+#'
+#' As an alternative to `ndgeo_read`, you can simply use
+#' [jsonlite::stream_in()] to convert newline-delimited GeoJSON
 #' to a data.frame
-#' 
+#'
 #' @return a `geojson` class object
-#' @references Newline-delimited JSON has a few flavors. 
-#' The only difference between ndjson <http://ndjson.org/> and 
-#' JSON Lines <http://jsonlines.org/> I can tell is that the former 
+#' @references Newline-delimited JSON has a few flavors.
+#' The only difference between ndjson <http://ndjson.org/> and
+#' JSON Lines <http://jsonlines.org/> I can tell is that the former
 #' requires UTF-8 encoding, while the latter does not.
-#' 
-#' GeoJSON text sequences has a specification found at  
+#'
+#' GeoJSON text sequences has a specification found at
 #' <https://tools.ietf.org/html/rfc8142>. The spec states that:
-#' 
+#'
 #' - a GeoJSON text sequence is any number of GeoJSON RFC7946 texts
 #' - each line encoded in UTF-8 RFC3629
-#' - each line preceded by one ASCII RFC20 record separator (RS; "0x1e") 
+#' - each line preceded by one ASCII RFC20 record separator (RS; "0x1e")
 #' character
 #' - each line followed by a line feed (LF)
 #' - each JSON text MUST contain a single GeoJSON object as defined in RFC7946
-#' 
+#'
 #' See also the GeoJSON specification <https://tools.ietf.org/html/rfc7946>
-#' 
+#'
 #' @examples
 #' # featurecollection
 #' ## write
@@ -59,7 +59,7 @@
 #' ## read
 #' ndgeo_read(outfile)
 #' unlink(outfile)
-#' 
+#'
 #' # read from an existing file
 #' ## GeoJSON objects all of same type: Feature
 #' file <- system.file("examples", 'ndgeojson1.json', package = "geojson")
@@ -70,21 +70,21 @@
 #' ## GeoJSON objects of mixed type: Point, and Feature
 #' file <- system.file("examples", 'ndgeojson3.json', package = "geojson")
 #' ndgeo_read(file)
-#' 
+#'
 #' \dontrun{
 #' # read from a file
-#' url <- "https://raw.githubusercontent.com/ropensci/geojson/master/inst/examples/ndgeojson1.json"
+#' url <- "https://raw.githubusercontent.com/ropensci/geojson/main/inst/examples/ndgeojson1.json"
 #' f <- tempfile(fileext = ".geojsonl")
 #' download.file(url, f)
 #' x <- ndgeo_read(f)
 #' x
 #' unlink(f)
-#' 
+#'
 #' # read from a URL
-#' url <- "https://raw.githubusercontent.com/ropensci/geojson/master/inst/examples/ndgeojson1.json"
+#' url <- "https://raw.githubusercontent.com/ropensci/geojson/main/inst/examples/ndgeojson1.json"
 #' x <- ndgeo_read(url)
 #' x
-#' 
+#'
 #' # geojson text sequences from file
 #' file <- system.file("examples", 'featurecollection2.geojson',
 #'   package = "geojson")

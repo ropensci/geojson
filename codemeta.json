@@ -217,8 +217,8 @@
     }
   ],
   "contIntegration": "https://travis-ci.org/ropensci/geojson",
-  "releaseNotes": "https://github.com/ropensci/geojson/blob/master/NEWS.md",
-  "readme": "https://github.com/ropensci/geojson/blob/master/README.md",
+  "releaseNotes": "https://github.com/ropensci/geojson/blob/main/NEWS.md",
+  "readme": "https://github.com/ropensci/geojson/blob/main/README.md",
   "fileSize": "1008.856KB",
   "applicationCategory": "Geospatial",
   "isPartOf": "https://ropensci.org",

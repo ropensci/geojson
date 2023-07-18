@@ -1,5 +1,7 @@
-geojson
-=======
+---
+output: github_document
+---
+
 
 ```{r echo=FALSE}
 library("knitr")
@@ -35,12 +37,14 @@ knitr::opts_chunk$set(
 )
 ```
 
-[![cran checks](https://cranchecks.info/badges/worst/geojson)](https://cranchecks.info/pkgs/geojson)
 [![R-check](https://github.com/ropensci/geojson/workflows/R-check/badge.svg)](https://github.com/ropensci/geojson/actions?query=workflow%3AR-check)
 [![R-check-fedora](https://github.com/ropensci/geojson/workflows/R-check-fedora/badge.svg)](https://github.com/ropensci/geojson/actions?query=workflow%3AR-check-fedora)
-[![codecov](https://codecov.io/gh/ropensci/geojson/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/geojson)
+[![codecov](https://codecov.io/gh/ropensci/geojson/branch/main/graph/badge.svg)](https://codecov.io/gh/ropensci/geojson)
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/geojson)](https://github.com/metacran/cranlogs.app)
 [![cran version](https://www.r-pkg.org/badges/version/geojson)](https://cran.r-project.org/package=geojson)
+
+# geojson
+
 
 `geojson` aims to deal only with geojson data, without requiring any of the
 `sp`/`rgdal`/`rgeos` stack.  That means this package is light weight.
@@ -244,7 +248,7 @@ to_geobuf(y)
 read nd-GeoJSON
 
 ```{r}
-url <- "https://raw.githubusercontent.com/ropensci/geojson/master/inst/examples/ndgeojson1.json"
+url <- "https://raw.githubusercontent.com/ropensci/geojson/main/inst/examples/ndgeojson1.json"
 f <- tempfile(fileext = ".geojsonl")
 download.file(url, f)
 x <- ndgeo_read(f, verbose = FALSE)
@@ -291,4 +295,4 @@ By participating in this project you agree to abide by its terms.
 [jqr]: https://github.com/ropensci/jqr
 [jq]: https://github.com/stedolan/jq
 [protolite]: https://github.com/jeroen/protolite
-[coc]: https://github.com/ropensci/geojson/blob/master/CODE_OF_CONDUCT.md
+[coc]: https://github.com/ropensci/geojson/blob/main/CODE_OF_CONDUCT.md
