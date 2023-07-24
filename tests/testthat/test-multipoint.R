@@ -1,6 +1,6 @@
 context("multipoint")
 
-invisible(linting_opts(suppress_pkgcheck_warnings = TRUE))
+
 
 # spaces
 stt <- '{"type":"MultiPoint","coordinates":[[100.0,0.0],[101.0,1.0]]}'
@@ -53,17 +53,3 @@ test_that("multipoint fails well", {
 
   expect_error(multipoint(5), "no method for numeric")
 })
-
-test_that("multipoint fails well with geojson linting on", {
-  invisible(linting_opts(TRUE, method = "hint", error = TRUE))
-
-  skip_if_not_installed("geojsonlint")
-
-  expect_error(multipoint('{"type": "MultiPoint", "coordinates": [1]}'),
-               "position should be an array, is a number instead")
-
-  expect_error(multipoint('{"type": "MultiFart", "coordinates": []}'),
-               "The type MultiFart is unknown")
-})
-
-invisible(linting_opts())

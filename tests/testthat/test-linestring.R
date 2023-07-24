@@ -1,6 +1,6 @@
 context("linestring")
 
-invisible(linting_opts(suppress_pkgcheck_warnings = TRUE))
+
 
 stt <- '{ "type": "LineString", "coordinates": [ [100.0, 0.0], [101.0, 1.0] ] }'
 aa <- linestring(stt)
@@ -46,17 +46,3 @@ test_that("linestring fails well", {
 
   expect_error(linestring(5), "no method for numeric")
 })
-
-test_that("linestring fails well with geojson linting on", {
-  invisible(linting_opts(TRUE, method = "hint", error = TRUE))
-
-  skip_if_not_installed("geojsonlint")
-
-  expect_error(linestring('{"type": "LineString", "coordinates": []}'),
-            "a line needs to have two or more coordinates to be valid")
-
-  expect_error(linestring('{"type": "LineString", "coordinates": [1]}'),
-               "a line needs to have two or more coordinates to be valid")
-})
-
-invisible(linting_opts())

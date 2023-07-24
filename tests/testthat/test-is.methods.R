@@ -1,6 +1,6 @@
 context("is-methods")
 
-invisible(linting_opts(suppress_pkgcheck_warnings = TRUE))
+
 
 test_that("is-methods", {
   expect_is(is_generator, "function")
@@ -77,14 +77,14 @@ test_that("is-methods fail well", {
   expect_error(is.point("foobar"), "x must be of class 'geopoint'")
   expect_error(is.multipoint("foobar"), "x must be of class 'geomultipoint'")
   expect_error(is.linestring("foobar"), "x must be of class 'geolinestring'")
-  expect_error(is.multilinestring("foobar"), 
+  expect_error(is.multilinestring("foobar"),
     "x must be of class 'geomultilinestring'")
   expect_error(is.polygon("foobar"), "x must be of class 'geopolygon'")
-  expect_error(is.multipolygon("foobar"), 
+  expect_error(is.multipolygon("foobar"),
     "x must be of class 'geomultipolygon'")
   expect_error(is.feature("foobar"), "x must be of class 'geofeature'")
-  expect_error(is.featurecollection("foobar"), 
+  expect_error(is.featurecollection("foobar"),
     "x must be of class 'geofeaturecollection'")
-  expect_error(is.geometrycollection("foobar"), 
+  expect_error(is.geometrycollection("foobar"),
     "x must be of class 'geogeometrycollection'")
 })

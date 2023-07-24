@@ -32,19 +32,5 @@ message on error. Default: \code{FALSE}}
 GeoJSON Linting
 }
 \details{
-if you have \pkg{geojsonlint} installed, we can lint
-your GeoJSON inputs for you. If not, we skip that step.
-
-Note that even if you aren't linting your geojson with \pkg{geojsonlint},
-we still do some minimal checks.
-}
-\examples{
-linting_opts(lint = TRUE)
-
-linting_opts(lint = TRUE, method = "hint")
-linting_opts(lint = TRUE, method = "hint", error = TRUE)
-linting_opts(lint = TRUE, method = "lint")
-linting_opts(lint = TRUE, method = "lint", error = TRUE)
-linting_opts(lint = TRUE, method = "validate")
-linting_opts(lint = TRUE, method = "validate", error = TRUE)
+linting_opts was deprecated in 0.3.5
 }

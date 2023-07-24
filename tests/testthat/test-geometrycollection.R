@@ -1,6 +1,6 @@
 context("geometrycollection")
 
-invisible(linting_opts(suppress_pkgcheck_warnings = TRUE))
+
 
 x <- '{
  "type": "GeometryCollection",
@@ -26,7 +26,7 @@ test_that("geometrycollection object structure is correct", {
 })
 
 test_that("geometrycollection: character class input", {
-  file <- system.file("examples", "geometrycollection1.geojson", 
+  file <- system.file("examples", "geometrycollection1.geojson",
     package = "geojson")
   txt <- paste0(readLines(file), collapse="")
   aa <- geometrycollection(txt)
@@ -71,14 +71,3 @@ test_that("geometrycollection fails well", {
   expect_error(geometrycollection(5), "no method for numeric")
 })
 
-test_that("geometrycollection fails well with geojson linting on", {
-  invisible(linting_opts(TRUE, method = "hint", error = TRUE))
-
-  skip_if_not_installed("geojsonlint")
-
-  expect_error(
-    geometrycollection('{"type": "GeometryCollection", "coordinates":[]}'),
-    "\"geometries\" member required")
-})
-
-invisible(linting_opts())

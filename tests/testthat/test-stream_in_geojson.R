@@ -1,6 +1,6 @@
 context("stream_in_geojson internal fxn")
 
-invisible(linting_opts(suppress_pkgcheck_warnings = TRUE))
+
 
 test_that("stream_in_geojson", {
   file <- system.file("examples", 'ndgeojson1.json', package = "geojson")
@@ -19,7 +19,7 @@ test_that("stream_in_geojson fails well", {
   z <- file(tempfile())
   w <- file(tempfile())
   expect_error(stream_in_geojson(z, 'foo'), "is not TRUE")
-  expect_error(stream_in_geojson(w, verbose = 'foo'), 
+  expect_error(stream_in_geojson(w, verbose = 'foo'),
     "is not TRUE")
   close(z)
   close(w)

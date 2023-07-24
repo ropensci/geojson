@@ -10,3 +10,4 @@ Makefile
 .github
 ^revdep$
 ^codemeta\.json$
+^geojson\.Rproj$

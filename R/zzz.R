@@ -57,17 +57,7 @@ verify_class <- function(x, clss) {
   if (cl != clss) stop("object is not of type ", clss, call. = FALSE)
 }
 
-checkforpkg <- function(x) {
-  if (!requireNamespace(x, quietly = TRUE)) {
-    if (!getOption("geojson.suppress_pkgcheck_warnings")) {
-      warning(sprintf("'%s' not installed, skipping GeoJSON linting", x),
-        call. = FALSE)
-    }
-    invisible(FALSE)
-  } else {
-    invisible(TRUE)
-  }
-}
+
 
 cchar <- function(x) {
   gsub("\"", "", as.character(x))

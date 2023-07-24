@@ -85,7 +85,7 @@ ndgeo_read(file)
 
 \dontrun{
 # read from a file
-url <- "https://raw.githubusercontent.com/ropensci/geojson/master/inst/examples/ndgeojson1.json"
+url <- "https://raw.githubusercontent.com/ropensci/geojson/main/inst/examples/ndgeojson1.json"
 f <- tempfile(fileext = ".geojsonl")
 download.file(url, f)
 x <- ndgeo_read(f)
@@ -93,7 +93,7 @@ x
 unlink(f)
 
 # read from a URL
-url <- "https://raw.githubusercontent.com/ropensci/geojson/master/inst/examples/ndgeojson1.json"
+url <- "https://raw.githubusercontent.com/ropensci/geojson/main/inst/examples/ndgeojson1.json"
 x <- ndgeo_read(url)
 x
 

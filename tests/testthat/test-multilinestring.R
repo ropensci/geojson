@@ -1,6 +1,6 @@
 context("multilinestring")
 
-invisible(linting_opts(suppress_pkgcheck_warnings = TRUE))
+
 
 stt <- '{ "type": "MultiLineString",
     "coordinates": [ [ [100.0, 0.0], [101.0, 1.0] ], [ [102.0, 2.0], [103.0, 3.0] ] ] }'
@@ -61,14 +61,3 @@ test_that("multilinestring fails well", {
   expect_error(multilinestring('{"type": "MultiLineString", "coordinates": [1,s]}'),
                "invalid char in json text")
 })
-
-test_that("multilinestring fails well with geojson linting on", {
-  invisible(linting_opts(TRUE, method = "hint", error = TRUE))
-
-  skip_if_not_installed("geojsonlint")
-
-  expect_error(multilinestring('{"type": "MultiLineString", "coordinates": [[]]}'),
-               "a line needs to have two or more coordinates to be valid")
-})
-
-invisible(linting_opts())

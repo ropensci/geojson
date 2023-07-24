@@ -1,6 +1,6 @@
 context("properties")
 
-invisible(linting_opts(suppress_pkgcheck_warnings = TRUE))
+
 
 test_that("properties_add works - value in fxn call", {
   x <- '{ "type": "LineString", "coordinates": [ [100.0, 0.0], [101.0, 1.0] ]}'

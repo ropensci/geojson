@@ -1,6 +1,6 @@
 context("ndgeo_write")
 
-invisible(linting_opts(suppress_pkgcheck_warnings = TRUE))
+
 
 file <- system.file("examples", 'featurecollection2.geojson',
   package = "geojson")
@@ -50,7 +50,7 @@ test_that("ndgeo_read: from file", {
 })
 
 test_that("ndgeo_read: from url", {
-  url <- "https://raw.githubusercontent.com/ropensci/geojson/master/inst/examples/ndgeojson1.json"
+  url <- "https://raw.githubusercontent.com/ropensci/geojson/main/inst/examples/ndgeojson1.json"
   aa <- ndgeo_read(url, verbose = FALSE)
 
   expect_is(aa, "geojson")

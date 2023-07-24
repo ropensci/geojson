@@ -1,6 +1,6 @@
 context("to_geojson")
 
-invisible(linting_opts(suppress_pkgcheck_warnings = TRUE))
+
 
 pt <- '{ "type": "Point", "coordinates": [100.0, 0.0] }'
 ls <- '{ "type": "LineString", "coordinates": [ [100.0, 0.0], [101.0, 1.0] ] }'

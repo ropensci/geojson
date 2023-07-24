@@ -1,6 +1,6 @@
 context("geobuf methods")
 
-invisible(linting_opts(suppress_pkgcheck_warnings = TRUE))
+
 
 testpb <- system.file("examples/test.pb", package = "geojson")
 lineone <- system.file("examples/linestring_one.geojson", package = "geojson")

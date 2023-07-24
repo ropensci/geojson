@@ -1,6 +1,6 @@
 context("multipolygon")
 
-invisible(linting_opts(suppress_pkgcheck_warnings = TRUE))
+
 
 # spaces
 stt <- '{ "type": "MultiPolygon",
@@ -78,17 +78,3 @@ test_that("multipolygon fails well", {
 
   expect_error(multipolygon(5), "no method for numeric")
 })
-
-test_that("multipolygon fails well with geojson linting on", {
-  invisible(linting_opts(TRUE, method = "hint", error = TRUE))
-
-  skip_if_not_installed("geojsonlint")
-
-  expect_error(multipolygon('{"type": "MultiPolygon", "coordinates": [1]}'),
-               "a number was found where a coordinate array should")
-
-  expect_error(multipolygon('{"type": "Multipolygon", "coordinates": []}'),
-               "Expected MultiPolygon")
-})
-
-invisible(linting_opts())

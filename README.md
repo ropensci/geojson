@@ -1,55 +1,52 @@
-geojson
-=======
 
-
-
-[![cran checks](https://cranchecks.info/badges/worst/geojson)](https://cranchecks.info/pkgs/geojson)
 [![R-check](https://github.com/ropensci/geojson/workflows/R-check/badge.svg)](https://github.com/ropensci/geojson/actions?query=workflow%3AR-check)
 [![R-check-fedora](https://github.com/ropensci/geojson/workflows/R-check-fedora/badge.svg)](https://github.com/ropensci/geojson/actions?query=workflow%3AR-check-fedora)
-[![codecov](https://codecov.io/gh/ropensci/geojson/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/geojson)
-[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/geojson)](https://github.com/metacran/cranlogs.app)
-[![cran version](https://www.r-pkg.org/badges/version/geojson)](https://cran.r-project.org/package=geojson)
+[![codecov](https://codecov.io/gh/ropensci/geojson/branch/main/graph/badge.svg)](https://codecov.io/gh/ropensci/geojson)
+[![rstudio mirror
+downloads](https://cranlogs.r-pkg.org/badges/geojson)](https://github.com/metacran/cranlogs.app)
+[![cran
+version](https://www.r-pkg.org/badges/version/geojson)](https://cran.r-project.org/package=geojson)
 
-`geojson` aims to deal only with geojson data, without requiring any of the
-`sp`/`rgdal`/`rgeos` stack.  That means this package is light weight.
+# geojson
 
-We've defined classes (`S3`) following the [GeoJSON spec][geojsonspec]. These
-classes sort of overlap with `sp`'s classes, but not really. There's also some
-overlap in GeoJSON classes with Well-Known Text (WKT) classes, but GeoJSON has a
-subset of WKT's classes.
+`geojson` aims to deal only with geojson data, without requiring any of
+the `sp`/`rgdal`/`rgeos` stack. That means this package is light weight.
 
-The package [geoops](https://github.com/ropenscilabs/geoops) supports manipulations on
-the classes defined in this package. This package is used within
-[geojsonio](https://github.com/ropensci/geojsonio) to make some tasks easier.
+We’ve defined classes (`S3`) following the [GeoJSON
+spec](https://tools.ietf.org/html/rfc7946). These classes sort of
+overlap with `sp`’s classes, but not really. There’s also some overlap
+in GeoJSON classes with Well-Known Text (WKT) classes, but GeoJSON has a
+subset of WKT’s classes.
+
+The package [geoops](https://github.com/ropenscilabs/geoops) supports
+manipulations on the classes defined in this package. This package is
+used within [geojsonio](https://github.com/ropensci/geojsonio) to make
+some tasks easier.
 
 ## Installation
 
 Stable CRAN version
 
-
-```r
+``` r
 install.packages("geojson")
 ```
 
 Dev version
 
-
-```r
+``` r
 remotes::install_github("ropensci/geojson")
 ```
 
-
-```r
+``` r
 library("geojson")
 ```
 
 ## geojson class
 
-Essentially a character string with S3 class `geojson` attached to make it
-easy to perform operations on
+Essentially a character string with S3 class `geojson` attached to make
+it easy to perform operations on
 
-
-```r
+``` r
 x <- "{\"type\":\"FeatureCollection\",\"features\":[{\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-99.74,32.45]},\"properties\":{}}]}"
 as.geojson(x)
 #> <geojson> 
@@ -61,8 +58,7 @@ as.geojson(x)
 
 ## geometrycollection
 
-
-```r
+``` r
 x <- '{
  "type": "GeometryCollection",
  "geometries": [
@@ -88,24 +84,21 @@ x <- '{
 
 get the string
 
-
-```r
+``` r
 y[[1]]
 #> [1] "{\n \"type\": \"GeometryCollection\",\n \"geometries\": [\n   {\n     \"type\": \"Point\",\n     \"coordinates\": [100.0, 0.0]\n   },\n   {\n     \"type\": \"LineString\",\n     \"coordinates\": [ [101.0, 0.0], [102.0, 1.0] ]\n   }\n  ]\n}"
 ```
 
 get the type
 
-
-```r
+``` r
 geo_type(y)
 #> [1] "GeometryCollection"
 ```
 
 pretty print the geojson
 
-
-```r
+``` r
 geo_pretty(y)
 #> {
 #>     "type": "GeometryCollection",
@@ -137,8 +130,7 @@ geo_pretty(y)
 
 write to disk
 
-
-```r
+``` r
 geo_write(y, f <- tempfile(fileext = ".geojson"))
 jsonlite::fromJSON(f, FALSE)
 #> $type
@@ -179,14 +171,11 @@ jsonlite::fromJSON(f, FALSE)
 #> [1] 1
 ```
 
-
-
 ## properties
 
 Add properties
 
-
-```r
+``` r
 x <- '{ "type": "LineString", "coordinates": [ [100.0, 0.0], [101.0, 1.0] ]}'
 res <- linestring(x) %>% feature() %>% properties_add(population = 1000)
 res
@@ -197,8 +186,7 @@ res
 
 Get a property
 
-
-```r
+``` r
 properties_get(res, property = 'population')
 #> 1000
 ```
@@ -207,8 +195,7 @@ properties_get(res, property = 'population')
 
 Add crs
 
-
-```r
+``` r
 crs <- '{
   "type": "name",
   "properties": {
@@ -246,8 +233,7 @@ z
 
 Get crs
 
-
-```r
+``` r
 crs_get(z)
 #> $type
 #> [1] "name"
@@ -261,8 +247,7 @@ crs_get(z)
 
 Add bbox
 
-
-```r
+``` r
 tt <- x %>% feature() %>% bbox_add()
 tt
 #> {
@@ -294,28 +279,24 @@ tt
 
 Get bbox
 
-
-```r
+``` r
 bbox_get(tt)
 #> [1] 100   0 101   1
 ```
 
+## geojson in data.frame’s
 
-## geojson in data.frame's
-
-
-```r
+``` r
 x <- '{ "type": "Point", "coordinates": [100.0, 0.0] }'
 (pt <- point(x))
 #> <Point> 
 #>   coordinates:  [100,0]
 ```
 
-
-```r
+``` r
 library("tibble")
 tibble(a = 1:5, b = list(pt))
-#> # A tibble: 5 x 2
+#> # A tibble: 5 × 2
 #>       a b             
 #>   <int> <list>        
 #> 1     1 <geopoint [1]>
@@ -325,8 +306,7 @@ tibble(a = 1:5, b = list(pt))
 #> 5     5 <geopoint [1]>
 ```
 
-
-```r
+``` r
 x <- '{ "type": "MultiLineString",
   "coordinates": [ [ [100.0, 0.0], [101.0, 1.0] ], [ [102.0, 2.0], [103.0, 3.0] ] ] }'
 (mls <- multilinestring(x))
@@ -336,10 +316,9 @@ x <- '{ "type": "MultiLineString",
 #>   coordinates:  [[[100,0],[101,1]],[[102,2],[103,3]]]
 ```
 
-
-```r
+``` r
 tibble(a = 1:5, b = list(mls))
-#> # A tibble: 5 x 2
+#> # A tibble: 5 × 2
 #>       a b             
 #>   <int> <list>        
 #> 1     1 <gmltlnst [1]>
@@ -349,10 +328,9 @@ tibble(a = 1:5, b = list(mls))
 #> 5     5 <gmltlnst [1]>
 ```
 
-
-```r
+``` r
 tibble(a = 1:5, b = list(pt), c = list(mls))
-#> # A tibble: 5 x 3
+#> # A tibble: 5 × 3
 #>       a b              c             
 #>   <int> <list>         <list>        
 #> 1     1 <geopoint [1]> <gmltlnst [1]>
@@ -364,12 +342,11 @@ tibble(a = 1:5, b = list(pt), c = list(mls))
 
 ## geobuf
 
-Geobuf is a compact binary encoding for geographic data
-using protocol buffers <https://github.com/mapbox/geobuf> (via the [protolite][])
-package.
+Geobuf is a compact binary encoding for geographic data using protocol
+buffers <https://github.com/mapbox/geobuf> (via the
+[protolite](https://github.com/jeroen/protolite)) package.
 
-
-```r
+``` r
 file <- system.file("examples/test.pb", package = "geojson")
 (json <- from_geobuf(file))
 #> {"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[102,0.5]},"id":999,"properties":{"prop0":"value0","double":0.0123,"negative_int":-100,"positive_int":100,"negative_double":-1.2345e+16,"positive_double":1.2345e+16,"null":null,"array":[1,2,3.1],"object":{"foo":[5,6,7]}},"blabla":{"foo":[1,1,1]}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[102,0],[103,-1.1],[104,-3],[105,1]]},"id":123,"properties":{"custom1":"test","prop0":"value0","prop1":0}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[100,0],[101,0],[101,1],[100,1],[100,0]],[[99,10],[101,0],[100,1],[99,10]]]},"id":"test-id","properties":{"prop0":"value0","prop1":{"this":"that"}},"custom1":"jeroen"},{"type":"Feature","geometry":{"type":"MultiPolygon","coordinates":[[[[102,2],[103,2],[103,3],[102,2]]],[[[100,0],[101,0],[101,1],[100,1],[100,0]],[[100.2,0.2],[100.2,0.8],[100.2,0.2]]]]}},{"type":"Feature","geometry":{"type":"GeometryCollection","geometries":[{"type":"Point","coordinates":[100,0]},{"type":"LineString","coordinates":[[101,0],[102,1]]},{"type":"MultiPoint","coordinates":[[100,0],[101,1]]},{"type":"MultiLineString","coordinates":[[[100,0],[101,1]],[[102,2],[103,3]]]},{"type":"MultiPolygon","coordinates":[[[[102,2],[103,2],[103,3],[102,3],[102,2]]],[[[100,0],[101,0],[101,1],[100,1],[100,0]],[[100.2,0.2],[100.8,0.2],[100.8,0.8],[100.2,0.8],[100.2,0.2]]]]}]}}]}
@@ -401,9 +378,8 @@ to_geobuf(y)
 
 read nd-GeoJSON
 
-
-```r
-url <- "https://raw.githubusercontent.com/ropensci/geojson/master/inst/examples/ndgeojson1.json"
+``` r
+url <- "https://raw.githubusercontent.com/ropensci/geojson/main/inst/examples/ndgeojson1.json"
 f <- tempfile(fileext = ".geojsonl")
 download.file(url, f)
 x <- ndgeo_read(f, verbose = FALSE)
@@ -417,18 +393,14 @@ x
 #>     Point / 2
 ```
 
-
-
 Write nd-GeoJSON
 
-One would think we could take the output of `ndego_read()` above
-and pass to `ndgeo_write()`. However, in this example, the json is too big
-for `jqr` to handle, the underlying parser tool. So here's a smaller 
+One would think we could take the output of `ndego_read()` above and
+pass to `ndgeo_write()`. However, in this example, the json is too big
+for `jqr` to handle, the underlying parser tool. So here’s a smaller
 example:
 
-
-
-```r
+``` r
 file <- system.file("examples", "featurecollection2.geojson",
   package = "geojson")
 str <- paste0(readLines(file), collapse = " ")
@@ -439,14 +411,11 @@ str <- paste0(readLines(file), collapse = " ")
 #>   features (1st 5):  Point, Point, Point
 ```
 
-
-```r
+``` r
 outfile <- tempfile(fileext = ".geojson")
 ndgeo_write(x, outfile)
 jsonlite::stream_in(file(outfile))
-#> 
- Found 3 records...
- Imported 3 records. Simplifying...
+#>  Found 3 records... Imported 3 records. Simplifying...
 #>      type id   properties.NOME
 #> 1 Feature  0 Sec de segunrança
 #> 2 Feature  1             Teste
@@ -467,17 +436,13 @@ jsonlite::stream_in(file(outfile))
 
 ## Meta
 
-* Please [report any issues or bugs](https://github.com/ropensci/geojson/issues).
-* License: MIT
-* Get citation information for `geojson` in R doing `citation(package = 'geojson')`
-* Please note that this project is released with a [Contributor Code of Conduct][coc].
-By participating in this project you agree to abide by its terms.
+- Please [report any issues or
+  bugs](https://github.com/ropensci/geojson/issues).
+- License: MIT
+- Get citation information for `geojson` in R doing
+  `citation(package = 'geojson')`
+- Please note that this project is released with a [Contributor Code of
+  Conduct](https://github.com/ropensci/geojson/blob/main/CODE_OF_CONDUCT.md).
+  By participating in this project you agree to abide by its terms.
 
 [![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
-
-
-[geojsonspec]: https://tools.ietf.org/html/rfc7946
-[jqr]: https://github.com/ropensci/jqr
-[jq]: https://github.com/stedolan/jq
-[protolite]: https://github.com/jeroen/protolite
-[coc]: https://github.com/ropensci/geojson/blob/master/CODE_OF_CONDUCT.md
