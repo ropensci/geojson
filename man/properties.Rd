@@ -54,5 +54,5 @@ x <- y \%>\% feature() \%>\% properties_add(population = 1000)
 properties_get(x, property = 'population')
 }
 \references{
-\url{http://geojson.org/geojson-spec.html}
+\url{https://geojson.org/geojson-spec.html}
 }

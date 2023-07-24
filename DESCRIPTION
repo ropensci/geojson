@@ -16,7 +16,7 @@ Authors@R: c(
     person("Michael", "Sumner", role  = "cre", email = "mdsumner@gmail.com")
     )
 License: MIT + file LICENSE
-URL: https://docs.ropensci.org/geojson, https://github.com/ropensci/geojson
+URL: https://docs.ropensci.org/geojson/, https://github.com/ropensci/geojson
 BugReports: https://github.com/ropensci/geojson/issues
 LazyData: true
 VignetteBuilder: knitr
@@ -36,7 +36,8 @@ Suggests:
     knitr,
     rmarkdown,
     sf,
-    stringi
+    stringi,
+    covr
 X-schema.org-applicationCategory: Geospatial
 X-schema.org-keywords: geojson, geospatial, conversion, data, input-output, bbox, polygon, geobuf
 X-schema.org-isPartOf: https://ropensci.org

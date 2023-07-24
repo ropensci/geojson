@@ -57,5 +57,5 @@ bbox_get(z)
 bbox_get(x)
 }
 \references{
-\url{https://tools.ietf.org/html/rfc7946#section-5}
+\url{https://datatracker.ietf.org/doc/html/rfc7946#section-5}
 }

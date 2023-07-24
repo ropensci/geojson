@@ -51,7 +51,7 @@
 #'
 #' @section Coordinate Reference System:
 #' According to RFC 7946
-#' (\url{https://tools.ietf.org/html/rfc7946#page-12}) the CRS for all GeoJSON
+#' (\url{https://datatracker.ietf.org/doc/html/rfc7946#page-12}) the CRS for all GeoJSON
 #' objects must be WGS-84, equivalent to \code{urn:ogc:def:crs:OGC::CRS84}.
 #' And lat/long must be in decimal degrees.
 #'
@@ -60,7 +60,7 @@
 #' forward these are not likely to be used much.
 #'
 #' @section Coordinate precision:
-#' According to RFC 7946 (\url{https://tools.ietf.org/html/rfc7946#section-11.2})
+#' According to RFC 7946 (\url{https://datatracker.ietf.org/doc/html/rfc7946#section-11.2})
 #' consider that 6 decimal places amoutns to ~10 centimeters, a precision
 #' well within that of current GPS sytems. Further, A GeoJSON text containing
 #' many detailed Polygons can be inflated almost by a factor of two by

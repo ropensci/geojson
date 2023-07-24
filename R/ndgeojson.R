@@ -30,11 +30,11 @@
 #' @return a `geojson` class object
 #' @references Newline-delimited JSON has a few flavors.
 #' The only difference between ndjson <http://ndjson.org/> and
-#' JSON Lines <http://jsonlines.org/> I can tell is that the former
+#' JSON Lines <https://jsonlines.org/> I can tell is that the former
 #' requires UTF-8 encoding, while the latter does not.
 #'
 #' GeoJSON text sequences has a specification found at
-#' <https://tools.ietf.org/html/rfc8142>. The spec states that:
+#' <https://datatracker.ietf.org/doc/html/rfc8142>. The spec states that:
 #'
 #' - a GeoJSON text sequence is any number of GeoJSON RFC7946 texts
 #' - each line encoded in UTF-8 RFC3629
@@ -43,7 +43,7 @@
 #' - each line followed by a line feed (LF)
 #' - each JSON text MUST contain a single GeoJSON object as defined in RFC7946
 #'
-#' See also the GeoJSON specification <https://tools.ietf.org/html/rfc7946>
+#' See also the GeoJSON specification <https://datatracker.ietf.org/doc/html/rfc7946>
 #'
 #' @examples
 #' # featurecollection

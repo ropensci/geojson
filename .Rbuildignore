@@ -11,3 +11,5 @@ Makefile
 ^revdep$
 ^codemeta\.json$
 ^geojson\.Rproj$
+^codecov\.yml$
+^\.github$

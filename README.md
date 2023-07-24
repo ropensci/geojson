@@ -1,24 +1,24 @@
 
 [![R-check](https://github.com/ropensci/geojson/workflows/R-check/badge.svg)](https://github.com/ropensci/geojson/actions?query=workflow%3AR-check)
 [![R-check-fedora](https://github.com/ropensci/geojson/workflows/R-check-fedora/badge.svg)](https://github.com/ropensci/geojson/actions?query=workflow%3AR-check-fedora)
-[![codecov](https://codecov.io/gh/ropensci/geojson/branch/main/graph/badge.svg)](https://codecov.io/gh/ropensci/geojson)
+[![Codecov test
+coverage](https://codecov.io/gh/ropensci/geojson/branch/main/graph/badge.svg)](https://app.codecov.io/gh/ropensci/geojson?branch=main)
 [![rstudio mirror
-downloads](https://cranlogs.r-pkg.org/badges/geojson)](https://github.com/metacran/cranlogs.app)
+downloads](https://cranlogs.r-pkg.org/badges/geojson)](https://github.com/r-hub/cranlogs.app)
 [![cran
 version](https://www.r-pkg.org/badges/version/geojson)](https://cran.r-project.org/package=geojson)
 
 # geojson
 
-`geojson` aims to deal only with geojson data, without requiring any of
-the `sp`/`rgdal`/`rgeos` stack. That means this package is light weight.
+`geojson` aims to deal only with geojson data in a lightweight way.
 
 We’ve defined classes (`S3`) following the [GeoJSON
-spec](https://tools.ietf.org/html/rfc7946). These classes sort of
-overlap with `sp`’s classes, but not really. There’s also some overlap
-in GeoJSON classes with Well-Known Text (WKT) classes, but GeoJSON has a
-subset of WKT’s classes.
+spec](https://datatracker.ietf.org/doc/html/rfc7946). These classes sort
+of overlap with `sp`’s classes, but not really. There’s also some
+overlap in GeoJSON classes with Well-Known Text (WKT) classes, but
+GeoJSON has a subset of WKT’s classes.
 
-The package [geoops](https://github.com/ropenscilabs/geoops) supports
+The package [geoops](https://github.com/sckott/geoops) supports
 manipulations on the classes defined in this package. This package is
 used within [geojsonio](https://github.com/ropensci/geojsonio) to make
 some tasks easier.
@@ -444,5 +444,9 @@ jsonlite::stream_in(file(outfile))
 - Please note that this project is released with a [Contributor Code of
   Conduct](https://github.com/ropensci/geojson/blob/main/CODE_OF_CONDUCT.md).
   By participating in this project you agree to abide by its terms.
+
+(This was originally setup without requiring any of the `GEOS/GDAL`
+stack but now the package sp depends on sf it can’t be avoided without
+overhaul).
 
 [![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)

@@ -4,20 +4,20 @@
 #' @name bbox
 #' @param x An object of class \code{geojson}
 #' @param bbox (numeric) a vector or list of length 4 for a 2D bounding box
-#' or length 6 for a 3D bounding box. If \code{NULL}, the bounding box is 
+#' or length 6 for a 3D bounding box. If \code{NULL}, the bounding box is
 #' calculated for you
 #'
 #' @references
-#' \url{https://tools.ietf.org/html/rfc7946#section-5}
+#' \url{https://datatracker.ietf.org/doc/html/rfc7946#section-5}
 #'
 #' @details Note that \code{bbox_get} outputs the bbox if it exists, but
 #' does not calculate it from the geojson. See \code{\link{geo_bbox}}
 #' to calculate a bounding box. Bounding boxes can be 2D or 3D.
 #'
-#' @return 
+#' @return
 #' \itemize{
 #'  \item bbox_add: an object of class jqson/character from \pkg{jqr}
-#'  \item bbox_get: a bounding box, of the form 
+#'  \item bbox_get: a bounding box, of the form
 #'   \code{[west, south, east, north]} for 2D or of the form
 #'   \code{[west, south, min-altitude, east, north, max-altitude]} for 3D
 #' }

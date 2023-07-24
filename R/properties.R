@@ -6,7 +6,7 @@
 #' @param ... Properties to be added, supports NSE as well as SE
 #' @param .list a named list of properties to add. must be named
 #' @param property (character) property name
-#' @references \url{http://geojson.org/geojson-spec.html}
+#' @references \url{https://geojson.org/geojson-spec.html}
 #' @examples
 #' # add properties
 #' x <- '{ "type": "LineString", "coordinates": [ [100.0, 0.0], [101.0, 1.0] ]}'

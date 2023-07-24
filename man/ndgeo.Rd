@@ -114,11 +114,11 @@ unlink(outfile)
 \references{
 Newline-delimited JSON has a few flavors.
 The only difference between ndjson \url{http://ndjson.org/} and
-JSON Lines \url{http://jsonlines.org/} I can tell is that the former
+JSON Lines \url{https://jsonlines.org/} I can tell is that the former
 requires UTF-8 encoding, while the latter does not.
 
 GeoJSON text sequences has a specification found at
-\url{https://tools.ietf.org/html/rfc8142}. The spec states that:
+\url{https://datatracker.ietf.org/doc/html/rfc8142}. The spec states that:
 \itemize{
 \item a GeoJSON text sequence is any number of GeoJSON RFC7946 texts
 \item each line encoded in UTF-8 RFC3629
@@ -128,5 +128,5 @@ character
 \item each JSON text MUST contain a single GeoJSON object as defined in RFC7946
 }
 
-See also the GeoJSON specification \url{https://tools.ietf.org/html/rfc7946}
+See also the GeoJSON specification \url{https://datatracker.ietf.org/doc/html/rfc7946}
 }
