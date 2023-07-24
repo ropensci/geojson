@@ -1,7 +1,6 @@
 ## Test environments
 
-* local OS X install, R 4.0.2 patched
-* ubuntu 16.04 (on travis-ci), R 4.0.2
+* ubuntu 
 * win-builder (devel and release)
 
 ## R CMD check results
@@ -10,11 +9,3 @@
 
 ## Reverse dependencies
 
-* I have run R CMD check on the 1 downstream dependency. Summary at <https://github.com/ropensci/geojson/blob/master/revdep/README.md>. No problems were found related to this package.
-
--------
-
-This version fixes somem failing tests. This is a re-submission of this version with correction to some examples that were taking too long.
-
-Thanks!
-Scott Chamberlain

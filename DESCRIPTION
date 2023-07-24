@@ -7,7 +7,7 @@ Description: Classes for 'GeoJSON' to make working with 'GeoJSON' easier.
     properties, and coordinate reference systems; working with 
     newline delimited 'GeoJSON'; and serializing to/from 'Geobuf' binary 'GeoJSON' 
     format.
-Version: 0.3.4.9001
+Version: 0.3.5
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut"), 
         email = "myrmecocystus@gmail.com",
