@@ -37,11 +37,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-[![R-check](https://github.com/ropensci/geojson/workflows/R-check/badge.svg)](https://github.com/ropensci/geojson/actions?query=workflow%3AR-check)
-[![R-check-fedora](https://github.com/ropensci/geojson/workflows/R-check-fedora/badge.svg)](https://github.com/ropensci/geojson/actions?query=workflow%3AR-check-fedora)
-[![Codecov test coverage](https://codecov.io/gh/ropensci/geojson/branch/main/graph/badge.svg)](https://app.codecov.io/gh/ropensci/geojson?branch=main)
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/ropensci/geojson/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ropensci/geojson/actions/workflows/R-CMD-check.yaml)
  [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/geojson)](https://github.com/r-hub/cranlogs.app)
 [![cran version](https://www.r-pkg.org/badges/version/geojson)](https://cran.r-project.org/package=geojson)
+<!-- badges: end -->
 
 # geojson
 
