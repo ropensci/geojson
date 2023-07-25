@@ -1,0 +1,42 @@
+Package: geojson
+Type: Package
+Title: Classes for 'GeoJSON'
+Description: Classes for 'GeoJSON' to make working with 'GeoJSON' easier.
+    Includes S3 classes for 'GeoJSON' classes with brief summary output,
+    and a few methods such as extracting and adding bounding boxes,
+    properties, and coordinate reference systems; working with 
+    newline delimited 'GeoJSON'; and serializing to/from 'Geobuf' binary 'GeoJSON' 
+    format.
+Version: 0.3.5
+Authors@R: c(
+    person("Scott", "Chamberlain", role = c("aut"), 
+        email = "myrmecocystus@gmail.com",
+        comment = c(ORCID="0000-0003-1444-9135")),
+    person("Jeroen", "Ooms", role = "aut"), 
+    person("Michael", "Sumner", role  = "cre", email = "mdsumner@gmail.com")
+    )
+License: MIT + file LICENSE
+URL: https://docs.ropensci.org/geojson/,
+        https://github.com/ropensci/geojson
+BugReports: https://github.com/ropensci/geojson/issues
+LazyData: true
+VignetteBuilder: knitr
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+Imports: methods, sp, jsonlite (>= 1.6), protolite (>= 1.8), jqr (>=
+        1.1.0), magrittr, lazyeval
+Suggests: tibble, testthat, knitr, rmarkdown, sf, stringi, covr
+X-schema.org-applicationCategory: Geospatial
+X-schema.org-keywords: geojson, geospatial, conversion, data,
+        input-output, bbox, polygon, geobuf
+X-schema.org-isPartOf: https://ropensci.org
+RoxygenNote: 7.2.3
+RemoteType: local
+RemoteUrl: /perm_storage/home/mdsumner/Git/geojson
+NeedsCompilation: no
+Packaged: 2023-07-25 02:25:25 UTC; mdsumner
+Author: Scott Chamberlain [aut] (<https://orcid.org/0000-0003-1444-9135>),
+  Jeroen Ooms [aut],
+  Michael Sumner [cre]
+Maintainer: Michael Sumner <mdsumner@gmail.com>
+Built: R 4.3.0; ; 2023-07-25 02:25:26 UTC; unix

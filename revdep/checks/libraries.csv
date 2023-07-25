@@ -1,0 +1,6 @@
+package,old,new,delta
+geojson,0.3.4,0.3.5,*
+jsonlite,NA,1.8.7,*
+protolite,NA,2.2.0,*
+Rcpp,NA,1.0.11,*
+sp,NA,2.0-0,*

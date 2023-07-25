@@ -1,0 +1,3 @@
+{"type":"Feature","properties":{"name":"Melbourne"},"geometry":{"type":"Point","coordinates":[144.9584,-37.8173]}}
+{"type":"Feature","properties":{"name":"Canberra"},"geometry":{"type":"Point","coordinates":[149.1009,-35.3039]}}
+{"type":"Feature","properties":{"name":"Sydney"},"geometry":{"type":"Point","coordinates":[151.2144,-33.8766]}}

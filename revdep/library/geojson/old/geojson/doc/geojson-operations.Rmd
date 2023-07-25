@@ -1,0 +1,177 @@
+---
+title: "geojson operations"
+author: "Scott Chamberlain and Jeroen Ooms"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{geojson operations}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r echo=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+The `geojson` package has functions to do basic operations on GeoJSON classes.
+
+```{r}
+library("geojson")
+```
+
+First, let's make a GeoJSON object
+
+```{r}
+x <- '{
+ "type": "GeometryCollection",
+ "geometries": [
+   {
+     "type": "Point",
+     "coordinates": [100.0, 0.0]
+   },
+   {
+     "type": "LineString",
+     "coordinates": [ [101.0, 0.0], [102.0, 1.0] ]
+   }
+  ]
+}'
+(y <- geometrycollection(x))
+```
+
+### inspect the object
+
+Get the string
+
+```{r}
+y[[1]]
+```
+
+Get the type
+
+```{r}
+geo_type(y)
+```
+
+Pretty print the geojson
+
+```{r}
+geo_pretty(y)
+```
+
+Write to disk
+
+```{r}
+geo_write(y, f <- tempfile(fileext = ".geojson"))
+jsonlite::fromJSON(f, FALSE)
+```
+
+```{r echo=FALSE}
+unlink(f)
+```
+
+## properties
+
+Add properties
+
+```{r}
+x <- '{ "type": "LineString", "coordinates": [ [100.0, 0.0], [101.0, 1.0] ]}'
+res <- linestring(x) %>% feature() %>% properties_add(population = 1000)
+res
+```
+
+Get a property
+
+```{r}
+properties_get(res, property = 'population')
+```
+
+## crs
+
+Add crs
+
+```{r}
+crs <- '{
+  "type": "name",
+  "properties": {
+     "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+  }
+}'
+z <- x %>% feature() %>% crs_add(crs)
+z
+```
+
+Get crs
+
+```{r}
+crs_get(z)
+```
+
+## bbox
+
+Add bbox - by default, if you don't pass a bbox into `bbox_add()` we attempt
+to calculate the bbox for you. You can also pass in your own bbox.
+
+```{r}
+tt <- x %>% feature() %>% bbox_add()
+tt
+```
+
+Get bbox
+
+```{r}
+bbox_get(tt)
+```
+
+
+## geojson in data.frame's
+
+It's really easy to put `geojson` class objects into data.frame's as well.
+
+The ideal solution is to put them into `tbl`'s (see the `tibble` package)
+
+Make a `point`
+
+```{r}
+x <- '{ "type": "Point", "coordinates": [100.0, 0.0] }'
+(pt <- point(x))
+```
+
+Put the point into a `tbl`
+
+```{r}
+library("tibble")
+data_frame(a = 1:5, b = list(pt))
+```
+
+Another object, here a `multilinestring`
+
+```{r}
+x <- '{ "type": "MultiLineString",
+  "coordinates": [ [ [100.0, 0.0], [101.0, 1.0] ], [ [102.0, 2.0], [103.0, 3.0] ] ] }'
+(mls <- multilinestring(x))
+```
+
+Put into a `tbl`
+
+```{r}
+data_frame(a = 1:5, b = list(mls))
+```
+
+Put the `point` and `multilinestring` into the same `tbl`
+
+```{r}
+(df <- data_frame(a = 1:5, b = list(pt), c = list(mls)))
+```
+
+And you can pull the geojson back out
+
+```{r}
+df$b
+df$b[[1]]
+```
+

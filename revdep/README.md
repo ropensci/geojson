@@ -1,28 +1,34 @@
 # Platform
 
-|field    |value                                       |
-|:--------|:-------------------------------------------|
-|version  |R version 3.5.2 Patched (2018-12-31 r75943) |
-|os       |macOS Mojave 10.14.2                        |
-|system   |x86_64, darwin15.6.0                        |
-|ui       |X11                                         |
-|language |(EN)                                        |
-|collate  |en_US.UTF-8                                 |
-|ctype    |en_US.UTF-8                                 |
-|tz       |US/Pacific                                  |
-|date     |2019-01-30                                  |
+|field    |value                        |
+|:--------|:----------------------------|
+|version  |R version 4.3.0 (2023-04-21) |
+|os       |Ubuntu 20.04.6 LTS           |
+|system   |x86_64, linux-gnu            |
+|ui       |X11                          |
+|language |(EN)                         |
+|collate  |en_AU.UTF-8                  |
+|ctype    |en_AU.UTF-8                  |
+|tz       |Australia/Hobart             |
+|date     |2023-07-25                   |
+|pandoc   |2.9.2.1 @ /usr/bin/pandoc    |
 
 # Dependencies
 
-|package |old   |new |Δ  |
-|:-------|:-----|:---|:--|
-|geojson |0.3.0 |NA  |*  |
+|package   |old   |new    |Δ  |
+|:---------|:-----|:------|:--|
+|geojson   |0.3.4 |0.3.5  |*  |
+|jsonlite  |NA    |1.8.7  |*  |
+|protolite |NA    |2.2.0  |*  |
+|Rcpp      |NA    |1.0.11 |*  |
+|sp        |NA    |2.0-0  |*  |
 
 # Revdeps
 
-## All (1)
+## Failed to check (2)
 
 |package   |version |error |warning |note |
 |:---------|:-------|:-----|:-------|:----|
-|geojsonio |0.6.0   |      |        |     |
+|geojsonio |?       |      |        |     |
+|mregions  |?       |      |        |     |
 

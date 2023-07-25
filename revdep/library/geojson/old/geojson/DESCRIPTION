@@ -1,0 +1,41 @@
+Package: geojson
+Type: Package
+Title: Classes for 'GeoJSON'
+Description: Classes for 'GeoJSON' to make working with 'GeoJSON' easier.
+    Includes S3 classes for 'GeoJSON' classes with brief summary output,
+    and a few methods such as extracting and adding bounding boxes,
+    properties, and coordinate reference systems; working with 
+    newline delimited 'GeoJSON'; linting through the 'geojsonlint' 
+    package; and serializing to/from 'Geobuf' binary 'GeoJSON' 
+    format.
+Version: 0.3.4
+Authors@R: c(
+    person("Scott", "Chamberlain", role = c("aut", "cre"), 
+        email = "myrmecocystus@gmail.com",
+        comment = c(ORCID="0000-0003-1444-9135")),
+    person("Jeroen", "Ooms", role = "aut")
+    )
+License: MIT + file LICENSE
+URL: https://docs.ropensci.org/geojson,
+        https://github.com/ropensci/geojson
+BugReports: https://github.com/ropensci/geojson/issues
+LazyData: true
+VignetteBuilder: knitr
+Encoding: UTF-8
+Imports: methods, sp, jsonlite (>= 1.6), protolite (>= 1.8), jqr (>=
+        1.1.0), magrittr, lazyeval
+Suggests: geojsonlint (>= 0.2.0), tibble, testthat, knitr, rmarkdown,
+        sf, stringi
+RoxygenNote: 7.1.0
+X-schema.org-applicationCategory: Geospatial
+X-schema.org-keywords: geojson, geospatial, conversion, data,
+        input-output, bbox, polygon, geobuf
+X-schema.org-isPartOf: https://ropensci.org
+NeedsCompilation: no
+Packaged: 2020-06-23 19:36:13 UTC; sckott
+Author: Scott Chamberlain [aut, cre] (<https://orcid.org/0000-0003-1444-9135>),
+  Jeroen Ooms [aut]
+Maintainer: Scott Chamberlain <myrmecocystus@gmail.com>
+Repository: CRAN
+Date/Publication: 2020-06-23 20:00:03 UTC
+Built: R 4.3.0; ; 2023-07-25 02:23:18 UTC; unix

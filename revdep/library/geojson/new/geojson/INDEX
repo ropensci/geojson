@@ -1,0 +1,25 @@
+as.geojson              Geojson class
+bbox                    Add or get bounding box
+crs                     Add or get CRS
+feature                 feature class
+featurecollection       featurecollection class
+geo_bbox                Calculate a bounding box
+geo_pretty              Pretty print geojson
+geo_type                Get geometry type
+geo_write               Write geojson to disk
+geobuf                  Geobuf serialization
+geojson-package         geojson
+geojson_data            Data for use in examples
+geometrycollection      geometrycollection class
+linestring              linestring class
+linting_opts            GeoJSON Linting
+multilinestring         multilinestring class
+multipoint              multipoint class
+multipolygon            multipolygon class
+ndgeo                   Read and write newline-delimited GeoJSON
+                        (GeoJSON text sequences)
+point                   point class
+polygon                 polygon class
+properties              Add or get properties
+to_geojson              Convert GeoJSON character string to approriate
+                        GeoJSON class

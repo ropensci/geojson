@@ -1,0 +1,141 @@
+---
+title: "geojson package classes"
+author: "Scott Chamberlain and Jeroen Ooms"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{geojson package classes}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r echo=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+The `geojson` package has a function to create a GeoJSON class matching all the
+GeoJSON data types:
+
+* `point()` - Point
+* `multipoint()` - MultiPoint
+* `linestring()` - LineString
+* `multilinestring()` - MultiLineString
+* `polygon()` - Polygon
+* `multipolygon()` - MultiPolygon
+* `feature()` - Feature
+* `featurecollection()` - FeatureCollection
+* `geometrycollection()` - GeometryCollection
+
+The following are some examples of their usage.
+
+```{r}
+library("geojson")
+```
+
+## point
+
+```{r}
+(x <- point('{ "type": "Point", "coordinates": [100.0, 0.0] }'))
+class(x)
+attributes(x)
+```
+
+## multipoint
+
+```{r}
+multipoint('{"type": "MultiPoint", "coordinates": [ [100.0, 0.0], [101.0, 1.0] ] }')
+```
+
+## linestring
+
+```{r}
+linestring('{ "type": "LineString", "coordinates": [ [100.0, 0.0], [101.0, 1.0] ] }')
+```
+
+## multilinestring
+
+```{r}
+str <- '{ "type": "MultiLineString",
+  "coordinates": [ [ [100.0, 0.0], [101.0, 1.0] ], [ [102.0, 2.0], [103.0, 3.0] ] ] }'
+multilinestring(str)
+```
+
+## polygon
+
+```{r}
+str <- '{ "type": "Polygon",
+ "coordinates": [
+   [ [100.0, 0.0], [100.0, 1.0], [101.0, 1.0], [101.0, 0.0], [100.0, 0.0] ]
+   ]
+}'
+polygon(str)
+```
+
+## multipolygon
+
+```{r}
+str <- '{ "type": "MultiPolygon",
+  "coordinates": [
+   [[[102.0, 2.0], [103.0, 2.0], [103.0, 3.0], [102.0, 3.0], [102.0, 2.0]]],
+   [[[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]],
+   [[100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]]]
+  ]
+}'
+multipolygon(str)
+```
+
+## feature
+
+From `geopoint` class
+
+```{r}
+pt <- point('{ "type": "Point", "coordinates": [100.0, 0.0] }')
+feature(pt)
+```
+
+From character string
+
+```{r}
+str <- "{ \"type\": \"Feature\", \"properties\": {}, \"geometry\": { \"type\": \"Point\", \"coordinates\": [100.0, 0.0] } }"
+feature(str)
+```
+
+## featurecollection
+
+From feature
+
+```{r}
+pt %>% feature() %>% featurecollection()
+```
+
+From string
+
+```{r}
+file <- system.file("examples", 'featurecollection1.geojson', package = "geojson")
+str <- paste0(readLines(file), collapse = " ")
+featurecollection(str)
+```
+
+## geometrycollection
+
+```{r}
+str <- '{
+ "type": "GeometryCollection",
+ "geometries": [
+   {
+     "type": "Point",
+     "coordinates": [100.0, 0.0]
+   },
+   {
+     "type": "LineString",
+     "coordinates": [ [101.0, 0.0], [102.0, 1.0] ]
+   }
+  ]
+}'
+geometrycollection(str)
+```
