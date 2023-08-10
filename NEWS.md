@@ -1,5 +1,6 @@
-geojson 0.3.5
-============
+# geojson (development version)
+
+# geojson 0.3.5
 
 * Now working in main branch, removed references to old trunk branch. 
 
