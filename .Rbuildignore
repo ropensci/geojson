@@ -13,3 +13,4 @@ Makefile
 ^geojson\.Rproj$
 ^codecov\.yml$
 ^\.github$
+^CRAN-SUBMISSION$
